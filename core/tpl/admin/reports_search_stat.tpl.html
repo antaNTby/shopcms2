@@ -1,0 +1,19 @@
+	{*
+    <p class="errorboard">{$message}</p>
+    <form action="admin.php" method="get">
+            <input type=hidden name=dpt value=reports>
+            <input type=hidden name=sub value=site_map>
+            <input type=hidden name=creat value=yes>
+    <input type=submit value="Create">
+    </form>
+    *}
+    <h1>Статистика поисковых запросов</h1>
+    <table class="adn">
+    	<tr class="lineb">
+    		<td>ID</td><td>Запрос</td><td>Кол-во</td>
+    	</tr>
+    	{foreach from=$search_stat_rows item=row}
+    		<tr class="lineybig hover"><td>{$row.searchID}</td><td>{$row.query|escape}</td><td>{$row.count}</td></tr>
+    		<tr><td colspan="3" class="separ"><img src="design/admin/images/pixel.gif" alt="" class="sep"></td></tr>
+		{/foreach}
+    </table>

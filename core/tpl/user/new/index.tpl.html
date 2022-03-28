@@ -1,0 +1,225 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<link rel="icon" href="/core/tpl/user/new/images/favicon.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="/core/tpl/user/new/images/favicon.ico" type="image/x-icon">
+	<link type="text/css" rel="stylesheet" href="/core/tpl/user/new/style.css">
+	<script type="text/javascript" src="/core/tpl/user/new/js/jquery_1_10_2.js"></script>
+	<script type="text/javascript" src="/core/tpl/user/new/js/mol_1_1.js"></script>	
+	<script type="text/javascript" src="/core/tpl/user/new/js/script.js"></script>
+</head>
+<body>	
+		
+	{*Заголовок сайта*}
+	<div id="header_block">
+	<div id="header">
+		{*Логотип*}
+		<a href="/" id="logo">
+			<img src="/core/tpl/user/new/images/logo.gif" alt="Mapsshop">
+		</a>
+		
+		{*Верхнее меню*}
+		<ul id="topmenu">
+			<li><a href="javascript:void(0)"  onclick="showAjaxWindow(2)">КАК ПОЛУЧИТЬ КАРТУ</a></li>
+			<li><a href="javascript:void(0)" onclick="showAjaxWindow(1)">ГАРАНТИИ</a></li>
+			<li><a href="javascript:void(0)" onclick="showAjaxWindow(85)">КОНТАКТЫ</a></li>
+		</ul>
+		
+		{*Главное меню*}
+		{if $cat_tree_count>0}
+			<div id="mainmenu">
+				<a href="javascript:void(0)" class="mainmenu_pred_little {if $cat_tree_count>2}elem_block_inline{else}elem_none_inline{/if}" style="font-size:16px">&#9668;</a>
+				<ul>	
+					{*Категория*}
+					{section name=c loop=$cat_tree}
+						<li class="{if not $cat_tree[c].prods}mainmenu_href{else}mainmenu_text{/if} {if $cat_tree_count>2 && $smarty.section.c.index<($cat_tree_count-2)}elem_none_inline{else}elem_block_inline{/if}">
+							<a href="{$cat_tree[c].UID}" style="font-size:16px">{$cat_tree[c].name}</a>
+							{if $cat_tree[c].prods}
+								<div class="elem_none_imp">
+									{*Товары*}
+									<a href="javascript:void(0)" class="mainmenu_pred_big elem_none_imp"><img src="/core/tpl/user/new/images/pred_big.png"></a>
+									<ul>
+									{section name=p loop=$cat_tree[c].prods}
+										<li class="mainmenu_two elem_block_imp">
+											<p onclick="location.href='{$cat_tree[c].prods[p].UID}'" class="{if $smarty.section.p.first}mainmenu_p_first{else}{if $smarty.section.p.last}mainmenu_p_last{else}mainmenu_p_else{/if}{/if}" style="cursor: pointer">
+												<img src="data/pictures_tpl/{$cat_tree[c].prods[p].folder_pictures}/125/{$cat_tree[c].prods[p].pictures}" width="115px" height="115px">
+											</p><br>
+											<a href="{$cat_tree[c].prods[p].UID}">{$cat_tree[c].prods[p].name}</a><br>
+										</li>		
+									{/section}
+									</ul>
+									<a href="javascript:void(0)" class="mainmenu_next_big elem_block_imp"><img src="/core/tpl/user/new/images/next_big.png"></a>
+								</div>
+							{/if}
+							{if not $smarty.section.c.last}<span class="mainmenu_next {if $cat_tree[c].prods}mainmenu_top41{else}mainmenu_top29{/if}" style="font-size:16px;"><img src="core/tpl/user/new/images/breadcrumb-sep.png"></span>{/if}
+						</li>
+					{/section}
+					
+				</ul>
+				<a href="javascript:void(0)" class="mainmenu_next_little elem_none_inline" style="font-size:16px">&#9658;</a>
+			</div>
+		{/if}
+				
+		{*Поиск*}
+		<div id="search">
+			<form action="/index.php" method="GET" id="searchformblock">
+				<input type="text" size="25" value="ПОИСК" name="searchstring">
+				<a href="javascript:void(0)" onclick="document.getElementById('searchformblock').submit()"><img src="/core/tpl/user/new/images/search.gif"></a>
+			</form>
+		</div>
+	</div>
+	</div>
+	
+	{*Заголовок страницы*}
+	<div id="content_block">
+	<div id="content{if $cat_info || $categoryID eq 1 || $buy_change}_cat{/if}">
+		{*Верхняя полоска*}
+		<div id="top_line"></div>
+		
+		<div id="container{if $cat_info || $categoryID eq 1 || $buy_change}_cat{/if}">				
+			{*Хлебные крошки*}
+			<div id="breadcrumb">
+				<a href="/">Главная</a>
+				{if $cat_tree[2].parent eq 1}
+					{section name=c start=1 loop=$cat_tree}
+						{if not $smarty.section.c.last-child}<a href="{$cat_tree[c].UID}">{$cat_tree[c].name}</a>{/if}
+					{/section}
+				{elseif $cat_tree[1].parent eq 135}
+					{section name=c loop=$cat_tree}
+						{if not $smarty.section.c.last-child}<a href="{$cat_tree[c].UID}">{$cat_tree[c].name}</a>{/if}
+					{/section}
+				{/if}
+			</div>
+			
+			{*Название страницы*}
+			<div id="name"><h>{if $product_info}{$product_info.name}{else}{section name=c loop=$cat_tree}{if $smarty.section.c.last}{$cat_tree[c].name}{/if}{/section}{/if}</h></div>
+			
+			{* <div id="number"><h>{$adminPhone}</h></div> *}
+		</div>
+	</div>
+	</div>
+	
+	{*Подключение шаблона категории или товара*}
+	{if $search_is}
+		{include file="search.tpl.html"}
+	{else}
+		{if $product_info}
+			{if $buy_change}
+				{include file="payment.tpl.html"}
+			{else}
+				{include file="product.tpl.html"}
+			{/if}
+		{else}
+			{include file="category.tpl.html"}
+		{/if}
+	{/if}
+	
+	{*Нижняя часть*}
+	<div id="footer_block">
+	<div id="footer">
+		<div id="footer_conteiner">
+			<ul {if not $cat_info}style="margin: 0 0 0 230px;"{/if}>
+				{if $cat_info}
+				<li style="border-right: 1px solid #7E7C7C; padding: 0 50px 0 0 !important; height: 150px;">
+					<p>Другие карты</p>
+					<ul>
+						{if $product_related2[0][0]!=""}
+							
+							{section name=i loop=$product_related2}
+								<li>
+									<a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{$product_related2[i].UID}.html{else}index.php?productID={$product_related2[i][0]}{/if}">{$product_related2[i][3]}</a>
+								</li>
+							{/section}
+						{else}
+						
+							<li>
+								<a href="/sputnikovaia_karta_lyuksemburga_1_sm-250_m.html">Спутниковая карта Люксембурга 1 см - 250 м</a>
+							</li>
+							<li>
+								<a href="/karty_belgorodskoj_oblasti">Карты Белгородской области</a>
+							</li>
+							<li>
+								<a href="/gps_karta_fatezha.html">GPS карта Фатежа</a>
+							</li>
+							<li>
+								<a href="/kadastrovaia_karta_b_o_mtc_berezovaia_roshha.html">Кадастровая карта б/о МТЦ Березовая роща</a>
+							</li>
+							<li>
+								<a href="/topograficheskaia_karta_ramenskogo_rajona_1_sm-250_m.html">Топографическая карта Раменского района 1 см - 250 м</a>
+							</li>
+						
+						{/if}
+					</ul>
+				</li>
+				{/if}
+				<li style="border-right: 1px solid #7E7C7C; padding: 0 50px 0 50px !important; height: 150px;">
+					<p>О нас</p>
+					<ul>
+						<li><a href="javascript:void(0)"  onclick="showAjaxWindow(2)">Как получить карту</a></li>
+						<li><a href="javascript:void(0)" onclick="showAjaxWindow(1)">Гарантии</a></li>
+						<li><a href="javascript:void(0)" onclick="showAjaxWindow(85)">Контакты</a></li>
+					</ul>
+				</li>
+				{*
+				<li style="padding: 50px 0 0 50px !important; font-size: 20px;">
+					<p>{$adminPhone}</p>
+				</li>
+				*}
+			</ul>
+		</div>
+	</div>
+	</div>	
+	
+	<div class="lightbox" onclick="hideAjaxWindow()"></div>
+	
+	{literal}
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript">
+	(function (d, w, c) {
+		(w[c] = w[c] || []).push(function() {
+			try {
+				w.yaCounter179353 = new Ya.Metrika({id:179353,
+						webvisor:true,
+						clickmap:true,
+						trackLinks:true,
+						accurateTrackBounce:true});
+			} catch(e) { }
+		});
+
+		var n = d.getElementsByTagName("script")[0],
+			s = d.createElement("script"),
+			f = function () { n.parentNode.insertBefore(s, n); };
+		s.type = "text/javascript";
+		s.async = true;
+		s.src = (d.location.protocol == "https:" ? "https:" : "http:") + "//mc.yandex.ru/metrika/watch.js";
+
+		if (w.opera == "[object Opera]") {
+			d.addEventListener("DOMContentLoaded", f, false);
+		} else { f(); }
+	})(document, window, "yandex_metrika_callbacks");
+	</script>
+	<noscript><div><img src="//mc.yandex.ru/watch/179353" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->
+
+
+
+	<script type="text/javascript">
+	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+	document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+	var pageTracker = _gat._getTracker("UA-1639186-2");
+	pageTracker._initData();
+	pageTracker._trackPageview();
+	</script>
+
+	<!-- Rating@Mail.ru counter -->
+	<script type="text/javascript">//<![CDATA[
+	(function(w,n,d,r,s){(new Image).src=('https:'==d.location.protocol?'https:':'http:')+'//top-fwz1.mail.ru/counter?id=2329562;js=13'+
+	((r=d.referrer)?';r='+escape(r):'')+((s=w.screen)?';s='+s.width+'*'+s.height:'')+';_='+Math.random();})(window,navigator,document);//]]>
+	</script><noscript><div style="position:absolute;left:-10000px;"><img src="//top-fwz1.mail.ru/counter?id=2329562;js=na"
+	style="border:0;" height="1" width="1" alt="Рейтинг@Mail.ru" /></div></noscript>
+	<!-- //Rating@Mail.ru counter -->
+	{/literal}
+</body>
+</html>

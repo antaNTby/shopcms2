@@ -1,0 +1,95 @@
+			<section>
+				<div class="breadcrumbs clearfix">
+					<a href="/">Каталог карт</a>
+					{section name=i loop=$product_category_path}{if $product_category_path[i].categoryID != 1}<a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{$product_category_path[i].UID}{else}index.php?categoryID={$product_category_path[i].categoryID}{/if}">Карты {$product_category_path[i].name}</a>{/if}{/section}
+				</div>
+			</section>
+			
+			<section class="product clearfix">
+				{section name=i1 loop=$products_to_show}
+				{assign var="product_info" value=$products_to_show[i1]}
+				{if $product_info ne NULL && $product_info.Price >0}
+				<div class="product-block">
+					<div class="pr-img clearfix">
+						<h4>{$product_info.name}</h4>
+						<div class="img">
+						{if $product_info.default_picture or $product_info.folder_pictures}
+							{if $product_info.pictures}
+								{assign var="img_src" value="/data/pictures_tpl/`$product_info.folder_pictures`/240/`$product_info.pictures[0]`"}
+							{else}
+								{assign var="img_src" value="/data/pictures/main_pic/`$product_info.big_picture`"}
+							{/if}
+							<a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $product_info.UID}{$product_info.UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/product_{$product_info.productID}.html{/if}{else}index.php?productID={$product_info.productId}{/if}"><img src="{$img_src}" width="176" height="176"  alt="{$product_info.name}" /></a>
+						{else}
+							{if $smarty.const.CONF_DISPLAY_NOPHOTO eq 1}
+								<a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $product_info.UID}{$product_info.UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/product_{$product_info.productID}.html{/if}{else}index.php?productID={$product_info.productId}{/if}"><img src="{$smarty.const.TPL_PATH}/images/foto1.gif" width="240" height="240" alt="{$product_info.name}" /></a>
+							{/if}
+						{/if}
+						</div>
+						<p>&nbsp;</p>
+					</div>
+					<button onclick="window.location.href='{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $product_info.UID}{$product_info.UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/product_{$product_info.productID}.html{/if}{else}index.php?productID={$product_info.productId}{/if}'; return false;" class="btn btn-cart"><a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $product_info.UID}{$product_info.UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/product_{$product_info.productID}.html{/if}{else}index.php?productID={$product_info.productId}{/if}">Подробнее</a></button>
+				</div>
+				{/if}
+				{/section}
+			
+				{if $catrescur and $products_to_show}
+				<div class="pr-title">
+					<h2>{if $cat_h2_c!=""}{$cat_h2_c}{else}{$smarty.const.TPL_CATEGORY_MAPS_FOR_CITY}{/if}</h2>
+				</div>
+				<div class="product-block">
+					<div class="pr-img clearfix">
+						<ul class="list-address">
+							{section name=catparent loop=$catrescur}
+								{if $smarty.const.CONF_MOD_REWRITE eq 1}
+									{assign var="tlink" value="href='`$catrescur[catparent].UID`/'"}
+								{else}
+									{assign var="tlink" value="href='/index.php?categoryID=`$catrescur[catparent].UID`'"}
+								{/if}
+								<li><a {$tlink}>{$smarty.const.TPL_CATEGORY_MAPS} {$catrescur[catparent].name}</a></li>
+								{/section}
+						</ul>
+					</div>
+				</div>
+				{/if}
+				
+				{if $catrescur2 and $products_to_show}
+				<div class="pr-title">
+					<h2>{if $cat_h2_r!=""}{$cat_h2_r}{else}{$smarty.const.TPL_CATEGORY_MAPS_FOR_REGION}{/if}</h2>
+				</div>
+				<div class="product-block">
+					<div class="pr-img clearfix">
+						<ul class="list-address">
+							{section name=catparent loop=$catrescur2}
+								{if $smarty.const.CONF_MOD_REWRITE eq 1}
+									{assign var="tlink" value="href='`$catrescur2[catparent].UID`/'"}
+								{else}
+									{assign var="tlink" value="href='/index.php?categoryID=`$catrescur2[catparent].UID`'"}
+								{/if}
+								<li><a {$tlink}>{$smarty.const.TPL_CATEGORY_MAPS} {$catrescur2[catparent].name}</a></li>
+								{/section}
+						</ul>
+					</div>
+				</div>
+				{/if}
+				
+				{if $catrescur and !$products_to_show}
+				<div class="pr-title">
+					<h2>Все страны</h2>
+				</div>
+				<div class="product-block">
+					<div class="pr-img clearfix">
+						<ul class="list-address">
+							{section name=i155 loop=$catrescur}
+								{if $smarty.const.CONF_MOD_REWRITE eq 1}
+									{assign var="tlink" value="<a href='`$catrescur[i155].UID`/'>`$catrescur[i155].name`</a>"}
+								{else}
+									{assign var="tlink" value="<a href='/index.php?categoryID=`$catrescur[i155].UID`'>`$catrescur[i155].name`</a>"}
+								{/if}
+								<li>{$tlink}</li>
+								{/section}
+						</ul>
+					</div>
+				</div>
+				{/if}				
+			</section>

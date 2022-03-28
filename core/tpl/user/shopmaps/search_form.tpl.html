@@ -1,0 +1,33 @@
+{* Шаблон блока поиска товаров *}
+<form action="/index.php" method="get" id="searchformblock">
+{*
+{section name=t loop=$searchstrings}
+<input type="hidden" name='search_string_{$smarty.section.t.index}' value='{$searchstrings[t]|replace:'"':'&quot;'|replace:"\'":"'"|replace:"<":"&lt;"|replace:">":"&gt;"|default:""}'>
+{/section}
+      <div class="zag">
+				<p>{$smarty.const.TPL_SEARCH_HEADER}</p>
+			</div>
+			<div class="search">
+				<img src="{$smarty.const.TPL_PATH}/images/info_top.gif" width="193" height="10" alt="" class="info_top" />
+				<img src="{$smarty.const.TPL_PATH}/images/info_bot.gif" width="193" height="10" alt="" class="info_bot" />
+          <div class="clear"></div>
+					<div class="inp1">
+						<input type="text" name="searchstring" value="{$searchstring|replace:'"':'&quot;'|replace:"\'":"'"|replace:"<":"&lt;"|replace:">":"&gt;"|default:""}" />
+					</div>					
+					<input type="image" src="{$smarty.const.TPL_PATH}/images/search.gif" class="se" />
+					<div class="clear"></div>
+			</div>
+*}
+{section name=t loop=$searchstrings}
+<input type="hidden" name='search_string_{$smarty.section.t.index}' value='{$searchstrings[t]|replace:'"':'&quot;'|replace:"\'":"'"|replace:"<":"&lt;"|replace:">":"&gt;"|default:""}'>
+{/section}
+			<div class="search">
+          <div class="clear"></div>
+					<div class="inp1">
+						<input type="text" name="searchstring" value="{$searchstring|replace:'"':'&quot;'|replace:"\'":"'"|replace:"<":"&lt;"|replace:">":"&gt;"|default:""}" />
+					</div>					
+					<input type="image" src="{$smarty.const.TPL_PATH}/images/search.gif" class="se" />
+					<div class="clear"></div>
+			</div>
+
+</form>

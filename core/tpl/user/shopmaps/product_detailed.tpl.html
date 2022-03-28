@@ -1,0 +1,90 @@
+{* Шаблон детального описания товара *}
+
+{if $product_info ne NULL && $product_info.Price >0}
+
+<script defer type="text/javascript" src="{$smarty.const.TPL_PATH}/lightbox/js/jquery.smooth-scroll.min.js?1"></script>
+<script defer type="text/javascript" src="{$smarty.const.TPL_PATH}/lightbox/js/lightbox.js?1"></script>
+<link href="{$smarty.const.TPL_PATH}/lightbox/css/lightbox.css" rel="stylesheet" />
+
+<div class="block" style="width: 745px;">
+	<div class="clear"></div>
+	<div class="icons" style="height:72px">
+		{* Хлебные крошки *}
+		<p class="way">
+			<a href="/">{$smarty.const.LINK_TO_HOMEPAGE}</a>{if $selected_category.sort_order > 10000 || !$categoryID}&nbsp;&raquo;&nbsp;<a href="/">Россия</a>{/if}{section name=i loop=$product_category_path}{if $product_category_path[i].categoryID != 1}&nbsp;&raquo;&nbsp;<a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{$product_category_path[i].UID}/{else}index.php?categoryID={$product_category_path[i].categoryID}{/if}">{$smarty.const.TPL_CATEGORY_MAPS} {$product_category_path[i].name}</a>{/if}{/section}
+            
+            {if $subID neq "0"}
+            	&nbsp;&raquo;&nbsp;<a href="{$product_info.UID}.html">{$product_info.name}</a>
+            {/if}
+        </p>
+
+        {* babenkoma *}
+        <div class="name"><h1>{if $subID eq "0"}{$product_info.name}{else}{$sub_product_name}{/if}</h1></div>
+        {* babenkoma\ *}
+	</div>
+
+	<div class="tov">
+		{if $product_info.big_picture}
+			<div class="tov-l">
+				<a href="{$product_info.full_picture}" rel="lightbox[]"  title="{$product_info.name}">
+					<div class="map_warning">{$imgTextWarning}</div>
+					
+<iframe width="380" height="380" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" 
+src="https://www.openstreetmap.org/export/embed.html?bbox=35.40344238281251%2C53.985165238685454%2C44.37927246093751%2C56.84596793490154&layer=mapnik" style="border: 1px solid black"></iframe>
+
+{*<img src="{$product_info.big_picture}" style="height:380px; width:380px;"  alt="{$product_info.name}" />*}
+				</a>
+			</div>
+			
+			{*<div class="tov-r">
+				<div class="in">
+					{assign var="num_picts" value=0}
+					{section name=i loop=$all_product_pictures}
+						{if $num_picts<4}
+							{assign var="num_picts" value=$num_picts+1}
+	  						<a href="{$all_product_pictures[i][1]}" class="highslide" ><img src="{$all_product_pictures[i][0]}" alt="{$product_info.name}" hspace="2"  /></a>
+	  					{/if}
+					{/section}
+				</div>						
+			</div>*}
+			<div class="clear"></div>
+			<div class="buy">
+		{else}
+			<div class="buy" style="margin-top:30px;">
+		{/if}
+		        {* $product_info.BuyButton *}
+				{* <a href="/index.php?buy=1&product_id={$product_info.productID}" class="buyl"><img src="/core/tpl/user/mapsshop/images/buy2.gif" /></a> *}
+				<form><input type="image" src="/core/tpl/user/mapsshop/images/buy2.gif" alt="Купить" onclick="return showEmailDialog();"></form>
+
+    			<span>{$robo_display_price}</span>
+				{* <div class="ways" >
+					<noindex><p><a href="/index.php?buy=1&product_id={$product_info.productID}">{$smarty.const.TPL_PRODUCT_DETAILED_OTHER_PAYMENT_METHODS}</a></p></noindex>
+				</div> *}
+				<div class="clear"></div>
+			</div> 
+	</div>
+	
+	{if $product_info.description}{$product_info.description}{/if}
+	
+	<div class="buy1">
+    	{* $product_info.BuyButton *} 
+		{* <a href="/index.php?buy=1&product_id={$product_info.productID}" class="buyl"><img src="/core/tpl/user/mapsshop/images/buy2.gif" /></a> *}
+		<form><input type="image" src="/core/tpl/user/mapsshop/images/buy2.gif" alt="Купить" onclick="return showEmailDialog();"></form>
+		<span>{$robo_display_price}</span>
+		<div class="clear"></div>
+	</div>
+</div>
+
+{if $product_related2[0][0]!=""}
+	<div class="smt">
+		<p>Смотрите также</p>
+	{section name=i loop=$product_related2}
+		<div class="smt_link">
+			<a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{$product_related2[i].UID}.html{else}index.php?productID={$product_related2[i].productID}{/if}">{$product_related2[i].link}</a><span> {$product_related2[i].sim_text}<span>
+		</div>
+    {/section}
+    </div>
+{/if}
+{/if}
+
+{include file="product_payment.tpl.html"}

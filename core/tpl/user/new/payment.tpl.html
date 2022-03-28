@@ -1,0 +1,263 @@
+<div id="tabs_block">
+<div id="tabs_doc_cat">
+<!--script src="http://code.jquery.com/ui/1.10.0/jquery-ui.js"></script-->
+{literal}
+<script type="text/javascript">
+	//$(function() {
+		/*var email = $( "#email" ),
+		allFields = $( [] ).add( email ),
+		tips = $( ".validateTips" );
+
+		function updateTips( t ) {
+			tips
+			.text( t );
+			//.addClass( "ui-state-highlight" );
+			setTimeout(function() {
+			tips.removeClass( "ui-state-highlight", 1500 );
+			}, 500 );
+		}
+
+		function checkLength( o, n, min, max ) {
+			if ( o.val().length > max || o.val().length < min ) {
+				o.addClass( "ui-state-error" );
+				updateTips( "Введите, пожалуйста, E-Mail ");
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		function checkRegexp( o, regexp, n ) {
+			if ( !( regexp.test( o.val() ) ) ) {
+				o.addClass( "ui-state-error" );
+				updateTips( n );
+				return false;
+			} else {
+				return true;
+			}
+		}
+
+		$( "#dialog-form" ).dialog({
+			autoOpen: false,
+			height: 220,
+			width: 350,
+			modal: true,
+			closeOnEscape: true,
+			draggable: false,
+			buttons: {
+				"": function() {
+					//var bValid = true;
+			   
+					var bValid = checkLength( email, "email", 3, 50 );
+					allFields.removeClass( "ui-state-error" );
+	*/				
+					
+	/*			}
+			},
+			close: function() {
+				allFields.val( "" ).removeClass( "ui-state-error" );
+			}
+		});
+
+		$( "ul.payment_list div a[class!=no_open]" ).click(function() {
+			$( "#dialog-form" ).dialog( "open" );
+			return false;
+		});
+
+	});
+	*/
+
+	var typePay = type = null;           
+	function setType(typePay, type){
+		if(type != 'robokassa')
+		type = 'w1';
+				
+		window.type = type;
+		window.typePay = typePay;
+		if(type == 'w1'){
+			$('#WMI_PTENABLED').val(typePay);
+		} else {
+			$('#IncCurrLabel').val(typePay);
+		}
+		
+		$("#email").val("");
+		$( ".lightbox" ).css("display", "block");	
+		$( "#ajax_window_email" ).css("display", "block");
+	}
+	
+	function hideAjax() {
+		$( ".lightbox" ).css("display", "none");	
+		$( "#ajax_window_email" ).css("display", "none");
+	}
+
+$(function(){	
+	$("#email_ok").click(function() {
+		var email = $("email");
+		if ( email.val() != "" ) {
+
+			var inputMail = email;
+			var descr = $( '#WMI_DESCRIPTION' )
+			descr.val(descr.val()+' - '+email.val());
+			$.ajax({
+				type: "POST",
+				dataType: "json",
+				url: "/add_order.php",
+				data: {email: email.val(), itemID : {/literal}{$product_info.productID}{literal}, name: '{/literal}{$product_info.name}{literal}', price :  {/literal}{$nOutSum|intval}{literal}},
+				cache: false,
+				success: function(responce){
+					hideAjaxWindow();
+					$('.user_id' ).val(responce.user_id);
+					$('.order_id' ).val(responce.order_id);
+					var order_id = responce.order_id;
+					$('#nInvId' ).val(responce.order_id);
+					if(type == 'w1'){
+						$('#w1' ).submit();
+					} else {
+						$.ajax({
+							type: "POST",
+							url: "/robokassa.php",
+							data: {order_id: order_id, IncCurrLabel: typePay, Name: '{/literal}{$product_info.name}{literal}', Cost :  {/literal}{$nOutSum|intval}{literal}},
+							cache: false,
+							success: function(responce){
+								$('#roboForm' ).html( responce );
+								$('#robokassa' ).submit();
+							}
+						});
+					}
+				
+				}
+			});
+		}
+	});
+	
+});
+
+</script>
+{/literal}
+
+<form method="post" action="https://merchant.w1.ru/checkout/default.aspx" name="w1" id="w1" onsubmit="yaCounter179353.reachGoal('ORDER'); return true;" accept-charset="UTF-8"> 
+       <input name="WMI_MERCHANT_ID"    type="hidden" value="{$sMerchantLogin}"/> 
+       <input name="WMI_PAYMENT_AMOUNT" type="hidden" value="{$nOutSum}"/> 
+       <input name="WMI_CURRENCY_ID"   type="hidden" value="{$w1_currency_id}"/> 
+       <input name="WMI_DESCRIPTION"   type="hidden"  value="{$Desc}" id="WMI_DESCRIPTION" /> 
+       <input name="WMI_PTENABLED"     type="hidden"  value="" id="WMI_PTENABLED"/>
+       <input name="WMI_SUCCESS_URL"  type="hidden"  value="{$w1_success_url}"/> 
+       <input name="WMI_FAIL_URL"    type="hidden"   value="{$w1_fail_url}"/>
+       <input name="user_id"    type="hidden" class="user_id"   value=""/>
+       <input name="order_id"    type="hidden" class="order_id"   value=""/>
+		
+		<div class="lightbox" onclick="hideAjax()"></div>
+		<div id="ajax_window_email" class="ajax_window_class" style="display:none">
+			<a href="javascript:void(0)" class="ajax_window_close" onclick="hideAjax()">Закрыть</a>
+			<div class="ajax_window_name">
+				Введите Ваш E-Mail:
+			</div>
+			<div class="ajax_window_doc">
+				<input type="text" name="email" id="email" value="" size="40"/>
+				<input type="button" value="Ok" id="email_ok" />
+			</div>
+		</div>
+ </form>
+ <div id="roboForm"></div>
+
+	<ul class="payment_list">
+		<li>
+			<div class="payment_title">Наличные</div>
+			<div><a href="javascript:void(0)" onclick="setType('EurosetRUB')"><img src="/core/tpl/user/new/images/icons/nal/2013-02-21_224621_16.gif" /></a></div>
+			<div><a href="javascript:void(0)" onclick="setType('SvyaznoyRUB')"><img src="/core/tpl/user/new/images/icons/nal/2013-02-21_224621_18.gif" /></a></div>
+			<div><a href="javascript:void(0)" onclick="setType('RussianPostRUB')"><img src="/core/tpl/user/new/images/icons/nal/2013-02-21_224621_19.gif" /></a></div>
+			<div><a href="javascript:void(0)" class="no_open" onclick="$('#MobileRetails').toggle('slow'); return false;"><img src="/core/tpl/user/new/images/icons/nal/2013-02-21_224621_09.gif" /></a>
+			<div id="MobileRetails">
+				<ul>
+					<li><a href="javascript:void(0)" onclick="setType('MobilElementRUB');"><img src="/core/tpl/user/new/images/icons/nal/mobil_element.jpg" /><br />Мобил Элемент</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('AltTelecomRUB');"><img src="/core/tpl/user/new/images/icons/nal/alt-telekom.jpg" /><br />Альт-телеком</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('DixisRUB');"><img src="/core/tpl/user/new/images/icons/nal/dixis.jpg" /><br />Диксис</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('CellularWorldRUB');"><img src="/core/tpl/user/new/images/icons/nal/sotoviy_mir.jpg" /><br />Сотовый мир</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('ForwardMobileRUB');"><img src="/core/tpl/user/new/images/icons/nal/forward.jpg" /><br />Форвард Мобайл</a></li>
+				</ul>
+			</div>
+        </div>
+        
+        
+        
+        <div><a href="javascript:void(0)" class="no_open" onclick="$('#CashTerminal').toggle('slow'); return false;"><img src="/core/tpl/user/new/images/icons/nal/2013-02-21_224621_03.gif" /></a>
+			<div id="CashTerminal">
+				<ul>
+					<li><a href="javascript:void(0)" onclick="setType('CashTerminalRUB');"><img src="/core/tpl/user/new/images/icons/nal/2013-02-27_000739.jpg" /><br />Платежные терминалы России</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('CashTerminalUAH');"><img src="/core/tpl/user/new/images/icons/nal/2013-02-27_000739.jpg" /><br />Платежные терминалы Украины</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('CashTerminalMDL');"><img src="/core/tpl/user/new/images/icons/nal/2013-02-27_000739.jpg" /><br />Платежные терминалы Молдовы</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('CashTerminalGEL');"><img src="/core/tpl/user/new/images/icons/nal/2013-02-27_000739.jpg" /><br />Платежные терминалы Грузии</a></li>
+				</ul>
+			</div>
+        </div>   
+        <div><a href="javascript:void(0)" class="no_open" onclick="$('#BankOffice').toggle('slow'); return false;"><img src="/core/tpl/user/new/images/icons/nal/2013-02-21_224621_05.gif" /></a>
+			<div id="BankOffice">
+				<ul>
+					<li><a href="javascript:void(0)" onclick="setType('SberbankRUB');"><img src="/core/tpl/user/new/images/icons/nal/sberbank.jpg" /><br />Сбербанк России</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('PrivatbankUAH');"><img src="/core/tpl/user/new/images/icons/nal/privat.jpg" /><br />Приватбанк в Украине</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('UkrsibBankUAH');"><img src="/core/tpl/user/new/images/icons/nal/ukrsib.jpg" /><br />УкрСиббанк в Украине</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('LibertyBankGEL');"><img src="/core/tpl/user/new/images/icons/nal/liberty.jpg" /><br />Liberty Bank</a></li>
+				</ul>
+			</div>
+        </div>
+        <div><a href="javascript:void(0)" class="no_open" onclick="$('#MoneyTransfer').toggle('slow'); return false;"><img src="/core/tpl/user/new/images/icons/nal/2013-02-21_224621_07.gif" /></a>
+			<div id="MoneyTransfer">
+				<ul>
+					<li><a href="javascript:void(0)" onclick="setType('LiderRUB');"><img src="/core/tpl/user/new/images/icons/nal/lider.jpg" /><br />«ЛИДЕР»</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('UnistreamRUB');"><img src="/core/tpl/user/new/images/icons/nal/unistream.jpg" /><br />«Unistream»</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('AnelikRUB');"><img src="/core/tpl/user/new/images/icons/nal/anelik.jpg" /><br />«Anelik»</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('MoneyGramUSD');"><img src="/core/tpl/user/new/images/icons/nal/moneygram.jpg" /><br />«MoneyGram»</a></li>
+				</ul>
+			</div>
+        </div>
+    </li>
+    <li>
+        <div class="payment_title">Безналичные</div>
+		<div style="border: 1px solid #DDDDDD; border-radius: 8px 8px 8px 8px; height: 119px; width: 141px;"><a href="javascript:void(0)" class="no_open" onclick="$('#CreditCart').toggle('slow'); return false;"><img src="/core/tpl/user/new/images/icons/bank/BankCard.png" /></a>
+			<div id="CreditCart">
+				<ul>
+					<li><a href="javascript:void(0)" onclick="setType('CreditCardRUB');"><img src="/core/tpl/user/new/images/icons/bank/BankCardMini.png" /><br />Оплата картой в рублях</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('CreditCardUAH');"><img src="/core/tpl/user/new/images/icons/bank/BankCardMini.png" /><br />Оплата картой в гривнах</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('CreditCardUSD');"><img src="/core/tpl/user/new/images/icons/bank/BankCardMini.png" /><br />Оплата картой в долларах</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('CreditCardEUR');"><img src="/core/tpl/user/new/images/icons/bank/BankCardMini.png" /><br />Оплата картой в евро</a></li>
+				</ul>
+			</div>
+        </div>
+		<div><a href="javascript:void(0)" class="no_open" onclick="$('#BankTransfer').toggle('slow'); return false;"><img src="/core/tpl/user/new/images/icons/bank/bank_03.gif" /></a>
+			<div id="BankTransfer">
+				<ul>
+					<li><a href="javascript:void(0)" onclick="setType('BankTransferRUB');"><img src="/core/tpl/user/new/images/icons/bank/bank.jpg" /><br />Банковский перевод в рублях</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('BankTransferUAH');"><img src="/core/tpl/user/new/images/icons/bank/bank.jpg" /><br />Банковский перевод в гривнах</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('BankTransferUSD');"><img src="/core/tpl/user/new/images/icons/bank/bank.jpg" /><br />Банковский перевод в долларах</a></li>
+				</ul>
+			</div>
+        </div>
+        <div><a href="javascript:void(0)" class="no_open" onclick="$('#OnlineBank').toggle('slow'); return false;"><img src="/core/tpl/user/new/images/icons/bank/bank_05.gif" /></a>
+			<div id="OnlineBank">
+				<ul>
+					<li><a href="javascript:void(0)" onclick="setType('AlfaclickRUB');" style="left: 30px; position: relative;"><img src="/core/tpl/user/new/images/icons/bank/alfa-click.jpg" /><br />Альфа-Клик</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('Privat24UAH');" style="left: 36px; position: relative;"><img src="/core/tpl/user/new/images/icons/bank/privat24.jpg" /><br />Приват24</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('PsbRetailRUB');" style="left: 34px; position: relative;"><img src="/core/tpl/user/new/images/icons/bank/psb.jpg" /><br />PSB-Retail</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('SvyaznoyBankRUB');" style="left: 23px; position: relative;"><img src="/core/tpl/user/new/images/icons/bank/svjaznoy.jpg" /><br />Связной Банк</a></li>
+					<li><a href="javascript:void(0)" onclick="setType('SberOnlineRUB');" style="left: 5px; position: relative;"><img src="/core/tpl/user/new/images/icons/bank/sberbank.jpg" /><br />Сбербанк ОнЛ@йн</a></li>
+      			</ul>
+			</div>
+        </div>
+    </li>
+    <li>
+        <div class="payment_title">Электронные</div>
+        <div style="border: 1px solid #DDDDDD; border-radius: 8px 8px 8px 8px; height: 119px; width: 141px;"><a href="javascript:void(0)" onclick="setType('WMRM', 'robokassa')"><img style="margin-top: 20px;" src="/core/tpl/user/new/images/icons/e-pay/WMRM.gif" /></a></div>
+        <div><a href="javascript:void(0)" onclick="setType('YandexMoneyRUB')"><img src="/core/tpl/user/new/images/icons/e-pay/2013-02-21_224638_06.gif" /></a></div>
+        
+        <div><a href="javascript:void(0)" onclick="setType('WalletOne')"><img src="/core/tpl/user/new/images/icons/e-pay/2013-02-21_224638_03.gif" /></a></div>
+        <div><a href="javascript:void(0)" onclick="setType('EasyPayBYR')"><img src="/core/tpl/user/new/images/icons/e-pay/2013-02-21_224638_17.gif" /></a></div>
+ 
+    </li>
+    <li>
+        <div class="payment_title">Мобильные</div>
+        <div><a href="javascript:void(0)" onclick="setType('MtsRUB')"><img src="/core/tpl/user/new/images/icons/mobile/2013-02-21_224647_03.gif" /></a></div>
+        <div><a href="javascript:void(0)" onclick="setType('MegafonRUB')"><img src="/core/tpl/user/new/images/icons/mobile/2013-02-21_224647_08.gif" /></a></div>
+    </li>
+</ul>
+</div>
+</div>

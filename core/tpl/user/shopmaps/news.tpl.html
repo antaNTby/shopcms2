@@ -1,0 +1,21 @@
+{* Шаблон блока новостей и рекомендуемых карт*}
+
+{if $recomeds1 != '' }
+    <div class="news" align="center">
+        {foreach from=$recomeds1 item=product}
+	        {if $product ne NULL && $product.Price >0}
+                <div class="prod"><p class="name"><a href="{$product.UID}.html">{$product.name}</a></p>
+                <div class="foto"><a href="{$product.UID}.html"><img alt="{$product.name}" src="/{$product.img}" width="125"></a></div>
+                <p class="price">{$product.Price}</p></div>
+            {/if}
+        {/foreach}
+        
+        {*
+        {foreach from=$recomeds2 item=product2}
+            <div class="prod"><p class="name"><a href="{$product2.UID}.html">{$product2.name}</a></p>
+            <div class="foto"><a href="{$product2.UID}.html"><img alt="" src="{$product2.img}" width="125"></a></div>
+            <p class="price">{$product2.Price}</p></div>
+        {/foreach}
+        *}
+    </div> 
+{/if}

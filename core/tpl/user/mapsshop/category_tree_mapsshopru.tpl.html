@@ -1,0 +1,154 @@
+{* Шаблон блока дерева категорий *}
+<div class="block">
+    {include file="search_form.tpl.html"}
+    {if $cat_tree}
+{*
+		{literal}
+		<style type="text/css">
+			ul {margin-left: 1em;}
+		</style>
+		{/literal}
+*}		
+
+	<div id="cat_tree">		
+		<ul class="level_1">
+			{foreach from=$cat_tree.child item=cat_lev1}
+				{if !$cat_lev1.child}
+					{assign var="class" value=""}
+				{else}
+					{assign var="class" value="sel"}
+				{/if}
+        		<li>
+        			<a href="{$cat_lev1.UID}/" class="{$class}">{$cat_lev1.name}</a>
+        			{if $cat_lev1.child}
+        				<ul class="level_2">
+        					{if ($selected_category.parent==$cat_lev1.categoryID) } 
+        						{* Где-то среди дочерних необходимый элемент  - захватываем весь вывод до него *}
+        						{capture name="level1"}
+        					{/if}
+        					
+							{foreach from=$cat_lev1.child item=cat_lev2}
+								{* Если (текущий элемент = выбранный) - сбрасываем буфер и больше не захватываем *}
+								{if $cat_lev2.categoryID == $selected_category.categoryID}
+									{/capture}	
+								{/if}
+								
+								{if ($cat_lev2.child) || ($cat_lev2.categoryID == $selected_category.categoryID) }
+									{assign var="class" value="sel"}
+								{else}
+									{assign var="class" value=""}
+								{/if}
+								
+        						<li class="{$class}">
+        							<a href="{$cat_lev2.UID}/" class="{$class}">{$smarty.const.TPL_CATEGORY_MAPS} {$cat_lev2.name}</a>
+        							
+        							{if $cat_lev2.child}
+        								<ul class="level_3">
+        								{if ($selected_category.parent==$cat_lev2.categoryID) } 
+        									{* Где-то среди дочерних необходимый элемент  - захватываем весь вывод до него *}
+        									{capture name="level2"}
+        								{/if}
+
+        								{assign var="type" value="start"}
+        								{foreach from=$cat_lev2.child item=cat_lev3}
+
+        									{if (!$cat_lev3.child) and ($cat_lev3.categoryID != $selected_category.categoryID)}
+												{assign var="class" value=""}
+											{else}
+												{assign var="class" value="sel"}
+											{/if}
+        						
+        									{*
+        									{if $selected_category.parent == cat_lev3.categoryID }
+        										<li class="sel">{$selected_category.name}</li>
+        									{/if}
+                                			*}
+                                			
+        									{if $type == "start" and !$cat_lev3.child and $cat_lev3.level}
+        										{assign var="type" value="rajon"}
+        										<p class="type">{$smarty.const.TPL_CATEGORY_TREE_REGINON}:</p>
+        									{elseif $type == "rajon" and $cat_lev3.level != 2 }
+        										{assign var="type" value="gorod"}
+        										<p class="type">Города:</p>
+        									{/if}
+        									
+											{* Если (текущий элемент = выбранный) - сбрасываем буфер и больше не захватываем *}
+											{if $cat_lev3.categoryID == $selected_category.categoryID}
+												{/capture}
+											{/if}
+        									<li class="{$class}">
+        										<a href="{$cat_lev3.UID}/">{$smarty.const.TPL_CATEGORY_MAPS} {$cat_lev3.name}</a>
+        										{if $cat_lev3.child}
+        											<ul class="level_4">
+        											{if ($selected_category.parent==$cat_lev3.categoryID) } 
+        												{* Где-то среди дочерних необходимый элемент  - захватываем весь вывод до него *}
+        												{capture name="level3"}
+        											{/if}
+        											{foreach from=$cat_lev3.child item=cat_lev4}
+														{* Если (текущий элемент = выбранный) - сбрасываем буфер и больше не захватываем *}
+														{if $cat_lev4.categoryID == $selected_category.categoryID}
+															{/capture}	
+														{/if}
+        												{if (!$cat_lev4.child) and ($cat_lev4.categoryID != $selected_category.categoryID)}
+															{assign var="class" value=""}
+																{else}
+															{assign var="class" value="sel"}
+														{/if}
+        												<li class="{$class}">
+        													<a href="{$cat_lev4.UID}/">{$smarty.const.TPL_CATEGORY_MAPS} {$cat_lev4.name}</a>
+        													{if $cat_lev4.child}
+        														<ul class="level_5">
+        															{if ($selected_category.parent==$cat_lev4.categoryID) } 
+        																{* Где-то среди дочерних необходимый элемент  - захватываем весь вывод до него *}
+        																{capture name="level4"}
+        															{/if}
+        															{foreach from=$cat_lev4.child item=cat_lev5}
+																		{* Если (текущий элемент = выбранный) - сбрасываем буфер и больше не захватываем *}
+																		{if $cat_lev5.categoryID == $selected_category.categoryID}
+																			{/capture}	
+																		{/if}
+        																{if (!$cat_lev5.child) and ($cat_lev5.categoryID != $selected_category.categoryID)}
+																			{assign var="class" value=""}
+																				{else}
+																			{assign var="class" value="sel"}
+																		{/if}
+        																<li class="{$class}">
+        																	<a href="{$cat_lev5.UID}/">{$smarty.const.TPL_CATEGORY_MAPS} {$cat_lev5.name}</a>
+        																</li>
+        																{* Если (текущий элемент == выбранный) - сбрасываем буфер *}
+																		{if $cat_lev5.categoryID == $selected_category.categoryID}
+																			{$smarty.capture.level4}
+																		{/if}
+        															{/foreach}
+        														</ul>
+        													{/if}
+        												</li>
+        											{* Если (текущий элемент == выбранный) - сбрасываем буфер *}
+													{if $cat_lev4.categoryID == $selected_category.categoryID}
+														{$smarty.capture.level3}
+													{/if}
+        											{/foreach}
+        											</ul>
+        										{/if}
+        									</li>
+        								{* Если (текущий элемент == выбранный) - сбрасываем буфер *}
+										{if $cat_lev3.categoryID == $selected_category.categoryID}
+											{$smarty.capture.level2}
+										{/if}
+        								{/foreach}
+        								</ul>
+        							{/if}
+        						</li>
+        						{* Если (текущий элемент == выбранный) - сбрасываем буфер *}
+								{if $cat_lev2.categoryID == $selected_category.categoryID}
+									{$smarty.capture.level1}
+								{/if}
+        					{/foreach}
+						</ul>
+        			{/if}
+        		</li>
+			{/foreach}
+		</ul>
+	</div>		
+	{/if}
+</div>

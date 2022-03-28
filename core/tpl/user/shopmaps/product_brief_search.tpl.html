@@ -1,0 +1,43 @@
+{* Шаблон короткого описния товара *}
+
+{if $product_info ne NULL}
+	{section name=i1 loop=$product_info }
+		{if  $smarty.section.i1.iteration%2==1}
+			{assign var="class" value="white"}
+		{else}
+			{assign var="class" value="gray"}
+		{/if}
+  		<div class="{$class}">
+			<div class="image">
+				{if $product_info[i1].brief_picture}
+					<a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $product_info[i1].UID}{$product_info[i1].UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/product_{$product_info[i1].productID}.html{/if}{else}index.php?productID={$product_info[i1].productId}{/if}" title="{$product_info[i1].name}"><img src="{$product_info[i1].pic_path}{if $product_info[i1].folder_pictures}{$product_info[i1].brif_picture}{else}{$product_info[i1].brief_picture}{/if}"  alt="{$product_info[i1].name}"  width="80"/></a>
+				{else}
+					{if $smarty.const.CONF_DISPLAY_NOPHOTO eq 1}
+						<a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $product_info[i1].UID}{$product_info[i1].UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/product_{$product_info[i1].productID}.html{/if}{else}index.php?productID={$product_info[i1].productId}{/if}" title="{$product_info[i1].name}"><img src="design/user/{$smarty.const.TEMPLATE_GO}/images/no-photo.gif" width="80" height="80" alt="{$product_info[i1].name}" /></a>
+					{/if}
+				{/if}
+			</div>
+
+			<p><a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $product_info[i1].UID}{$product_info[i1].UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/product_{$product_info[i1].productID}.html{/if}{else}index.php?productID={$product_info[i1].productId}{/if}">{$product_info[i1].name}</a></p>
+		
+			{if $product_info[i1].strlen>60}
+				<div class="choice">
+			{else}
+				<div class="choice2">
+			{/if}
+				{if $product_info[i1].Price!='0'}
+					<div class="button">  
+						{*<a href="index.php?shopping_cart=yes&add2cart={$product_info[i1].productID}">
+					        <img alt="" src="design/user/{$smarty.const.TEMPLATE_GO}/images/buy.gif" class="pokupka">
+					    </a> *}
+					</div>
+					<div class="stoimost">
+					{* <span class="cena">{$product_info[i1].Price}p.</span> *}
+				{else}
+					<div class="stoimost"> {* <span class="cena">{$smarty.const.STRING_NOPRODUCT_IN}</span> *}
+				{/if}   
+					</div>
+				</div>
+		</div>
+	{/section}
+{/if}

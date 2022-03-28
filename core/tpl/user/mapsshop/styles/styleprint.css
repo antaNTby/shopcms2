@@ -1,0 +1,70 @@
+/* Этот файл задает стили только для вывода на печать (стили шаблона в файле style.css) */
+/* Основные стили документа */
+
+html,body,form,p {padding: 0px; margin: 0px; }
+html, body {background-color: white; height: 100%}
+body{text-align: left; font-size: 70%; font-family: Tahoma, Arial, Verdana; color: #000000; background: url('pixel.gif') no-repeat; background-attachment: fixed;}
+select, input, div, span, font, textarea {font-size: 100%; font-family: Tahoma, Arial, Verdana;}
+table.adn {border: none; border-collapse: collapse; width: 100%;}
+table.adnh {border: none; border-collapse: collapse; width: 100%; height: 100%;}
+table.adw {border: none; border-collapse: collapse;}
+a img, img, html, body{border: none;}
+a img, img, a {outline: none !important;}
+*:focus { outline: none; }
+td{padding: 0px; vertical-align: top; text-align: left;}
+.mid, tr.mid td{vertical-align: middle;}
+.bot{vertical-align: bottom;}
+.fil1{overflow: hidden; height: 4px; width: 100%;}
+.fil{overflow: hidden; height: 6px; width: 100%;}
+.fil2{overflow: hidden; height: 14px; width: 100%;}
+.arc{font-family: Arial, Tahoma, Verdana;}
+.upc{text-transform: uppercase;}
+.vright{text-align: right;}
+.vleft{text-align: left;}
+.vcent{text-align: center;}
+.white {background-color: white;}
+a {color: #000000; text-decoration: underline;}
+a:hover {color: #000000; text-decoration: none;}
+.profi{width: 100%; color: #000000; font-size: 170%; padding-bottom: 60px; text-align: center;}
+.bf{font-weight: bold;}
+.container {width: 100%; padding-bottom: 4px;}
+
+/* Стили блоков и заголовков */
+
+.print{display: none;}
+.left {width: 194px; background-color: #E1E2E5; display: none;}
+.right {width: 194px; background-color: #E1E2E5; display: none;}
+.center{padding: 0px 4px;}
+.blmtop{margin-top: 4px;}
+.blm{padding: 0px;}
+.cbt {padding: 3px 8px;}
+.hd {padding: 3px 8px;}
+.hdb {padding: 12px 12px 14px 12px;}
+.hdbtop {padding: 8px;}
+.hdbot{ padding: 3px 8px;}
+
+/* Стили видимых таблиц */
+
+table.gre {border: 1px solid #D7D3D0; border-bottom: 0px;}
+.lt1{ background-color: #F0EFEE; border-bottom: 1px solid #D7D3D0;}
+.lt2{ border-bottom: 1px solid #D7D3D0;}
+.cnt{ border-left: 1px solid #D7D3D0;}
+.ctt {padding: 4px 8px; background-color: #F0EFEE;}
+.pad{padding: 8px 8px;}
+.padt{padding: 4px 8px;}
+
+/* Дополнительные стили */
+
+.price{ color: #ff6600; font-size: 120%; font-weight: bold;}
+#axcrt{border: 3px double #CAAA72; background: #FFEBB2; z-index: 100; width: 300px; height: 58px; font-size: 120%; padding-top: 42px;}
+table.nl tr td a {text-decoration: none;}
+table.nl tr td a:hover {text-decoration: underline;}
+a.noline {text-decoration: none;}
+a.noline:hover {text-decoration: underline;}
+a.nl, a.nl:hover {text-decoration: none;}
+.oki{color: #339933;}
+.error{color: #ff6600;}
+.cattop {margin-top: 4px; padding: 4px 0px;}
+.spacel {margin-left: 8px;}
+.spacer {margin-right: 8px;}
+img.delim, td.delim{width: 4px; height: 4px;}

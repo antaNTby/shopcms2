@@ -1,0 +1,71 @@
+{* шаблон формы выбора способа оплаты (без регистрации покупателя в магазине) *}
+
+{assign var="preheader" value="<a href='`$smarty.const.ADMIN_FILE`?dpt=conf&amp;sub=payment' title='`$smarty.const.EDIT_BUTTON`' style='float: right;'>+</a>"}
+{if $isadmin eq "yes"}{assign var="postheader" value=`$preheader``$smarty.const.STRING_ORDERING`}{else}{assign var="postheader" value=$smarty.const.STRING_ORDERING}{/if}
+{include file="header.tpl.html" header=$postheader}
+<table cellspacing="0" cellpadding="0" width="100%">
+  <tr>
+    <td class="cbt" align="left">{$smarty.const.STRING_ORDER_PAYMENT}</td>
+  </tr>
+</table>
+<table cellspacing="0" cellpadding="0" width="100%">
+  <tr>
+    <td class="hmin" align="left"><form name='MainForm' method="POST" action="" id="MainForm">
+      <table cellspacing="1" cellpadding="0" width="100%" class="gre">
+        <tr>
+          <td class="lt pad" valign="middle" colspan="2">{$smarty.const.STRING_SELECT_ORDER_PAYMENT_METHOD_PROMPT}</td>
+        </tr>
+        {if !$payment_methods}
+        <tr>
+          <td class="pad error" align="left" valign="middle">{$smarty.const.STRING_NO_PAYMENT_METHODS_TO_SELECT}</td>
+        </tr>
+      </table>
+      {else}
+      {section name=i loop=i loop=$payment_methods}
+      <tr>
+          <td class="pad" align="center" valign="middle"><input type="radio" name="select_payment_method" id="select_payment_method_{$smarty.section.i.index}" value="{$payment_methods[i].PID}" {if $payment_methods_count == 1} checked{/if}></td>
+          <td class="pad" width="99%" align="left" valign="middle"><b>{$payment_methods[i].Name}</b><br>{$payment_methods[i].description}</td>
+        </tr>
+      {/section}
+</table>
+<script type="text/javascript">
+        function select_payment_methodClickHandler()
+        {literal}{{/literal}
+        {if $payment_methods_count > 1}
+
+                        for( i=0; i<{$payment_methods_count}; i++ )
+                                if(document.getElementById('select_payment_method_'+i))
+                                if (document.getElementById('select_payment_method_'+i).checked )
+                                {literal}
+                                {
+                                        document.getElementById('continue_button').value = 1;
+                                        break;
+
+                                }
+                                {/literal}
+                                if (document.getElementById('continue_button').value != 2 )
+                                {literal}
+                                {
+                                        document.getElementById('MainForm').submit();
+                                        return false;
+                                }{/literal}else return alert('{$smarty.const.STRING_SELECT_ORDER_PAYMENT_METHOD_PROMPT}');
+
+        {elseif $payment_methods_count eq 1}
+
+                                document.getElementById('MainForm').submit();
+                                return false;
+                                {/if}
+
+        {literal}}{/literal}
+</script>
+<input type="hidden" name="continue_button" id="continue_button" value=2>
+{/if}
+</form>
+</td>
+</tr>
+</table>
+<table cellspacing="0" cellpadding="0" width="100%">
+  <tr>
+    <td class="hdbot"><a href="#" onclick="select_payment_methodClickHandler(); return false;">{$smarty.const.CONTINUE_BUTTON}</a></td>
+  </tr>
+</table>

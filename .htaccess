@@ -1,0 +1,72 @@
+#####################################
+# ShopCMS: Скрипт интернет-магазина
+# Copyright (c) by ADGroup
+# http://shopcms.ru
+#####################################
+  
+Options +FollowSymlinks -Indexes -MultiViews
+DirectoryIndex index.php
+ErrorDocument 404 /404.html
+
+# Git
+RedirectMatch 404 /\.git
+
+# Docker
+RedirectMatch 404 /\.env
+Redirect 404 docker-compose.yml
+RedirectMatch 404 /docker
+
+# Readme
+Redirect 404 README.md
+
+
+RewriteEngine On
+RewriteBase /
+RewriteCond %{THE_REQUEST} /(\.+) [OR]
+RewriteCond %{THE_REQUEST} /(\?+) [OR]
+RewriteCond %{THE_REQUEST} /(/+)
+RewriteRule ^core/(install|temp|smarty|modules|languages|includes|functions|fonts|files|config|classes|cache|backup)/(.*) - [F]
+RewriteRule ^data/(.+)\.(tpl\.html|php|php3|php4|php5|phtml|pl|cgi) - [F]
+RewriteRule ^install_check\.html$ install.php?check=yes [L]
+RewriteRule ^index\.html$ index.php [L,QSA]
+RewriteRule ^news\.html$ index.php?news=yes [L,QSA]
+RewriteRule ^price\.html$ index.php?show_price=yes [L,QSA]
+RewriteRule ^cart\.html$ index.php?shopping_cart=yes [L,QSA]
+RewriteRule ^wide_search\.html$ index.php?search_with_change_category_ability=yes [L,QSA]
+RewriteRule ^feedback\.html$ index.php?feedback=yes [L,QSA]
+RewriteRule ^compare\.html$ index.php?comparison_products=yes [L,QSA]
+RewriteRule ^page_([0-9]+)\.html$ index.php?show_aux_page=$1 [L,QSA]
+RewriteRule ^product_([0-9]+)\.html$ index.php?productID=$1 [L,QSA]
+RewriteRule ^category_([0-9]+)\.html$ index.php?categoryID=$1 [L,QSA]
+RewriteRule ^category_([0-9]+)_offset_([0-9]+)\.html$ index.php?categoryID=$1&offset=$2 [L,QSA]
+RewriteRule ^category_([0-9]+)_show_all\.html$ index.php?categoryID=$1&show_all=yes [L,QSA]
+RewriteRule ^show_news_([0-9]+)\.html$ index.php?fullnews=$1 [L,QSA]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?_url=$1 [L,QSA]
+
+# PHP
+php_value session.use_trans_sid    0
+php_value session.use_cookies      1
+php_value session.use_only_cookies 1
+php_value session.auto_start       0
+php_value magic_quotes_gpc         0
+php_value magic_quotes_runtime     0
+php_value register_globals         0
+php_value allow_url_fopen          1
+php_flag  log_errors on
+php_value error_log  logs/php_errors.log
+php_value date.timezone 'Europe/Minsk'
+# 24575 = E_ALL ^ E_DEPRECATED
+php_value error_reporting          24575
+
+# PHP > PRODUCTION ONLY
+php_value max_execution_time 10
+php_value display_startup_errors   0
+php_value display_errors           0
+
+# PHP > DEVELOP ONLY
+#php_value max_execution_time       600
+#php_value display_startup_errors   1
+#php_value display_errors           1

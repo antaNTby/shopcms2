@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<DataBaseStructure ApplicationVersion='ShopCMS' LastModifyDate='05/05/2009'>
+        <tables>
+
+                <table name='avl_system' alias='SYSTEM_TABLE' >
+                        <column TYPE='varchar(255)' >varName</column>
+                        <column TYPE='varchar(255)' >value</column>
+                </table>
+
+                <table name='avl_session' alias='SESSION_TABLE' >
+                        <column type='varchar(32)' PrimaryKey='true' nullable='false' >id</column>
+                        <column type='text' nullable='false' >data</column>
+                        <column type='int' nullable='false' default='0' >expire</column>
+                        <column type='varchar(15)' nullable='false' >IP</column>
+                        <column type='varchar(255)' nullable='false' >Referer</column>
+                        <column type='varchar(255)' nullable='false' >user_agent</column>
+                        <column type='text' nullable='false' >URL</column>
+                </table>
+
+                <table name='avl_blocks' alias='BLOCKS_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true' >bid</column>
+                        <column type='varchar(255)' nullable='false' >title</column>
+                        <column type='text' nullable='false' >content</column>
+                        <column type='int' nullable='false' default='0' >bposition</column>
+                        <column type='int' nullable='false' default='1' index='active' >active</column>
+                        <column type='int' nullable='false' default='0' >which</column>
+                        <column type='int' nullable='false' default='0' >sort</column>
+                        <column type='int' nullable='false' default='0' >html</column>
+                        <column type='varchar(255)' nullable='false' >url</column>
+                        <column type='int' nullable='false' default='0' >admin</column>
+                        <column type='text' nullable='false' >about</column>
+                        <column type='text' nullable='false' >pages</column>
+                        <column type='text' nullable='false' >dpages</column>
+                        <column type='text' nullable='false' >categories</column>
+                        <column type='text' nullable='false' >products</column>
+                </table>
+
+                <table name='avl_related_content_cat' alias='RELATED_CONTENT_CAT_TABLE' >
+                        <column type='int' nullable='false' default='0' index='categoryID' >categoryID</column>
+                        <column type='int' nullable='false' default='0' >Owner</column>
+                </table>
+
+                <table name='avl_related_content' alias='RELATED_CONTENT_TABLE' >
+                        <column type='int' nullable='false' default='0' index='productID' >productID</column>
+                        <column type='int' nullable='false' default='0' >Owner</column>
+                </table>
+
+                <table name='avl_online' alias='ONLINE_TABLE' >
+                        <column type='varchar(32)' PrimaryKey='true' nullable='false' >uname</column>
+                        <column type='varchar(14)' nullable='false' >time</column>
+                </table>
+
+                <table name='avl_survey' alias='SURVEY_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true' >poll_id</column>
+                        <column type='datetime' nullable='true' >poll_date</column>
+                        <column type='varchar(255)' nullable='false' >poll_title</column>
+                        <column type='text' nullable='false' >poll_ans</column>
+                        <column type='int' nullable='false' default='0' >ans_0</column>
+                        <column type='int' nullable='false' default='0' >ans_1</column>
+                        <column type='int' nullable='false' default='0' >ans_2</column>
+                        <column type='int' nullable='false' default='0' >ans_3</column>
+                        <column type='int' nullable='false' default='0' >ans_4</column>
+                        <column type='int' nullable='false' default='0' >ans_5</column>
+                        <column type='int' nullable='false' default='0' >ans_6</column>
+                        <column type='int' nullable='false' default='0' >ans_7</column>
+                        <column type='int' nullable='false' default='0' >ans_8</column>
+                        <column type='int' nullable='false' default='0' >ans_9</column>
+                        <column type='int' nullable='false' default='0' >all_poll</column>
+                        <column type='int' nullable='false' default='0' >active</column>
+                                                <column type='longtext' nullable='false' >iplog</column>
+                                                <column type='datetime' nullable='true' >tdate</column>
+                </table>
+
+                <table name='avl_error_log' alias='ERROR_LOG_TABLE' >
+                        <column type='text' nullable='false' >errors</column>
+                                                <column type='timestamp' nullable='false' >tstamp</column>
+                </table>
+
+                <table name='avl_mysql_error_log' alias='MYSQL_ERROR_LOG_TABLE' >
+                        <column type='text' nullable='false' >errors</column>
+                                                <column type='timestamp' nullable='false' >tstamp</column>
+                </table>
+
+                <table name='avl_counter' alias='COUNTER_TABLE' >
+                        <column type='int' nullable='false' default='1' >tbid</column>
+                        <column type='int' nullable='false' default='0' >todayp</column>
+                        <column type='int' nullable='false' default='0' >todayv</column>
+                        <column type='int' nullable='false' default='0' >allp</column>
+                        <column type='int' nullable='false' default='0' >allv</column>
+                        <column type='int' nullable='false' default='0' >allieb</column>
+                        <column type='int' nullable='false' default='0' >allmozb</column>
+                        <column type='int' nullable='false' default='0' >allopb</column>
+                        <column type='int' nullable='false' default='0' >allozb</column>
+                        <column type='int' nullable='false' default='0' >allrusl</column>
+                        <column type='int' nullable='false' default='0' >allenl</column>
+                        <column type='int' nullable='false' default='0' >allozl</column>
+                        <column type='int' nullable='false' default='0' >allwins</column>
+                        <column type='int' nullable='false' default='0' >alllins</column>
+                        <column type='int' nullable='false' default='0' >allmacs</column>
+                        <column type='int' nullable='false' default='0' >allozs</column>
+                        <column type='varchar(20)' nullable='false' default='0' >today</column>
+                </table>
+
+                <table name='avl_dump' alias='DUMP_TABLE' >
+                        <column type='int' >type</column>
+                        <column type='int' nullable='false' >last_update</column>
+                </table>
+
+                <table name='avl_orders' alias='ORDERS_TABLE' >
+                        <column type='int' primarykey='true' identity='true'>orderID</column>
+                        <column type='int'>customerID</column>
+                        <column type='datetime'>order_time</column>
+                        <column type='varchar(15)'>customer_ip</column>
+                        <column type='varchar(64)'>shipping_type</column>
+                        <column type='varchar(64)'>payment_type</column>
+                        <column type='text'>customers_comment</column>
+                        <column type='int'>statusID</column>
+                        <column type='double'>shipping_cost</column>
+                        <column type='double'>order_discount</column>
+                        <column type='double'>order_amount</column>
+                        <column type='varchar(12)'>currency_code</column>
+                        <column type='float'>currency_value</column>
+                        <column type='varchar(64)'>customer_firstname</column>
+                        <column type='varchar(64)'>customer_lastname</column>
+                        <column type='varchar(50)'>customer_email</column>
+                        <column type='varchar(64)'>shipping_firstname</column>
+                        <column type='varchar(64)'>shipping_lastname</column>
+                        <column type='varchar(64)'>shipping_country</column>
+                        <column type='varchar(64)'>shipping_state</column>
+                        <column type='varchar(64)'>shipping_city</column>
+                        <column type='text'>shipping_address</column>
+                        <column type='varchar(64)'>billing_firstname</column>
+                        <column type='varchar(64)'>billing_lastname</column>
+                        <column type='varchar(64)'>billing_country</column>
+                        <column type='varchar(64)'>billing_state</column>
+                        <column type='varchar(64)'>billing_city</column>
+                        <column type='text'>billing_address</column>
+                        <column type='varchar(255)'>cc_number</column>
+                        <column type='varchar(255)'>cc_holdername</column>
+                        <column type='char(255)'>cc_expires</column>
+                        <column type='varchar(255)'>cc_cvv</column>
+                        <column type='int' default='0'>affiliateID</column>
+                        <column type='varchar(255)' >shippingServiceInfo</column>
+                        <column type='varchar(36)' >custlink</column>
+                        <column type='int' default='2'>currency_round</column>
+                        <column type='int'>paymethod</column>
+                </table>
+
+                <table name='avl_order_status' alias='ORDER_STATUES_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>statusID</column>
+                        <column type='varchar(60)'>status_name</column>
+                        <column type='int'>sort_order</column>
+                </table>
+
+                <table name='avl_ordered_carts' alias='ORDERED_CARTS_TABLE' >
+                        <column type='int' PrimaryKey='true'>itemID</column>
+                        <column type='int' PrimaryKey='true'>orderID</column>
+                        <column type='varchar(255)'>name</column>
+                        <column type='double'>Price</column>
+                        <column type='int'>Quantity</column>
+                        <column type='double'>tax</column>
+                        <column type='int' default='0'>load_counter</column>
+                </table>
+
+                <table name='avl_products' alias='PRODUCTS_TABLE' ProductAndCategorySync='true' >
+                        <column type='int' PrimaryKey='true' identity='true'>productID</column>
+                        <column type='int' index='IDX_PRODUCTS1'>categoryID</column>
+                        <column type='varchar(255)'>name</column>
+                        <column type='text'>description</column>
+                        <column type='float' default='0'>customers_rating</column>
+                        <column type='double'>Price</column>
+                        <column type='int'>in_stock</column>
+                        <column type='int' default='0'>customer_votes</column>
+                        <column type='int' nullable='false'>items_sold</column>
+                        <column type='int'>enabled</column>
+                        <column type='text'>brief_description</column>
+                        <column type='double'>list_price</column>
+                        <column type='varchar(25)'>product_code</column>
+                        <column type='int' default='0'>sort_order</column>
+                        <column type='int'>default_picture</column>
+                        <column type='datetime'>date_added</column>
+                        <column type='datetime'>date_modified</column>
+                        <column type='int' default='0'>viewed_times</column>
+                        <column type='varchar(255)'>eproduct_filename</column>
+                        <column type='int' default='5'>eproduct_available_days</column>
+                        <column type='int' default='5'>eproduct_download_times</column>
+                        <column type='float' default='0'>weight</column>
+                        <column type='text'>meta_description</column>
+                        <column type='text'>meta_keywords</column>
+                        <column type='int' default='0'>free_shipping</column>
+                        <column type='int' default='1'>min_order_amount</column>
+                        <column type='double' default='0'>shipping_freight</column>
+                        <column type='int'>classID</column>
+                        <column type='text'>title</column>
+                </table>
+
+                <table name='avl_categories' alias='CATEGORIES_TABLE' ProductAndCategorySync='true' >
+                        <column type='int' PrimaryKey='true' identity='true'>categoryID</column>
+                        <column type='varchar(255)'>name</column>
+                        <column type='int' index='IDX_CATEGORIES1'>parent</column>
+                        <column type='int'>products_count</column>
+                        <column type='text'>description</column>
+                        <column type='varchar(30)'>picture</column>
+                        <column type='int'>products_count_admin</column>
+                        <column type='int' default='0' index='sort_order'>sort_order</column>
+                        <column type='int' default='0'>viewed_times</column>
+                        <column type='int' default='0'>allow_products_comparison </column>
+                        <column type='int' default='1'>allow_products_search</column>
+                        <column type='int' default='1'> show_subcategories_products </column>
+                        <column type='text'>meta_description</column>
+                        <column type='text'>meta_keywords</column>
+                        <column type='text'>title</column>
+                        <column type='int' default='0'>subcount</column>
+                </table>
+
+                <table name='avl_category_product' alias='CATEGORIY_PRODUCT_TABLE' ProductAndCategorySync='true' >
+                        <column type='int' PrimaryKey='true'>productID</column>
+                        <column type='int' PrimaryKey='true'>categoryID</column>
+                </table>
+
+                <table name='avl_shopping_carts' alias='SHOPPING_CARTS_TABLE' >
+                        <column type='int' PrimaryKey='true'>customerID</column>
+                        <column type='int' PrimaryKey='true'>itemID</column>
+                        <column type='int'>Quantity</column>
+                </table>
+
+                <table name='avl_news_table' alias='NEWS_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>NID</column>
+                        <column type='date'>add_date</column>
+                        <column type='text'>title</column>
+                        <column type='text'>textToPrePublication</column>
+                        <column type='text'>textToPublication</column>
+                        <column type='text'>textToMail</column>
+                        <column type='int'>add_stamp</column>
+                </table>
+
+                <table name='avl_discussions' alias='DISCUSSIONS_TABLE' ProductAndCategorySync='true' >
+                        <column type='int' PrimaryKey='true' identity='true'>DID</column>
+                        <column type='int'>productID</column>
+                        <column type='varchar(40)'>Author</column>
+                        <column type='text'>Body</column>
+                        <column type='datetime'>add_time</column>
+                        <column type='varchar(255)'>Topic</column>
+                </table>
+
+                <table name='avl_subscribers' alias='MAILING_LIST_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>MID</column>
+                        <column type='varchar(50)'>Email</column>
+                        <column type='int' nullable='true'>customerID</column>
+                </table>
+
+                <table name='avl_related_items' alias='RELATED_PRODUCTS_TABLE' ProductAndCategorySync='true' >
+                        <column type='int' PrimaryKey='true'>productID</column>
+                        <column type='int' PrimaryKey='true'>Owner</column>
+                </table>
+
+                <table name='avl_product_options' alias='PRODUCT_OPTIONS_TABLE' ProductAndCategorySync='true' >
+                        <column type='int' PrimaryKey='true' identity='true'>optionID</column>
+                        <column type='varchar(60)'>name</column>
+                        <column type='int' default='0'>sort_order</column>
+                </table>
+
+                <table name='avl_product_options_values' alias='PRODUCT_OPTIONS_VALUES_TABLE' ProductAndCategorySync='true' >
+                        <column type='int' PrimaryKey='true'>optionID</column>
+                        <column type='int' PrimaryKey='true' index='IDX_OPTVALUES1'>productID</column>
+                        <column type='varchar(255)'>option_value</column>
+                        <column type='int' default='0'>option_type</column>
+                        <column type='int' default='1'>option_show_times</column>
+                        <column type='int' index='IDX_OPTVALUES2'>variantID</column>
+                </table>
+
+                <table name='avl_products_opt_val_variants' alias='PRODUCTS_OPTIONS_VALUES_VARIANTS_TABLE'  ProductAndCategorySync='true' >
+                        <column type='int' PrimaryKey='true' identity='true'>variantID</column>
+                        <column type='int' nullable='false' index='IDX_VARIANTS1'>optionID</column>
+                        <column type='varchar(255)'>option_value</column>
+                        <column type='int' default='0'>sort_order</column>
+                </table>
+
+                <table name='avl_product_options_set' alias='PRODUCTS_OPTIONS_SET_TABLE' ProductAndCategorySync='true' >
+                        <column type='int' PrimaryKey='true'>productID</column>
+                        <column type='int' PrimaryKey='true'>optionID</column>
+                        <column type='int' PrimaryKey='true'>variantID</column>
+                        <column type='double' default='0'>price_surplus</column>
+                </table>
+
+                <table name='avl_customers' alias='CUSTOMERS_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>customerID</column>
+                        <column type='varchar(32)'>Login</column>
+                        <column type='varchar(255)' nullable='false'>cust_password</column>
+                        <column type='varchar(64)'>Email</column>
+                        <column type='varchar(32)'>first_name</column>
+                        <column type='varchar(32)'>last_name</column>
+                        <column type='int'>subscribed4news</column>
+                        <column type='int'>custgroupID</column>
+                        <column type='int'>addressID</column>
+                        <column type='datetime'>reg_datetime</column>
+                        <column type='varchar(16)' nullable='false' default='""' >ActivationCode</column>
+                        <column type='int'>CID</column>
+                        <column type='int' nullable='false' index='affiliateID'>affiliateID</column>
+                        <column type='int' nullable='false' default='1'>affiliateEmailOrders</column>
+                        <column type='int' nullable='false' default='1'>affiliateEmailPayments</column>
+                        <column type='text' nullable='false'>actions</column>
+                </table>
+
+                <table name='avl_custgroups' alias='CUSTGROUPS_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>custgroupID</column>
+                        <column type='varchar(64)'>custgroup_name</column>
+                        <column type='float' default='0'>custgroup_discount</column>
+                        <column type='int' default='0'>sort_order</column>
+                </table>
+
+                <table name='avl_countries' alias='COUNTRIES_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>countryID</column>
+                        <column type='varchar(64)'>country_name</column>
+                        <column type='char(2)'>country_iso_2</column>
+                        <column type='char(3)'>country_iso_3</column>
+                </table>
+
+                <table name='avl_zones' alias='ZONES_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>zoneID</column>
+                        <column type='varchar(64)'>zone_name</column>
+                        <column type='char(64)'>zone_code</column>
+                        <column type='int'>countryID</column>
+                </table>
+
+                <table name='avl_customer_log' alias='CUSTOMER_LOG_TABLE' >
+                        <column type='int' nullable='false'>customerID</column>
+                        <column type='varchar(15)'>customer_ip</column>
+                        <column type='datetime'>customer_logtime</column>
+                </table>
+
+                <table name='avl_customer_addresses' alias='CUSTOMER_ADDRESSES_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>addressID</column>
+                        <column type='int' nullable='false'>customerID</column>
+                        <column type='varchar(64)'>first_name</column>
+                        <column type='varchar(64)'>last_name</column>
+                        <column type='int' nullable='true'>countryID</column>
+                        <column type='int' nullable='true'>zoneID</column>
+                        <column type='varchar(64)'>state</column>
+                        <column type='varchar(64)'>city</column>
+                        <column type='text'>address</column>
+                </table>
+
+                <table name='avl_customer_reg_fields' alias='CUSTOMER_REG_FIELDS_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>reg_field_ID</column>
+                        <column type='varchar(60)'>reg_field_name</column>
+                        <column type='int'>reg_field_required</column>
+                        <column type='int'>sort_order</column>
+                </table>
+
+                <table name='avl_customer_reg_fields_values' alias='CUSTOMER_REG_FIELDS_VALUES_TABLE' >
+                        <column type='int' nullable='false'>reg_field_ID</column>
+                        <column type='int' nullable='false'>customerID</column>
+                        <column type='varchar(255)'>reg_field_value</column>
+                </table>
+
+                <table name='avl_customer_reg_fields_values_quickreg' alias='CUSTOMER_REG_FIELDS_VALUES_TABLE_QUICKREG' >
+                        <column type='int' nullable='false'>reg_field_ID</column>
+                        <column type='int' nullable='false'>orderID</column>
+                        <column type='varchar(255)'>reg_field_value</column>
+                </table>
+
+
+                <table name='avl_shipping_methods' alias='SHIPPING_METHODS_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>SID</column>
+                        <column type='varchar(60)'>Name</column>
+                        <column type='varchar(255)'>description</column>
+                        <column type='text'>email_comments_text</column>
+                        <column type='int'>Enabled</column>
+                        <column type='int'>module_id</column>
+                        <column type='int' default='0'>sort_order</column>
+                </table>
+
+                <table name='avl_payment_types' alias='PAYMENT_TYPES_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>PID</column>
+                        <column type='varchar(60)'>Name</column>
+                        <column type='varchar(255)'>description</column>
+                        <column type='int'>Enabled</column>
+                        <column type='int'>calculate_tax</column>
+                        <column type='int' default='0'>sort_order</column>
+                        <column type='text'>email_comments_text</column>
+                        <column type='int'>module_id</column>
+                </table>
+
+                <table name='avl_payment_types__shipping_methods' alias='SHIPPING_METHODS_PAYMENT_TYPES_TABLE' >
+                        <column type='int' PrimaryKey='true'>SID</column>
+                        <column type='int' PrimaryKey='true'>PID</column>
+                </table>
+
+                <table name='avl_currency_types' alias='CURRENCY_TYPES_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>CID</column>
+                        <column type='varchar(60)'>Name</column>
+                        <column type='varchar(60)'>code</column>
+                        <column type='float'>currency_value</column>
+                        <column type='int'>where2show</column>
+                        <column type='int' default='0'>sort_order</column>
+                        <column type='char(3)'>currency_iso_3</column>
+                        <column type='int' default='2'>roundval</column>
+                </table>
+
+                <table name='avl_special_offers' alias='SPECIAL_OFFERS_TABLE' ProductAndCategorySync='true' >
+                        <column type='int' PrimaryKey='true' identity='true'>offerID</column>
+                        <column type='int'>productID</column>
+                        <column type='int' default='0'>sort_order</column>
+                </table>
+
+                <table name='avl_shopping_cart_items' alias='SHOPPING_CART_ITEMS_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>itemID</column>
+                        <column type='int'>productID</column>
+                </table>
+
+                <table name='avl_shopping_cart_items_content' alias='SHOPPING_CART_ITEMS_CONTENT_TABLE' >
+                        <column type='int' nullable='false'>itemID</column>
+                        <column type='int' nullable='false'>variantID</column>
+                </table>
+
+                <table name='avl_product_pictures' alias='PRODUCT_PICTURES' ProductAndCategorySync='true' >
+                        <column type='int' PrimaryKey='true' identity='true'>photoID</column>
+                        <column type='int' nullable='false'>productID</column>
+                        <column type='varchar(50)'>filename</column>
+                        <column type='varchar(50)'>thumbnail</column>
+                        <column type='varchar(50)'>enlarged</column>
+                </table>
+
+                <table name='avl_aux_pages' alias='AUX_PAGES_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>aux_page_ID</column>
+                        <column type='varchar(255)'>aux_page_name</column>
+                        <column type='text'>aux_page_text</column>
+                        <column type='int'>aux_page_text_type</column>
+                        <column type='text'>meta_keywords</column>
+                        <column type='text'>meta_description</column>
+                        <column type='text'>title</column>
+                </table>
+
+                <table name='avl_settings_groups' alias='SETTINGS_GROUPS_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>settings_groupID</column>
+                        <column type='varchar(64)'>settings_group_name</column>
+                        <column type='int' default='0'>sort_order</column>
+                </table>
+
+                <table name='avl_settings' alias='SETTINGS_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>settingsID</column>
+                        <column type='int'>settings_groupID</column>
+                        <column type='varchar(64)'>settings_constant_name</column>
+                        <column type='varchar(255)'>settings_value</column>
+                        <column type='varchar(128)'>settings_title</column>
+                        <column type='varchar(255)'>settings_description</column>
+                        <column type='varchar(255)'>settings_html_function</column>
+                        <column type='int' default='0'>sort_order</column>
+                </table>
+
+                <table name='avl_category__product_options' alias='CATEGORY_PRODUCT_OPTIONS_TABLE' >
+                        <column type='int' PrimaryKey='true'>optionID</column>
+                        <column type='int' PrimaryKey='true'>categoryID</column>
+                        <column type='int' default='1'>set_arbitrarily</column>
+                </table>
+
+                <table name='avl_category_product_options__variants' alias='CATEGORY_PRODUCT_OPTION_VARIANTS' >
+                        <column type='int' PrimaryKey='true'>optionID</column>
+                        <column type='int' PrimaryKey='true'>categoryID</column>
+                        <column type='int' PrimaryKey='true'>variantID</column>
+                </table>
+
+                <table name='avl_tax_classes' alias='TAX_CLASSES_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>classID</column>
+                        <column type='varchar(64)'>name</column>
+                        <column type='int'>address_type</column>
+                </table>
+
+                <table name='avl_tax_rates' alias='TAX_RATES_TABLE' >
+                        <column type='int' PrimaryKey='true'>classID</column>
+                        <column type='int' PrimaryKey='true'>countryID</column>
+                        <column type='int'>isGrouped</column>
+                        <column type='float'>value</column>
+                        <column type='int'>isByZone</column>
+                </table>
+
+                <table name='avl_tax_rates__zones' alias='TAX_RATES_ZONES_TABLE' >
+                        <column type='int' PrimaryKey='true'>classID</column>
+                        <column type='int' PrimaryKey='true'>zoneID</column>
+                        <column type='float'>value</column>
+                        <column type='int'>isGrouped</column>
+                </table>
+
+                <table name='avl_tax_zip' alias='TAX_ZIP_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>tax_zipID</column>
+                        <column type='int'>classID</column>
+                        <column type='int'>countryID</column>
+                        <column type='varchar(255)'>zip_template</column>
+                        <column type='float'>value</column>
+                </table>
+
+                <table name='avl_modules' alias='MODULES_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>module_id</column>
+                        <column type='varchar(255)'>module_name</column>
+                        <column TYPE='varchar(255)'>ModuleClassName</column>
+                </table>
+
+                <table name='avl_order_price_discount' alias='ORDER_PRICE_DISCOUNT_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>discount_id</column>
+                        <column type='double'>price_range</column>
+                        <column type='double'>percent_discount</column>
+                </table>
+
+                <table name='avl_order_status_changelog' alias='ORDER_STATUS_CHANGE_LOG_TABLE' >
+                        <column type='int'>orderID</column>
+                        <column type='varchar(255)'>status_name</column>
+                        <column type='datetime'>status_change_time</column>
+                        <column type='text'>status_comment</column>
+                </table>
+
+                <table name='avl_linkexchange_categories' alias='LINK_EXCHANGE_CATEGORIES_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>le_cID</column>
+                        <column type='varchar(100)'>le_cName</column>
+                        <column type='int'>le_cSortOrder</column>
+                </table>
+
+                <table name='avl_linkexchange_links' alias='LINK_EXCHANGE_LINKS_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>le_lID</column>
+                        <column type='varchar(255)'>le_lText</column>
+                        <column type='text'>le_lDesk</column>
+                        <column type='varchar(255)'>le_lURL</column>
+                        <column type='int'>le_lCategoryID</column>
+                        <column type='datetime'>le_lVerified</column>
+                </table>
+
+                <table name='avl_aff_commissions' alias='AFFILIATE_COMMISSIONS_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>cID</column>
+                        <column type='double'>Amount</column>
+                        <column type='varchar(3)'>CurrencyISO3</column>
+                        <column type='datetime'>xDateTime</column>
+                        <column type='varchar(255)'>Description</column>
+                        <column type='int'>OrderID</column>
+                        <column type='int' index='CustomerID'>CustomerID</column>
+                </table>
+
+                <table name='avl_aff_payments' alias='AFFILIATE_PAYMENTS_TABLE' >
+                        <column type='int' PrimaryKey='true' identity='true'>pID</column>
+                        <column type='int' index='CustomerID'>CustomerID</column>
+                        <column type='double'>Amount</column>
+                        <column type='varchar(3)'>CurrencyISO3</column>
+                        <column type='date'>xDate</column>
+                        <column type='varchar(255)'> Description</column>
+                </table>
+
+        </tables>
+</DataBaseStructure>

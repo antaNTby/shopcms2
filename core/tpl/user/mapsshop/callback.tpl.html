@@ -1,0 +1,67 @@
+{* Шаблон формы обратной связи *}
+<!-- block -->
+<div class="block">
+    <div class="clear"></div>
+    <div class="name">
+        <h1>{$header}</h1>
+    </div>
+
+    {if $send_success ne true}
+        <div class="text">
+            <p>{$smarty.const.TPL_CALLBACK_MESSAGE}</p>
+        </div>
+        <div class="blok">
+            <img src="{$smarty.const.TPL_PATH}/images/count-t.gif" width="557" height="9" alt="" class="count-t" />
+            {if $error ne NULL}
+                <div class="ob"><span>
+                    {if $error eq 1}{$smarty.const.CALLBACK_ERROR_EMPTY_PHONE}
+                    {elseif $error eq 2}{$smarty.const.CALLBACK_SENT_FAIL}
+                    {/if}
+                </span></div>
+            {/if}
+
+            <form name="formfeedback" id="formfeedback" method="post" action="" class="niceform">
+                <div class="clear1"></div>
+
+                <div class="div-l">
+                    <p>{$smarty.const.TPL_CALLBACK_PHONE}</p>
+                </div>
+                <div class="div-r">
+                    <input type="text" name="phone" class="inp1" placeholder="{$smarty.const.TPL_CALLBACK_PHONE_NUMBER}" value="{$phone|replace:"\"":"&quot;"}"/>
+                </div>
+
+                <div class="div-l">
+                    <p>{$smarty.const.TPL_CALLBACK_NAME}</p>
+                </div>
+                <div class="div-r">
+                    <input type="text" name="name" class="inp1" placeholder="{$smarty.const.TPL_CALLBACK_NAME_PLACEHOLDER}" value="{$name|replace:"\"":"&quot;"}"  />
+                </div>
+                <div class="clear1"></div>
+
+                <div class="clear1"></div>
+
+                <div class="div-l">
+                    <p>{$smarty.const.TPL_CALLBACK_ADV_INFO}</p>
+                </div>
+                <div class="div-r area">
+                    <div class="txtarea">
+                        <textarea name="info">{$smarty.get.map|replace:"<":"&lt;"}{$info|replace:"<":"&lt;"}</textarea>
+                        <img src="{$smarty.const.TPL_PATH}/images/area_03.gif" width="412" height="12" alt="" class="count-b3"  />
+                        <img src="{$smarty.const.TPL_PATH}/images/area_01.gif" width="412" height="12" alt="" class="count-t3" />
+                    </div>
+
+                </div>
+                <div class="clear1"></div>
+                <input type="hidden" name="callback" value="yes" /><input type="hidden" name="feedback" value="yes" />
+                <div style="float:right;margin-right:20px;">[ <a href="#" onclick="document.getElementById('formfeedback').submit(); return false">{$smarty.const.OK_BUTTON3}</a> ]</div>
+            </form>
+            <img src="{$smarty.const.TPL_PATH}/images/count-b.gif" width="557" height="9" alt="" class="count-b" />
+        </div>
+    {else}
+        <div class="text">{$smarty.const.CALLBACK_SENT_SUCCESS}</div>
+    {/if}
+    <div class="text">
+        <br><br><br>
+        <h2>{$smarty.const.TPL_CALLBACK_WRITE_US_EMAIL} <a href="mailto:{$smarty.const.CONF_GENERAL_EMAIL}">{$smarty.const.CONF_GENERAL_EMAIL}</a></h2>
+    </div>
+</div>

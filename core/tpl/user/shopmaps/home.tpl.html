@@ -1,0 +1,66 @@
+{* Шаблон вывода спецпредложений *}
+
+{if $special_offers}
+	<div class="block" style="width: 625px; padding: 5px 0 20px 44px;">
+		<div class="clear"></div>
+			<ul class="product">
+				<tr>
+  					{section name=i loop=$special_offers}
+						<li>
+							<div class="prod">
+	                            <p class="nazv">
+	                                {if $special_offers[i].name|strlen > 37}
+	                                	<a href="{$special_offers[i].UID}.html">{$special_offers[i].name|replace:$smarty.const.TPL_CATEGORY_MAP:$smarty.const.TPL_CATEGORY_MAP_BR}</a>
+	                                {else}
+	                                	<a href="{$special_offers[i].UID}.html">{$special_offers[i].name}</a>
+	                                {/if}
+	                            </p>
+								<div class="foto">
+	                              {if $imgTextWarning2 != ''}<div class="map_warning2">{$imgTextWarning2}</div>{/if}  
+	                              <a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $special_offers[i].UID}{$special_offers[i].UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/product_{$special_offers[i].productID}.html{/if}{else}index.php?productID={$special_offers[i].productId}{/if}"><img src="{$special_offers[i].picture}" width="240" alt="{$special_offers[i].name}" /></a>
+								</div>
+	           
+               
+                {*   {$special_offers[i].BuyButton}<span> {if $special_offers[i].robo_display_price}{$special_offers[i].robo_display_price}{/if} </span>
+                *}
+                 {* <form action="https://merchant.roboxchange.com/Index.aspx" method="post" onsubmit="GetEmail(this);yaCounter21306118.reachGoal('ORDER'); return true;">
+                        <input type="hidden" name="MrchLogin" value="{$sMerchantLogin}">
+                        <input type="hidden" name="InvId" value="{$nInvId}">
+                        <input type="hidden" name="Email" value="">
+                        <input type="hidden" name="OutSum" value="{$special_offers[i].nOutSum}">
+                        <input type="hidden" name="Desc" value="{$special_offers[i].Desc}">
+                        <input type="hidden" name="SignatureValue" value="{$special_offers[i].sSignatureValue}">
+                        <span><input name='robo' type="image" src="design/user/{$smarty.const.TEMPLATE_GO}/images/{$smarty.const.BUTTON_CRT}" alt="{$smarty.const.ADD_TO_CART_STRING}" >
+                        {if $special_offers[i].robo_display_price}{$special_offers[i].robo_display_price}{/if}
+                        </span>
+                  </form>
+              *}    
+              {*  <form method="post" action="https://merchant.w1.ru/checkout/default.aspx" name="robo" onsubmit="yaCounter21306118.reachGoal('ORDER'); return true;" accept-charset="UTF-8"> 
+                    <input name="WMI_MERCHANT_ID"    type="hidden" value="{$w1Login}"/> 
+                    <input name="WMI_PAYMENT_AMOUNT" type="hidden" value="{$special_offers[i].nOutSum}"/> 
+                    <input name="WMI_CURRENCY_ID"   type="hidden" value="{$w1_currency_id}"/> 
+                    <input name="WMI_DESCRIPTION"  type="hidden"  value="{$special_offers[i].Desc}"/> 
+                    <input name="WMI_SUCCESS_URL"  type="hidden"  value="{$w1_success_url}"/> 
+                    <input name="WMI_FAIL_URL"    type="hidden"   value="{$w1_fail_url}"/>
+                                        <span><input name='robo' type="image" src="design/user/{$smarty.const.TEMPLATE_GO}/images/{$smarty.const.BUTTON_CRT}" alt="{$smarty.const.ADD_TO_CART_STRING}" >
+                        {if $special_offers[i].robo_display_price}{$special_offers[i].robo_display_price}{/if}
+                        </span>
+                </form>
+                *}  
+                 {* 
+                  <div class="clear"></div>
+								</div> *}
+							</div>
+						</li>
+
+{/section}
+				</ul>
+<div style="clear: both"></div>                
+				<div class="mtext">
+				<div class="dote"></div>
+{$smarty.const.TPL_HOME_MESSAGE}
+				
+				</div>
+			</div>
+
+{/if}

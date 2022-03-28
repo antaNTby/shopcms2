@@ -1,0 +1,72 @@
+{* Шаблон формы обратной связи *}
+<!-- block -->
+<div class="block">
+	<div class="clear"></div>
+	<div class="name">
+		<h1>{$header}</h1>
+	</div>
+
+	{if $sent eq NULL}
+        <div class="text">
+        	<p>{$smarty.const.TPL_FEEDBACK_MESSAGE}</p>
+        </div>
+        
+<div class="blok">
+			<img src="{$smarty.const.TPL_PATH}/images/count-t.gif" width="557" height="9" alt="" class="count-t" />					
+          	{if $error ne NULL}<div class="ob"><span>{if $error eq 2}{$smarty.const.ERR_WRONG_CCODE}{elseif $error eq 3}{$smarty.const.ERR_WRONG_POST}{else}{$smarty.const.FEEDBACK_ERROR_FILL_IN_FORM}{/if}</span></div>{/if}
+          <form name="formfeedback" id="formfeedback" method="post" action="index.php" class="niceform">
+						<div class="clear1"></div>
+
+						<div class="div-l">
+							<p>{$smarty.const.CUSTOMER_EMAIL}:</p>
+						</div>
+						<div class="div-r">
+							<input type="text" name="customer_email" class="inp1" value="{$customer_email|replace:"\"":"&quot;"}" />
+						</div>
+						<div class="clear1"></div>
+                        
+                       {* <div class="div-l">
+							<p>{$smarty.const.TPL_FEEDBACK_PHONE}</p>
+						</div>
+						<div class="div-r">
+							<input type="text" name="phone" class="inp1" value="{$phone|replace:"\"":"&quot;"}" />
+						</div>*}
+                        
+						<div class="clear1"></div>
+
+						<div class="div-l">
+							<p>{$smarty.const.FEEDBACK_CUSTOMER_MESSAGE_TEXT}:</p>
+						</div>
+						<div class="div-r area">
+						<div class="txtarea">														
+							<textarea name="message_text">{$smarty.get.map|replace:"<":"&lt;"}{$message_text|replace:"<":"&lt;"}</textarea>
+							<img src="{$smarty.const.TPL_PATH}/images/area_03.gif" width="412" height="12" alt="" class="count-b3"  />
+							<img src="{$smarty.const.TPL_PATH}/images/area_01.gif" width="412" height="12" alt="" class="count-t3" />
+							</div>
+							
+						</div>
+						<div class="clear1"></div>
+            {if $smarty.const.CONF_ENABLE_CONFIRMATION_CODE eq 1}
+            <img src="imgval.php?{php}echo session_name();{/php}={php}echo session_id();{/php}" alt="code" />
+            <input name="fConfirmationCode" value="{$smarty.const.STR_ENTER_CCODE}" type="text" class="inp1" onfocus="if(this.value=='{$smarty.const.STR_ENTER_CCODE}')
+                        {literal}
+                        {this.style.color='#000000';this.value='';}
+                        {/literal}" onblur="if(this.value=='')
+                        {literal}{{/literal}this.style.color='#aaaaaa';this.value='{$smarty.const.STR_ENTER_CCODE}'{literal}}{/literal}" />
+            {/if}
+            <input type="hidden" name="send" value="yes" /><input type="hidden" name="feedback" value="yes" />
+            <div style="float:right;margin-right:20px;">[ <a href="#" onclick="document.getElementById('formfeedback').submit(); return false">{$smarty.const.OK_BUTTON3}</a> ]</div>
+					</form>
+					<img src="{$smarty.const.TPL_PATH}/images/count-b.gif" width="557" height="9" alt="" class="count-b" />
+				</div>
+            {else}
+              <div class="text">{$smarty.const.FEEDBACK_SENT_SUCCESSFULLY}</div>
+            {/if}
+<div class="text">
+<br><br><br>
+<h2>{$smarty.const.TPL_CALLBACK_WRITE_US_EMAIL} <a href="mailto:{$smarty.const.CONF_GENERAL_EMAIL}">{$smarty.const.CONF_GENERAL_EMAIL}</a></h2>
+        </div> 
+
+
+</div>
+

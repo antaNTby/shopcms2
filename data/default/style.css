@@ -1,0 +1,129 @@
+/* Global styles */
+
+html{font-size:100.1%}
+html,body,form{margin:0;padding:0}
+html,body{height:100%;background:#FFF}
+body{text-align:left;font-size:11px;font-family:Tahoma, Arial, Verdana;color:#000;background:url('pixel.gif') no-repeat fixed}
+select,input,div,span,font,textarea{font-size:11px;font-family:Tahoma, Arial, Verdana}
+a img,img,html,body{border:none}
+a img,img,a{outline:none!important}
+:focus{outline:none}
+tr.mid td{vertical-align:middle}
+.fil{overflow:hidden;height:6px;width:100%}
+.fil1{overflow:hidden;height:4px;width:100%}
+.fil2{overflow:hidden;height:14px;width:100%}
+.fil3{overflow:hidden;height:1px;width:100%;margin:18px 0;background:#E1E2E5}
+.arc{font-family:Arial, Tahoma, Verdana}
+.upc{text-transform:uppercase}
+.white{background:#FFF}
+a{color:#000;text-decoration:underline}
+a:hover{color:#000;text-decoration:none}
+.profi{width:100%;color:#000;font-size:19px;padding-bottom:60px;text-align:center}
+.bf{font-weight:bold}
+textarea{padding:1px}
+.price{color:#DF7017;font-size:18px;font-family:Arial, Verdana !important; white-space:nowrap;font-weight:normal !important}
+.market-price{background:url('line_through.gif') repeat-x center}
+.ptbl td{vertical-align:middle;text-align:left;padding:3px 8px}
+#axcrt{border:3px solid #E48234;z-index:100;width:300px;height:58px;font-size:13px;padding-top:42px;background:#FFEBB2}
+table.nl tr td a{text-decoration:none}
+table.nl tr td a:hover{text-decoration:underline}
+a.noline{text-decoration:none}
+a.noline:hover{text-decoration:underline}
+a.nl,a.nl:hover{text-decoration:none}
+.oki{color:#393}
+.error{color:#f60}
+.cattop{margin-top:4px;padding:4px 0}
+.catbot{padding: 4px 0 8px 0}
+.imboxr,.imboxl{text-align:center;vertical-align:top}
+.imboxr img, .sr{margin-left:8px}
+.imboxl img, .sl{margin-right:8px}
+img.delim,td.delim{width:4px;height:4px}
+.sectb a,.sectb a:hover{text-decoration:none}
+.fsttab{border:1px solid #bfbfbf;background:url('knopfon.gif') repeat-x top left}
+.sectb{vertical-align:top;font-size:11px;white-space:nowrap;padding:1px 8px}
+.semafor {position: absolute; z-index: 1; top: 0px; right: 0px; background:url('best.png'); height: 70px; width: 70px;}
+.cl9{font-size:9px;}
+.cl12{font-size:12px;}
+.cl18{font-size:18px;}
+
+/* Pop-up styles */
+
+.highslide-active-anchor img{visibility:hidden}
+.highslide-wrapper{background:#FFF}
+.highslide-image{border:4px solid #FFF;background:#FFF}
+.highslide-loading{display:block;color:#FFF;font-size:11px;font-weight:bold;text-decoration:none;border:1px solid #FFF;padding:3px;background:#000}
+a.highslide-loading,a.highslide-loading:hover{color:#FFF;font-weight:bold;text-decoration:none}
+.highslide-move{cursor:move}
+.highslide-overlay{display:none}
+a.highslide-full-expand{display:block;width:34px;height:34px;margin:0 10px 10px 0;background:url('fullexpand.gif') no-repeat}
+.highslide-display-block{display:block}
+.highslide-display-none{display:none}
+.highslide{cursor:url(zoomin.cur), pointer;outline:none}
+
+/* Rating styles */
+
+.unit-rating{list-style:none;height:20px;position:relative;margin:0;padding:0;background:url('starvote.gif') repeat-x top left}
+.unit-rating li{text-indent:-90000px;float:left;margin:0;padding:0}
+.unit-rating li a{outline:none;display:block;width:20px;height:20px;text-decoration:none;text-indent:-9000px;z-index:20;position:absolute;padding:0}
+.unit-rating li.current-rating{position:absolute;height:20px;display:block;text-indent:-9000px;z-index:1;background:url('starvote.gif') left bottom}
+.unit-rating li a:hover{z-index:2;left:0;background:url('redstar_big.gif') left center}
+.unit-rating a.r1-unit{left:0}
+.unit-rating a.r1-unit:hover{width:20px}
+.unit-rating a.r2-unit{left:20px}
+.unit-rating a.r2-unit:hover{width:40px}
+.unit-rating a.r3-unit{left:40px}
+.unit-rating a.r3-unit:hover{width:60px}
+.unit-rating a.r4-unit{left:60px}
+.unit-rating a.r4-unit:hover{width:80px}
+.unit-rating a.r5-unit{left:80px}
+.unit-rating a.r5-unit:hover{width:100px}
+
+/* Menu styles */
+
+td.dtree{width:99%;padding:1px 0px 2px 0px;}
+td.dtree a,td.dtree a:hover{text-decoration:none}
+tr.dtree td{vertical-align:top;text-align:left}
+tr.dtree:hover,tr.dtree:hover a,tr.dtree a:hover{color:#ff6600}
+td.dtfon{background: url('line.gif') repeat-y top left;}
+
+ /* Index styles */
+
+.container{width:100%;padding-bottom:4px}
+.fix{overflow:hidden;height:3px;width:100%;background:#4F78A0}
+.headlink{color:#fff;border-top:1px solid #fff;border-bottom:1px solid #fff;padding:5px 16px;background:url('mfon.gif') repeat-x top left #E58A40}
+.headlink a{text-decoration:none}
+.headlink a:hover{text-decoration:underline}
+.center{padding:0 4px; width:100%;}
+.poisk a,.headlink a{color:#fff}
+.htba{height:94px;padding-left:15px;background:url('nfon.gif') repeat-x top left #446991}
+.htbb{padding-right:16px;width:50%;background:url('nfon.gif') repeat-x top left #446991}
+.fonta{color:#fff;font-size:27px;font-family:"Trebuchet MS", Arial, Verdana}
+.fontb{color:#fff;padding-left:1px;font-size:14px;font-family:"Trebuchet MS", Arial, Verdana}
+.poisk{color:#fff;width:100%;border-top:1px solid #fff;background:url('pfon.gif') repeat-x top left #757A7B}
+.poisk1{color:#fff;height:30px;padding:0 16px}
+.btbl{text-align:left;color:#fff;height:70px;font-weight:bold;vertical-align:middle;padding:0 16px;background:url('bfon.gif') repeat-x bottom left #4F78A0}
+.delm{cursor:default;margin:0 4px}
+.pform{width:360px;border:1px solid #616265;padding-left:2px}
+.stat{font-family:Tahoma, Arial, Verdana !important}
+
+/* Block styles */
+
+#left,#right{width:190px;background:url('bg.jpg') repeat-y top left #E1E2E5}
+img.fixwidth{width:190px;height:1px}
+.cbt{padding:4px 8px;background:#E1E2E5}
+.hd{color:#fff;padding:5px 8px;background:url('tfon.gif') repeat-x top left #446991}
+.hdb{padding:12px 12px 14px}
+.hdbtop{padding:8px}
+.hmin{padding:4px 0}
+.hdbot{padding:4px 8px;background:#E1E2E5}
+.hdbot a{font-weight:bold}
+.hd a{color:#fff;text-decoration:none}
+.hd a:hover{color:#fff;text-decoration:none}
+
+/* Table styles */
+
+table.gre{background:#D0D1D5}
+table.gre td{background:#fff}
+table.gre td.lt{font-weight:bold;background:#E4E6E9}
+.pad{padding:8px}
+.padt{padding:3px 8px}

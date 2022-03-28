@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+{include file="head.tpl.html"}
+<body>
+	<!-- Выпадающая навигация -->
+	<div id="drop-nav" class="uk-offcanvas">
+		<div class="uk-offcanvas-bar">
+			<nav class="left-drop-nav">
+				<ul class="uk-nav uk-nav-offcanvas" data-uk-nav>
+					<li><a href="/"><span class="ico catalog"></span>Каталог карт</a></li>
+					<li><a href="/page_2.html">{$smarty.const.TPL_INDEX_MAIN_MENU_HOW_GET_MAP}</a></li>
+					<li><a href="/page_1.html">{$smarty.const.TPL_INDEX_MAIN_MENU_WARRANTY}</a></li>
+					<li><a href="/{if $smarty.const.CONF_MOD_REWRITE eq 1}feedback.html{else}index.php?feedback=yes{/if}"><span class="ico cont"></span>{$smarty.const.STRING_FEEDBACK}</a></li>
+
+					{* <li><a href="tel:{$adminPhoneRaw}"><span class="ico pho"></span>{$adminPhone}</a></li> *}
+					<li><a href="mailto:mapsshop@gmail.com"><span class="ico mail"></span>mapsshop@gmail.com</a></li>
+					<li><a href="/index.php?m=no"><span class="ico full"></span>Полная версия сайта</a></li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+	<!--Конец выпадающая навигация -->
+	<!-- Контейнер страницы -->
+	<div class="container">
+		<header class="header clearfix">
+		<button class="uk-button" data-uk-offcanvas="{literal}{{/literal}target:'#drop-nav'{literal}}{/literal}"><a href="#drop-nav" data-uk-offcanvas><i class="fa fa-bars" aria-hidden="true"></i></a></button>
+
+			<div class="logo"><a href="/"></a></div>
+			<!-- Блок иконки -->
+			<div class="icons">
+				{* <a href="tel:{$adminPhone}"><i class="fa fa-phone" aria-hidden="true"></i></a> *}
+				<a href="mailto:mapsshop@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+			</div>
+			<!-- Конец блок иконки -->
+		</header>
+
+		<!-- Основной контент -->
+		<main class="main-content">
+			<section class="input-search">
+				<form action="/index.php" method="get">
+					<input class="search" type="search" id="inp_search" name="searchstring" value="{$searchstring}" placeholder="Поиск">
+					<a href="" class="left clearfix loop"></a>
+					<a href="javascript:void(0);" onclick="$('#inp_search').val(''); $('#inp_search').focus(); return false;" class="right clearfix close"></a>
+				</form>
+			</section>
+			{include file=$main_content_template}
+		</main>
+		<!-- Конец основной контент -->
+		<footer class="footer clearfix">
+			<button class="uk-button" data-uk-offcanvas="{literal}{{/literal}target:'#drop-nav'{literal}}{/literal}"><a href="#drop-nav" data-uk-offcanvas><i class="fa fa-bars" aria-hidden="true"></i></a></button>
+
+			<div class="logo"><a href="/"></a></div>
+			<!-- Блок иконки -->
+			<div class="icons">
+				{* <a href="tel:{$adminPhone}"><i class="fa fa-phone" aria-hidden="true"></i></a> *}
+				<a href="mailto:mapsshop@gmail.com"><i class="fa fa-envelope" aria-hidden="true"></i></a>
+			</div>
+			<!-- Конец блок иконки -->
+		</footer>
+	</div>
+	<!-- Конец контейнер страницы -->
+	<script defer src="media/js/jquery-3.1.0.min.js"></script>
+    <script defer src="media/js/uikit.min.js"></script>
+    <script defer src="media/js/jquery.touchSwipe.js"></script>
+    <script defer src="media/js/device.js"></script>
+{literal}
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1639186-2', 'auto');
+  ga('send', 'pageview');
+</script>
+{/literal}
+{if $main_content_template eq "product_detailed.tpl.html"}
+
+{literal}
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter179353 = new Ya.Metrika2({
+                    id:179353,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/tag.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks2");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/179353" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+{/literal}
+
+{literal}
+<script defer type="text/javascript" src="media/js/slick.min.js"></script>
+<script defer type="text/javascript" src="media/js/common.js"></script>
+ {/literal}
+{/if}
+
+
+	<link rel="stylesheet" type="text/css" href="/core/tpl/user/mobile/style.css">
+
+	<!-- <link rel="stylesheet" href="media/css/normalize.css">
+    <link rel="stylesheet" href="media/css/uikit.min.css">
+    <link rel="stylesheet" type="text/css" href="media/css/slick.css">
+    <link rel="stylesheet" type="text/css" href="media/css/slick-theme.css">
+    <link rel="stylesheet" href="media/css/stylemob.css?1"> -->
+</body>
+</html>

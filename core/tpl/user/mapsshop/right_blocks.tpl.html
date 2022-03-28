@@ -1,0 +1,23 @@
+{* Шаблон правых блоков *}
+
+{section name=v loop=$right_blocks}
+{assign var="gofright" value=1}
+{if $right_blocks[v][4] eq 1}
+{if !in_array($main_content_template, $right_blocks[v][9]) && !in_array($show_aux_page, $right_blocks[v][10]) && !in_array($categoryID, $right_blocks[v][11]) && !in_array($product_info.productID, $right_blocks[v][12])}{assign var="gofright" value=0}{/if}
+{else}
+{if $right_blocks[v][4] eq 2}
+{if in_array($main_content_template, $right_blocks[v][9]) || in_array($show_aux_page, $right_blocks[v][10]) || in_array($categoryID, $right_blocks[v][11]) || in_array($product_info.productID, $right_blocks[v][12])}{assign var="gofright" value=0}{/if}
+{/if}{/if}
+{if $right_blocks[v][8] eq 1}{if !$admlink}{assign var="gofright" value=0}{/if}{/if}
+{if $gofright eq 1}
+{if $right_blocks[v][7] eq "filter.tpl.html"}
+{if $main_content_template eq "category.tpl.html" or $main_content_template eq "category_search_result.tpl.html"}
+{if $categories_to_select}{assign var="gofright" value=0}{/if}
+{if !$categoryID}{assign var="gofright" value=0}{/if}
+{if !$allow_products_search}{assign var="gofright" value=0}{/if}
+{else}{assign var="gofright" value=0}{/if}{/if}
+{/if}
+{if $gofright eq 1}
+<table class="adn"><tr><td class="hdb vcent">{if $right_blocks[v][6] eq 1}{include file="$right_blocks[v][7]"}{else}{$right_blocks[v][2]}{/if}</td></tr></table>
+{/if}
+{/section}

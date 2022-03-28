@@ -1,0 +1,36 @@
+<script type="text/javascript">
+    product={$productJson};
+</script>
+<form method="post" action="https://merchant.w1.ru/checkout/default.aspx" name="w1" id="w1" accept-charset="UTF-8">
+    <input name="WMI_MERCHANT_ID" type="hidden" value="{$sMerchantLogin}"/>
+    <input name="WMI_PAYMENT_AMOUNT" type="hidden" value="{$nOutSum}"/>
+    <input name="WMI_CURRENCY_ID" type="hidden" value="{$w1_currency_id}"/>
+    <input name="WMI_DESCRIPTION" type="hidden" value="{$Desc}" id="WMI_DESCRIPTION"/>
+    <input name="description" type="hidden" value="{$Desc}" id="description"/>
+    {* <input name="WMI_PTENABLED" type="hidden" value="" id="WMI_PTENABLED"/> *}
+
+    <input name="WMI_PTDISABLED" type="hidden" value="WalletOne"/>
+    <input name="WMI_PTDISABLED" type="hidden" value="WalletOneRUB" />
+    <input name="WMI_PTDISABLED" type="hidden" value="WalletOneUAH" />
+    <input name="WMI_PTDISABLED" type="hidden" value="WalletOneUSD" />
+    <input name="WMI_PTDISABLED" type="hidden" value="WalletOneEUR" />
+    <input name="WMI_PTDISABLED" type="hidden" value="WalletOneZAR" />
+    <input name="WMI_PTDISABLED" type="hidden" value="WalletOneBYR" />
+    <input name="WMI_PTDISABLED" type="hidden" value="WalletOneGEL" />
+    <input name="WMI_PTDISABLED" type="hidden" value="WalletOneKZT" />
+    <input name="WMI_PTDISABLED" type="hidden" value="WalletOnePLN" />
+    <input name="WMI_PTDISABLED" type="hidden" value="WalletOneTJS" />
+
+    <input name="WMI_SUCCESS_URL" type="hidden" value="{$w1_success_url}"/>
+    <input name="WMI_FAIL_URL" type="hidden" value="{$w1_fail_url}"/>
+    <input name="user_id" type="hidden" class="user_id" value=""/>
+    <input name="order_id" type="hidden" class="order_id" value=""/>
+    <input name="WMI_CUSTOMER_EMAIL" id="WMI_CUSTOMER_EMAIL" type="hidden" value=""/>
+    <div id="dialog-form" style="display: none;" title="Введите Ваш E-Mail:">
+        <p class="validateTips"></p>
+        <fieldset>
+            <label for="email">E-Mail</label>
+            <input type="text" name="email" id="email" value="" class="text ui-widget-content ui-corner-all"/>
+        </fieldset>
+    </div>
+</form>

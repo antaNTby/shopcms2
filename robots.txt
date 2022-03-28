@@ -1,0 +1,14 @@
+User-Agent: *
+Disallow: /index.php?
+Disallow: /?
+Disallow: /admin.php
+Disallow: /admin.html
+Disallow: /printable.php?
+Disallow: /cart.html
+Disallow: /wide_search.html
+Disallow: /feedback.html
+Disallow: /compare.html
+Disallow: /test/
+Disallow: /page_18.html
+Host: {host}
+Sitemap: http://{host}/sitemap/{host}/sitemap_index.xml

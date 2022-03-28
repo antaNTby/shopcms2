@@ -1,0 +1,27 @@
+{* Шаблон короткого описния товара *}
+
+{if $product_info ne NULL && $product_info.Price >0}
+	<li>
+		<div class="prod1">
+			<p class="nazv">
+				<a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $product_info.UID}{$product_info.UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/product_{$product_info.productID}.html{/if}{else}index.php?productID={$product_info.productId}{/if}">
+					{if $product_info.name|strlen > 37}
+						{$product_info.name|replace:$smarty.const.TPL_CATEGORY_MAP:$smarty.const.TPL_CATEGORY_MAP_BR}
+					{else}
+						{$product_info.name}
+					{/if}
+				</a>
+			</p>
+			<div class="foto">
+  				{if $imgTextWarning2 != ''}<div class="map_warning2">{$imgTextWarning2}</div>{/if}
+				{if $product_info.brief_picture or $product_info.pictures}
+					<a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $product_info.UID}{$product_info.UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/product_{$product_info.productID}.html{/if}{else}index.php?productID={$product_info.productId}{/if}"><img src="/data/pictures_tpl/{$product_info.folder_pictures}/240/{$product_info.pictures[0]}" width="240" height="240"  alt="{$product_info.name}" /></a>
+				{else}
+					{if $smarty.const.CONF_DISPLAY_NOPHOTO eq 1}
+						<a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $product_info.UID}{$product_info.UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/product_{$product_info.productID}.html{/if}{else}index.php?productID={$product_info.productId}{/if}"><img src="{$smarty.const.TPL_PATH}/images/foto1.gif" width="240" height="240" alt="{$product_info.name}" /></a>
+					{/if}
+				{/if}
+			</div>
+		</div>
+	</li>
+{/if}

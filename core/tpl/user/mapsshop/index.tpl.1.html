@@ -1,0 +1,482 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html dir="ltr" xmlns="http://www.w3.org/1999/xhtml">
+{include file="head.tpl.html"}
+<body>
+<div id="main" class="wrapper">
+	<div id="header">
+
+		
+
+      <div class="logo">
+        <a href="/"><img src="{$smarty.const.TPL_PATH}/images/logo.gif" alt="" /></a>
+        <div>
+            <a href="/"><span id="maps">{$DomainRegion}</span><span id="shop">{$DomainEnds}</span></a>
+        </div>
+        <a href="/"><span id="logo_comment">{$DomainDescription}</span></a>
+      </div>
+
+
+<script defer type="text/javascript" src="{$smarty.const.TPL_PATH}/fancybox/jquery.fancybox-1.3.4.pack.js?1"></script>
+<script defer type="text/javascript" src="{$smarty.const.TPL_PATH}/fancybox/jquery.mousewheel-3.0.4.pack.js?1"></script>
+{*literal}
+<script type="text/javascript">
+jQuery(document).ready(function() {
+	$("div.menu a").fancybox({
+		'width'				: '75%',
+		'height'			: '75%',
+        'autoScale'     	: false,
+        'transitionIn'		: 'none',
+		'transitionOut'		: 'none',
+		'type'				: 'iframe'
+	});
+});
+</script>
+{/literal*}
+
+		<div class="menu" {if $smarty.get.productID > 0}style="right: 0px;"{/if}>		
+			<a href="/" class="first">{$smarty.const.TPL_INDEX_MAIN_MENU_HOME}</a>
+			<img src="{$smarty.const.TPL_PATH}/images/razd.gif" width="1" height="30" alt="" />
+			<a href="javascript:void(0)" onclick="showAjaxWindow(2)">{$smarty.const.TPL_INDEX_MAIN_MENU_HOW_GET_MAP}</a>
+			<img src="{$smarty.const.TPL_PATH}/images/razd.gif" width="1" height="30" alt="" />
+			<a href="javascript:void(0)" onclick="showAjaxWindow(1)">{$smarty.const.TPL_INDEX_MAIN_MENU_WARRANTY}</a>
+			<img src="{$smarty.const.TPL_PATH}/images/razd.gif" width="1" height="30" alt="" />
+			<a href="/{if $smarty.const.CONF_MOD_REWRITE eq 1}feedback.html{else}index.php?feedback=yes{/if}" class="last">{$smarty.const.STRING_FEEDBACK}</a>			
+		</div>
+
+		<div class="tel" {if $smarty.get.productID > 0}style="left: 685px;"{/if}>
+			{* <div class="numb">{$adminPhone}</div> *}
+			<a href="/feedback.html">{$smarty.const.TPL_INDEX_WRITE_US_EMAIL}</a>
+			{*
+				<a href="/callback.html">{$smarty.const.TPL_INDEX_REQUST_CALLBACK}</a>
+				{$adminPhone} tel
+				<div class="call">{$adminPhone} call</div>
+				<div class="call2">{$adminPhone} call2</div>
+			*}
+		</div>
+	
+		</div>
+
+
+
+
+	<div id="content">
+		<div id="c-left">
+      {include file=$CategoryTreeTpl}
+		</div>
+
+
+
+		<div id="center">
+			
+{* include file="top_blocks.tpl.html" *}{include file="$main_content_template"}
+
+		</div>		
+		
+
+					
+				
+
+		<div id="c-right">
+		{if $smarty.get.shopping_cart=="yes"||$smarty.get.quick_register=="yes"||$smarty.get.order4_confirmation_quick=="yes"}
+		{else}
+			{if $smarty.const.CONF_SHOW_ADD2CART == '1'}
+			{if $shopping_cart_value}<div class="zag">
+				<p>{$smarty.const.TPL_INDEX_CART}</p>
+			</div>
+
+			<div class="korz">
+				<img src="{$smarty.const.TPL_PATH}/images/korz_top.gif" width="193" height="10" alt="" class="korz_top" />
+				<img src="{$smarty.const.TPL_PATH}/images/korz_bot.gif" width="193" height="10" alt="" class="korz_bot" />
+				<img src="{$smarty.const.TPL_PATH}/images/korz.gif" width="34" height="40" alt="" class="bg" />
+        {if $shopping_cart_value}
+				  <p>{$smarty.const.STRING_CART_PR}: {$shopping_cart_items} {$smarty.const.CART_CONTENT_NOT_EMPTY}</p>
+				  <p>{$smarty.const.STRING_CUR_PR}:&nbsp;&nbsp;{$shopping_cart_value_shown|replace:'"':'&quot;'}</p>
+        {else}
+          <p>{$smarty.const.STRING_CART_PR} {$smarty.const.CART_CONTENT_EMPTY}</p>
+        {/if}
+				<a {if $smarty.const.CONF_OPEN_SHOPPING_CART_IN_NEW_WINDOW eq 1}href="#" onClick="open_window('cart.php',500,300); return false"{else}href="{if $smarty.const.CONF_MOD_REWRITE eq 1}cart.html{else}index.php?shopping_cart=yes{/if}"{/if}><img src="/design/user/{$smarty.const.TEMPLATE_GO}/images/order.gif" width="147" height="28" alt="" class="order" /></a>
+			</div>
+			{/if}
+			{/if}
+			{/if}
+{if $smarty.get.shopping_cart=="yes"}
+			<div class="zag">
+				<p>{$smarty.const.TPL_INDEX_SHIPPING}</p>
+			</div>
+			<div class="info2">
+				<img src="{$smarty.const.TPL_PATH}/images/info_top.gif" width="193" height="10" alt="" class="info_top" />
+				<img src="{$smarty.const.TPL_PATH}/images/info_bot.gif" width="193" height="10" alt="" class="info_bot" />
+				
+				{assign var="limit_small" value=2000}{assign var="limit_big" value=3000}
+				{if $smarty.post.countryID==$smarty.const.TPL_INDEX_ROOT_COUNTRY}{if $shopping_cart_value<$limit_small}
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD_COST_1}</p>
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST_COST_1}</p>
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER_COST_1}</p>
+				<p><a href="/page_3.html">{$smarty.const.TPL_INDEX_MORE_INFO}</a></p>
+				{elseif $shopping_cart_value<$limit_big }
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD_COST_1}</p>
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST_COST_2}</p>
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER_COST_2}</p>
+				<p><a href="/page_3.html">{$smarty.const.TPL_INDEX_MORE_INFO}</a></p>
+				{/if}
+				{if $shopping_cart_value<$limit_small}<div class="info2_white">
+<p>{$smarty.const.TPL_INDEX_IF_BUY_MORE_ON}<b>{$limit_small-$shopping_cart_value}</b>:</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST_COST_2}</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER_COST_2}</p></div>
+{/if}
+{if $shopping_cart_value<$limit_big && $shopping_cart_value<$limit_small}<div class="info3_white">
+<p>{$smarty.const.TPL_INDEX_IF_BUY_MORE_ON}<b>{$limit_big-$shopping_cart_value}</b>:</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER_COST_2}</p></div>
+{elseif $shopping_cart_value<$limit_big }<div class="info2_white">
+<p>{$smarty.const.TPL_INDEX_IF_BUY_MORE_ON}<b>{$limit_big-$shopping_cart_value}</b>:</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p></div>
+{elseif  $shopping_cart_value>=$limit_big}
+<div class="info3_gray">
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+<p><a href="/page_3.html">{$smarty.const.TPL_INDEX_MORE_INFO}</a></p>
+</div>
+{else}
+<div class="info2_gray">
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+<p><a href="/page_3.html">{$smarty.const.TPL_INDEX_MORE_INFO}</a></p>
+</div>
+{/if}
+{elseif $smarty.post.countryID==""}
+{if $shopping_cart_value<$limit_small}
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST} {$smarty.const.TPL_INDEX_ROOT_COUNTRY_WHAT}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST_COST_1}</p>
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER} {$smarty.const.TPL_INDEX_ROOT_COUNTRY_BY}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER_COST_1}</p>
+				<p><a href="/page_3.html">{$smarty.const.TPL_INDEX_MORE_INFO}</a></p>
+				{elseif $shopping_cart_value<$limit_big }
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST} {$smarty.const.TPL_INDEX_ROOT_COUNTRY_WHAT}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER} {$smarty.const.TPL_INDEX_ROOT_COUNTRY_BY}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER_COST_2}</p>
+				<p><a href="/page_3.html">{$smarty.const.TPL_INDEX_MORE_INFO}</a></p>
+				{/if}
+				{if $shopping_cart_value<$limit_small}<div class="info2_white">
+<p>{$smarty.const.TPL_INDEX_IF_BUY_MORE_ON}<b>{$limit_small-$shopping_cart_value}</b>:</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER_COST_2}</p></div>
+{/if}
+{if $shopping_cart_value<$limit_big && $shopping_cart_value<$limit_small}<div class="info3_white">
+<p>{$smarty.const.TPL_INDEX_IF_BUY_MORE_ON}<b>{$limit_big-$shopping_cart_value}</b>:</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p></div>
+{elseif $shopping_cart_value<$limit_big }<div class="info2_white">
+<p>{$smarty.const.TPL_INDEX_IF_BUY_MORE_ON}<b>{$limit_big-$shopping_cart_value}</b>:</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p></div>
+{elseif  $shopping_cart_value>=$limit_big}
+<div class="info3_gray">
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST} {$smarty.const.TPL_INDEX_ROOT_COUNTRY_WHAT}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER} {$smarty.const.TPL_INDEX_ROOT_COUNTRY_BY}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+<p><a href="/page_3.html">{$smarty.const.TPL_INDEX_MORE_INFO}</a></p>
+</div>
+{else}
+<div class="info2_gray">
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+<p><a href="/page_3.html">{$smarty.const.TPL_INDEX_MORE_INFO}</a></p>
+</div>
+{/if}
+{elseif $smarty.post.countryID==$smarty.const.TPL_INDEX_COUNTRY_2}
+{if $shopping_cart_value<$limit_small}
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+				<p><b>{$smarty.const.TPL_INDEX_COUNTRY_2_SHIPPING_TYPE_1}{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST}</b> - 80р.</p>
+				<p><b>«Ин-Тайм»</b> - 80р.</p>
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - 200р.</p>
+				<p><a href="/page_3.html">{$smarty.const.TPL_INDEX_MORE_INFO}</a></p>
+				{elseif $shopping_cart_value<$limit_big }
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+				<p><b>{$smarty.const.TPL_INDEX_COUNTRY_2_SHIPPING_TYPE_1}{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST}</b> - {$smarty.const.TPL_INDEX_ROOT_SHIPPING_COST_ZERO}</p>
+				<p><b>«Ин-Тайм»</b> - 0р.</p>
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - 100р.</p>
+				<p><a href="/page_3.html">{$smarty.const.TPL_INDEX_MORE_INFO}</a></p>
+				{/if}
+				{if $shopping_cart_value<$limit_small}<div class="info2_white">
+<p>{$smarty.const.TPL_INDEX_IF_BUY_MORE_ON}<b>{$limit_small-$shopping_cart_value}р</b>:</p>
+<p><b>{$smarty.const.TPL_INDEX_COUNTRY_2_SHIPPING_TYPE_1}{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST}</b> - 0р.</p>
+<p><b>«Ин-Тайм»</b> - 0р.</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - 100р.</p></div>
+{/if}
+{if $shopping_cart_value<$limit_big && $shopping_cart_value<$limit_small}<div class="info3_white">
+<p>{$smarty.const.TPL_INDEX_IF_BUY_MORE_ON}<b>{$limit_big-$shopping_cart_value}р</b>:</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - 0р.</p></div>
+{elseif $shopping_cart_value<$limit_big }<div class="info2_white">
+<p>{$smarty.const.TPL_INDEX_IF_BUY_MORE_ON}<b>{$limit_big-$shopping_cart_value}р</b>:</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - 0р.</p></div>
+{elseif  $shopping_cart_value>=$limit_big}
+<div class="info3_gray">
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD}</b> - 0р.</p>
+<p><b>Укр{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST}</b> - 0р.</p>
+<p><b>«Ин-Тайм»</b> - 0р.</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - 0р.</p>
+<p><a href="/page_3.html">{$smarty.const.TPL_INDEX_MORE_INFO}</a></p>
+</div>
+{else}
+<div class="info2_gray">
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD}</b> - 0р.</p>
+<p><b>Укр{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_POST}</b> - 0р.</p>
+<p><b>«Ин-Тайм»</b> - 0р.</p>
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_COURIER}</b> - 0р.</p>
+<p><a href="/page_3.html">{$smarty.const.TPL_INDEX_MORE_INFO}</a></p>
+</div>
+{/if}
+{else}
+{if $shopping_cart_value<$limit_small}
+				<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD}</b> - 0р.</p>
+				<p><b>{$smarty.post.pocita_name}</b> - {$smarty.post.pocita_price}</p>
+				{if $smarty.post.countryID=="Украина"}<p><b>«Ин-Тайм»</b> - {$smarty.post.pocita_price}</p>{/if}
+				<p><a href="/page_3.html">{$smarty.const.TPL_INDEX_MORE_INFO}</a></p>
+				{/if}
+				
+{if  $shopping_cart_value<$limit_small}<div class="info2_white">
+<p>{$smarty.const.TPL_INDEX_IF_BUY_MORE_ON}<b>{$limit_small-$shopping_cart_value}р</b>:</p>
+<p><b>{$smarty.post.pocita_name}</b> - 0р.</p>
+{if $smarty.post.countryID=="Украина"}<p><b>«Ин-Тайм»</b> - 0р.</p>{/if}
+</div>
+{elseif  $shopping_cart_value>=$limit_big}
+<div class="info3_gray">
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD}</b> - 0р.</p>
+<p><b>{$smarty.post.pocita_name}</b> - 0р.</p>
+{if $smarty.post.countryID=="Украина"}<p><b>«Ин-Тайм»</b> - 0р.</p>{/if}
+<p><a href="/page_3.html">{$smarty.const.TPL_INDEX_MORE_INFO}</a></p>
+</div>
+{else}
+<div class="info3_gray">
+<p><b>{$smarty.const.TPL_INDEX_ROOT_SHIPPING_TYPE_DOWNLOAD}</b> - 0р.</p>
+<p><b>{$smarty.post.pocita_name}</b> - 0р.</p>
+{if $smarty.post.countryID=="Украина"}<p><b>«Ин-Тайм»</b> - 0р.</p>{/if}
+<p><a href="/page_3.html">{$smarty.const.TPL_INDEX_MORE_INFO}</a></p>
+</div>
+{/if}
+{/if}
+
+
+				<p class="last"><b>Оплата</b> возможна любым существующим способом, включая наложенный платеж.<br><a href="/page_4.html">{$smarty.const.TPL_INDEX_MORE_INFO}</a></p>
+			</div>
+
+{else}
+			
+{/if}
+{if $smarty.get.shopping_cart=="yes"||$smarty.get.quick_register=="yes"||$smarty.get.order4_confirmation_quick=="yes"}
+{if $smarty.get.order_success=="yes"}{* {include file="search_form.tpl.html"} *}{/if}
+{else}
+ {* {include file="search_form.tpl.html"}  *}
+			
+     {include file="news.tpl.html"} 
+{/if}
+{if $smarty.get.shopping_cart=="yes"||$smarty.get.quick_register=="yes"||$smarty.get.order4_confirmation_quick=="yes"}
+{else}
+
+{/if}
+  </div>
+<div class="c-foot"></div>
+</div><div class="push"></div></div>
+	<div id="footer">
+		<div class="call">
+	        {*
+			<div class="numb">{$adminPhone}</div>
+			<div class="zv">{$adminPhone}</div>
+			<div class="zv1">{$adminPhone}</div>
+			*}
+		</div>
+		<div id="">
+		<div class="copy">
+		</div>
+		<div class="count1">
+		</div>
+<div class="counters" >
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+    (function (d, w, c) {
+        (w[c] = w[c] || []).push(function() {
+            try {
+                w.yaCounter179353 = new Ya.Metrika2({
+                    id:179353,
+                    clickmap:true,
+                    trackLinks:true,
+                    accurateTrackBounce:true,
+                    webvisor:true
+                });
+            } catch(e) { }
+        });
+
+        var n = d.getElementsByTagName("script")[0],
+            s = d.createElement("script"),
+            f = function () { n.parentNode.insertBefore(s, n); };
+        s.type = "text/javascript";
+        s.async = true;
+        s.src = "https://mc.yandex.ru/metrika/tag.js";
+
+        if (w.opera == "[object Opera]") {
+            d.addEventListener("DOMContentLoaded", f, false);
+        } else { f(); }
+    })(document, window, "yandex_metrika_callbacks2");
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/179353" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+	</div>
+</div>
+
+{literal}
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-1639186-2', 'auto');
+  ga('send', 'pageview');
+</script>
+<!-- Rating@Mail.ru counter -->
+<script type="text/javascript">//<![CDATA[
+(function(w,n,d,r,s){(new Image).src=('https:'==d.location.protocol?'https:':'http:')+'//top-fwz1.mail.ru/counter?id=2329562;js=13'+
+((r=d.referrer)?';r='+escape(r):'')+((s=w.screen)?';s='+s.width+'*'+s.height:'')+';_='+Math.random();})(window,navigator,document);//]]>
+</script><noscript><div style="position:absolute;left:-10000px;"><img src="//top-fwz1.mail.ru/counter?id=2329562;js=na"
+style="border:0;" height="1" width="1" alt="Рейтинг@Mail.ru" /></div></noscript>
+<!-- //Rating@Mail.ru counter -->
+
+	<script type="text/javascript">
+
+		var arr = ['/core/tpl/user/mapsshop/ui/jquery-ui-1.10.2.custom.min.css?1', '/core/tpl/user/mapsshop/styles/niceform.css?1', '/core/tpl/user/mapsshop/styles/style_new.css?1']
+
+	    var head = document.head;
+
+	    arr.forEach(function(index) {
+
+		    var link = document.createElement('link');
+
+		    console.log(index);
+
+		    link.type = 'text/css';
+		    link.rel = 'stylesheet';
+		    link.href = index;
+		    head.appendChild(link);
+
+	    });
+
+	</script>
+{/literal}
+<!-- 
+
+	<link rel="stylesheet" type="text/css" media="all" href="{$smarty.const.TPL_PATH}/styles/niceform.css" />
+	<link type="text/css" href="{$smarty.const.TPL_PATH}/ui/jquery-ui-1.10.2.custom.min.css" rel="stylesheet" />
+	<link rel="stylesheet" href="{$smarty.const.TPL_PATH}/styles/style_new.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="{$smarty.const.TPL_PATH}/fancybox/jquery.fancybox-1.3.4.css" type="text/css" media="screen" /> -->
+	
+{if $main_content_template eq "product_detailed.tpl.html"}
+{literal}
+<script type="text/javascript">
+    $(function () {
+        var email = $("#email"),
+                allFields = $([]).add(email),
+                tips = $(".validateTips");
+
+        function updateTips(t) {
+            tips
+                    .text(t)
+                    .addClass("ui-state-highlight");
+            setTimeout(function () {
+                tips.removeClass("ui-state-highlight", 1500);
+            }, 500);
+        }
+
+        function checkLength(o, n, min, max) {
+            if (o.length > max || o.length < min) {
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        function checkEmail(str){
+            if(!checkLength(str, "email", 3, 50)) return false;
+            var dogPos = str.indexOf('@');//не первый символ
+            if(dogPos<1) return false;
+
+            var dotPos = str.indexOf('.',dogPos);
+            if((dotPos<dogPos+2) || (dotPos==(str.length-1))) return false;//не сразу после @ и не последний
+            return true;
+        }
+
+        function checkRegexp(o, regexp, n) {
+            if (!( regexp.test(o.val()) )) {
+                o.addClass("ui-state-error");
+                updateTips(n);
+                return false;
+            } else {
+                return true;
+            }
+        }
+
+        $("#dialog-form").dialog({
+            autoOpen: false,
+            /*height: 220,*/
+            width: 350,
+            modal: true,
+            closeOnEscape: true,
+            draggable: false,
+            buttons: {
+                "": function () {
+                    //var bValid = true;
+                    var bValid = checkEmail(email.val());
+                    allFields.removeClass("ui-state-error");
+
+                    if (bValid) {
+
+                        var inputMail = email.val();
+                        Cookies.set('email', inputMail);
+                        $('#WMI_DESCRIPTION').val($('#description').val() + ' - ' + inputMail);
+                        $('#WMI_CUSTOMER_EMAIL').val(inputMail);
+                        $.ajax({
+                            type: "POST",
+                            dataType: "json",
+                            url: "/add_order.php",
+                            data: {
+                                email: inputMail,
+                                itemID: product.id,
+                                name: product.name,
+                                price: product.price
+                            },
+                            cache: false,
+                            success: function (responce) {
+                                $('.user_id').val(responce.user_id);
+                                $('.order_id').val(responce.order_id);
+                                var order_id = responce.order_id;
+                                $('#nInvId').val(responce.order_id);
+                                $('#w1').submit();
+                                //$('#dialog-form').dialog("close");
+                            }
+                        });
+                    }else{
+                        email.addClass("ui-state-error");
+                        updateTips("Введите, пожалуйста, E-Mail ");
+                    }
+                }
+            },
+            close: function () {
+                allFields.val("").removeClass("ui-state-error");
+            },
+            open: function(){
+                var cookieEmail = Cookies.get('email');
+                if(cookieEmail) email.val(cookieEmail);
+            }
+        });
+    });
+
+    function showEmailDialog(){
+		ga('send', 'event', 'Покупка', 'Нажали купить');
+        $("#dialog-form").dialog("open");
+        return false;
+    }
+
+</script>
+{/literal}
+{/if}
+</body>
+</html>

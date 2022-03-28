@@ -1,0 +1,38 @@
+{* Шаблон вывода результатов простого поиска товаров *}
+			{*<div class="block">
+				<div class="clear"></div>
+
+				<div class="name">
+  				<h1>Поиск карт</h1>
+				</div>
+        <div class="inn">
+      
+          {if $products_to_show_count > 0}
+		  <div class="resultat">
+          <p>Найдено товаров: <strong>{$products_found}</strong></p> 
+		</div>	
+<div id="results">		
+          
+          {include file="product_brief_search.tpl.html" product_info=$products_to_show}
+				</div>
+          {else}{if $searchincategory_count== 0}<br><p class="empty">Ничего не найдено.{/if}</p>
+          {/if}
+		  <div class="clear"></div>
+        </div>
+			</div>*}
+<div id="tabs_block">
+	<div id="tabs_doc_cat">
+		<div id="tabs_search">
+			<div id="tabs_search_galery">
+				<ul>
+					{section name=c loop=$searchincategory}
+						<li><a href="{$searchincategory[c].UID}">{$searchincategory[c].name}</a></li>
+					{/section}
+					{section name=p loop=$products_to_show}
+						<li><a href="{$products_to_show[p].UID}">{$products_to_show[p].name}</a></li>
+					{/section}
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>

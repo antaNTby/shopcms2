@@ -1,0 +1,30 @@
+{* Шаблон вывода результатов простого поиска товаров *}
+
+			<section>
+				<nav class="main-nav">
+					<ul>
+						<li class="mn-active mn-disabled">
+							<a href="#">Поиск: "{$searchstring}"</a>
+						</li>
+					</ul>
+				</nav>
+			</section>
+			{if $searchincategory_count > 0 }
+				{section name=i1 loop=$searchincategory }
+				<section class="product clearfix">				
+					<div class="product-block">
+						<div class="pr-img clearfix">
+							<h4><a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $searchincategory[i1].UID}{$searchincategory[i1].UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/category_{$searchincategory[i1].categoryID}.html{/if}{else}index.php?categoryID={$searchincategory[i1].categoryID}{/if}">{$searchincategory[i1].name}</a></h4>
+						</div>
+					</div>
+				</section>
+				{/section}
+			{else}
+				<section class="product clearfix">				
+					<div class="product-block">
+						<div class="pr-img clearfix">
+							<h4>{$smarty.const.TPL_SEARCH_NOT_FOUND}</h4>
+						</div>
+					</div>
+				</section>
+			{/if}

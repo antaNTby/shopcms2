@@ -1,0 +1,159 @@
+{if $edit || $add_new}
+{if $edit}
+<form action='admin.php?dpt=catalog&amp;sub=cat_tpl&amp;edit={$edit}' method=post name="MainForm" id="MainForm">
+{else}
+<form action='admin.php?dpt=catalog&amp;sub=cat_tpl&amp;add_new=yes' method=post name="MainForm" id="MainForm">
+{/if}
+{literal}
+<script type="text/javascript">
+<!--
+function confstatus(where, togo)
+{
+        if (where.value !== "" && where.value !== null)
+        {
+        document.getElementById(togo).disabled = "";
+        }else{
+        document.getElementById(togo).disabled = "disabled";
+        }
+}
+
+function upd()
+{
+document.getElementById('save_cat').value = 1;
+}
+//-->
+</script>
+{/literal}
+<input type=hidden name='save_cat' value='0' id="save_cat">
+      
+      
+<table class="adn">
+        <tr>
+          <td align="left">
+<table class="adn">
+<tr class="lineb">
+<td align="left">Основные параметры категории</td></tr>
+<tr class="lins"><td align="left">Название категории: <input type="text" name="name" value="{$cat.name}" style="width: 400px;" class="textp"></td></tr>
+<tr class="lins"><td align="left">Загол-ок (title): <input type="text" name="title" value="{$cat.title}" style="width: 590px;" class="textp"></td></tr>
+<tr class="lins"><td align="left">Заголовок H1: <input type="text" name="cat_h1" value="{$cat.cat_h1}" style="width: 590px;" class="textp"></td></tr>
+<tr class="lins"><td align="left">Заголовок H2 описание: <input type="text" name="cat_h2_o" value="{$cat.cat_h2_o}" style="width: 540px;" class="textp"></td></tr>
+<tr class="lins"><td align="left">Заголовок H2 район: <input type="text" name="cat_h2_r" value="{$cat.cat_h2_r}" style="width: 540px;" class="textp"></td></tr>
+<tr class="lins"><td align="left">Заголовок H2 подкатегории: <input type="text" name="cat_h2_c" value="{$cat.cat_h2_c}" style="width: 510px;" class="textp"></td></tr>
+<tr class="lins"><td align="left">Параметр city: <input type="text" name="city" value="{$cat.city}" style="width: 510px;" class="textp"></td></tr>
+</table>
+<table class="adn"><tr><td class="separ"><img src="core/tpl/admin/images/pixel.gif" alt="" class="sep"></td></tr><tr><td class="se5"></td></tr></table>
+<table class="adn"><tr><td class="se6"></td></tr></table>
+
+
+<table class="adn">
+<tr class="linsz">
+<td align="left"><span class="titlecol2">Описание</span></td>
+</tr>
+<tr><td align="left"><textarea name="desc" class="admin" id="myarea1">{$cat.description}</textarea></td></tr>
+</table>
+<table class="adn"><tr><td class="se6"></td></tr></table>
+<table class="adw">
+<tr><td width="50%">
+<table class="adn">
+<tr class="linsz">
+<td align="left"><span class="titlecol2">META Description</span></td>
+</tr>
+<tr><td align="left"><textarea name='meta_d' id="meta_d" class="adminall" style="margin-right: 38px;">{$cat.meta_description}</textarea></td></tr>
+</table>
+</td>
+<td width="50%">
+<table class="adn">
+<tr class="linsz">
+<td align="left"><span class="titlecol2">META Keywords</span></td>
+</tr>
+<tr><td align="left"><textarea name='meta_k' id="meta_k" class="adminall">{$cat.meta_keywords}</textarea></td></tr>
+</table>
+</td></tr></table>
+<table class="adn"><tr><td class="se5"></td></tr></table>
+<table class="adn">
+<tr class="linsz">
+<td align="left"><input type="radio" name="type" value="country" {if $cat.type eq 'country'}checked=""{/if} />&nbsp;&nbsp;Страна</td>
+</tr>
+<tr class="linsz">
+<td align="left"><input type="radio" name="type" value="region" {if $cat.type eq 'region'}checked=""{/if} />&nbsp;&nbsp;Область</td>
+</tr>
+<tr class="linsz">
+<td align="left"><input type="radio" name="type" value="area" {if $cat.type eq 'area'}checked=""{/if} />&nbsp;&nbsp;Район</td>
+</tr>
+<tr class="linsz">
+<td align="left"><input type="radio" name="type" value="city" {if $cat.type eq 'city'}checked=""{/if} />&nbsp;&nbsp;Город</td>
+</tr>
+</table>
+<a href="#" onclick="upd(), document.getElementById('MainForm').submit(); return false" class="inl">Сохранить</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a
+href="admin.php?dpt=catalog&amp;sub=products_categories&amp;categoryID=16" class="inl">Отмена</a>
+<input type="hidden" name="must_delete" value="16">&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" class="inl" onClick="confirmDeletep('Удалить?','admin.php?categoryID=16&amp;del=1&amp;eaction=cat'); return false">Удалить</a><input type="hidden" name="save" value="yes"></form></td></tr></table>
+{else}
+<table class="adn">
+<tr class="lineb">
+<td align="left" width="100%" class="toph3">Название шаблона</td>
+<td align="left">Действие</td>
+</tr>
+{assign var="admhl" value=0}
+{section name=i loop=$tpls}
+{if $admhl eq 1}
+<tr><td colspan="3" class="separ"><img src="core/tpl/admin/images/pixel.gif" alt="" class="sep"></td></tr>
+{else}{assign var="admhl" value=1}{/if}
+<tr class="lineybig hover">
+<td align="left"><a href="admin.php?dpt=catalog&amp;sub=cat_tpl&amp;edit={$tpls[i].id}">{$tpls[i].name}</a></td>
+<td align="right"><a href="admin.php?dpt=catalog&amp;sub=cat_tpl&amp;edit={$tpls[i].id}">Редактировать</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" onclick="confirmDelete({$tpls[i].id},'{$smarty.const.QUESTION_DELETE_CONFIRMATION}','admin.php?dpt=catalog&amp;sub=cat_tpl&amp;delete=');">X</a></td>
+</tr>
+{sectionelse}
+<tr><td colspan="3" align="center" height="20">{$smarty.const.ADMIN_NO_VALUES}</td></tr>
+{/section}
+</table>
+<table class="adn"><tr><td class="separ"><img src="core/tpl/admin/images/pixel.gif" alt="" class="sep"></td></tr><tr><td class="se5"></td></tr></table>
+<a href="admin.php?dpt=catalog&amp;sub=cat_tpl&amp;add_new=yes" class="inl">Добавить шаблон</a>
+
+<table class="adn"><tr><td class="separ"><img src="core/tpl/admin/images/pixel.gif" alt="" class="sep"></td></tr><tr><td class="se5"></td></tr></table>
+<table class="adn"><tr><td class="se6"></td></tr></table>
+<h3>Генератор структуры категорий и товаров для областей России</h3>
+<form method="post" action="" enctype="multipart/form-data" >
+    Список областей (Россия) {$cat_list}<br /><br />
+    {*Тип <select name="type">
+        <option value="region_tpl">Область</option>
+        <option value="country_tpl">Страна</option>
+    </select><br /><br />*}
+    Название новой области <input type="text" size="53" name="region_name" /><br /><br />
+    Список районов/городов <textarea rows="10" cols="50" name="list"></textarea><br /><br />    
+	Файл в формате csv, в котором 4 колонки: 1 - ID области, 2 - название города в области (например, Майкоп г.), 3 - название района (например, Ивановский р-н), 4 - название населенного пункта (например, Веселое с.)<br>
+	<input type="file" name="file_csv">
+    {foreach from=$cat_tpls key=type item=cat_tpl}
+        <div style="margin-bottom: 20px;">
+                Шаблон
+                <select name="{$type}">
+                {foreach from=$cat_tpl item=region}
+                    <option value="{$region.id}">{$region.name}</option>
+                {/foreach}
+                </select>
+        </div>
+    {/foreach}
+    <input type="submit" value="Создать" />
+</form>
+
+<h3>Генератор структуры категорий и товаров для стран мира</h3>
+<form method="post" action="">
+    Список стран мира {$country_list}<br /><br />
+    Название новой страны <input type="text" size="53" name="country_name" /><br /><br />
+    Список областей/районов/городов<textarea rows="10" cols="50" name="list"></textarea><br /><br />    
+    {foreach from=$country_tpls key=type item=cat_tpl}
+        <div style="margin-bottom: 20px;">
+                Шаблон
+                <select name="{$type}">
+                {foreach from=$cat_tpl item=region}
+                    <option value="{$region.id}">{$region.name}</option>
+                {/foreach}
+                </select>
+        </div>
+    {/foreach}
+    <input type="submit" value="Создать" name="add_country" />
+</form>
+{/if}
+
+
+      
+                        

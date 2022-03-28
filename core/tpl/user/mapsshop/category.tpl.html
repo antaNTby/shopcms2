@@ -1,0 +1,176 @@
+{* Общий шаблон для категорий *}
+
+<div class="block" style="width: 625px; padding: 5px 0 20px 44px;">
+	<div class="clear"></div>
+	<div class="name">
+		<h1 style="margin: 0 0 15px -35px;">{$cat_h1|escape:'html'}</h1>
+	</div>
+	
+	{if ($products_to_show || $smarty.get.maps_sort>0 ) && $catalog_navigator==0 }	
+	
+		{* Фильтр по типам карт
+		<noindex>
+			<div class="icons">
+				<div class="ic">
+					<img src="{$smarty.const.TPL_PATH}/images/ic1.gif" width="19" height="20" alt="" />
+					<a {if $smarty.get.maps_sort<1} class="typeact" {/if} href="index.php?categoryID={$categoryID}">{$smarty.const.TPL_CATEGORY_MAP_TYPE_ALL}</a>
+				</div>
+
+				<img src="{$smarty.const.TPL_PATH}/images/razd1.gif" width="1" height="22" alt="" />
+				<div class="ic">
+					<img src="{$smarty.const.TPL_PATH}/images/ic2.gif" width="21" height="20" alt="" />
+					<a {if $smarty.get.maps_sort==1} class="typeact" {/if} href="index.php?categoryID={$categoryID}&maps_sort=1">{$smarty.const.TPL_CATEGORY_MAP_TYPE_SPUTNIK}</a>
+				</div>
+				
+				<img src="{$smarty.const.TPL_PATH}/images/razd1.gif" width="1" height="22" alt="" />
+				<div class="ic">
+					<img src="{$smarty.const.TPL_PATH}/images/ic3.gif" width="23" height="22" alt="" />
+					<a {if $smarty.get.maps_sort==2} class="typeact" {/if} href="index.php?categoryID={$categoryID}&maps_sort=2">{$smarty.const.TPL_CATEGORY_MAP_TYPE_TOPO}</a>
+				</div>
+
+				<img src="{$smarty.const.TPL_PATH}/images/razd1.gif" width="1" height="22" alt="" />
+				<div class="ic">
+					<img src="{$smarty.const.TPL_PATH}/images/ic4.gif" width="15" height="22" alt="" />
+					<a {if $smarty.get.maps_sort==3} class="typeact" {/if} href="index.php?categoryID={$categoryID}&maps_sort=3">{$smarty.const.TPL_CATEGORY_MAP_TYPE_VECTOR_GPS}</a>
+				</div>
+			</div>
+ 			{if $string_product_sort}{$string_product_sort}{/if}
+		</noindex>
+		*}
+	{/if}
+
+	{* WHAT IS $catalog_navigator(NULL) ??? *}
+ 	{if $products_to_show and $catalog_navigator==0}							
+    	<ul class="cat_product">
+			{assign var="count_good_prods" value=0}
+			{section name=i1 loop=$products_to_show}
+				{* include file="product_brief.tpl.html" product_info=$products_to_show[i1] *}
+				{assign var="product_info" value=$products_to_show[i1]}
+{* Шаблон короткого описния товара *}
+{if $product_info ne NULL && $product_info.Price >0}
+	<li>
+		<div class="prod1">
+			<p class="nazv">
+				<a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $product_info.UID}{$product_info.UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/product_{$product_info.productID}.html{/if}{else}index.php?productID={$product_info.productId}{/if}">
+					{if $product_info.name|strlen > 37}
+						{$product_info.name|replace:$smarty.const.TPL_CATEGORY_MAP:$smarty.const.TPL_CATEGORY_MAP_BR}
+					{else}
+						{$product_info.name}
+					{/if}
+				</a>
+			</p>
+			<div class="foto">
+  				{if $imgTextWarning2 != ''}<div class="map_warning2">{$imgTextWarning2}</div>{/if}
+				{if $product_info.default_picture or $product_info.folder_pictures}
+					{if $product_info.pictures}
+						{assign var="img_src" value="/data/pictures_tpl/`$product_info.folder_pictures`/240/`$product_info.pictures[0]`"}
+					{else}
+						{assign var="img_src" value="/data/pictures/main_pic/`$product_info.big_picture`"}
+					{/if}
+					<a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $product_info.UID}{$product_info.UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/product_{$product_info.productID}.html{/if}{else}index.php?productID={$product_info.productId}{/if}"><img src="{$img_src}" width="240" height="240"  alt="{$product_info.name}" /></a>
+				{else}
+					{if $smarty.const.CONF_DISPLAY_NOPHOTO eq 1}
+						<a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $product_info.UID}{$product_info.UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/product_{$product_info.productID}.html{/if}{else}index.php?productID={$product_info.productId}{/if}"><img src="{$smarty.const.TPL_PATH}/images/foto1.gif" width="240" height="240" alt="{$product_info.name}" /></a>
+					{/if}
+				{/if}
+			</div>
+		</div>
+	</li>
+{/if}
+			{/section}
+    	</ul>
+    {/if}
+      
+	{if $admlink}<a href="/admin.php?categoryID={$selected_category.categoryID}&amp;eaction=cat">{$smarty.const.ADMIN_ADMIN_MENUNEW1}</a>{/if}
+
+	<div class="clear"></div>
+	{if $catrescur and $products_to_show}
+		<div class="name">
+			{if $cat_h2_c!=""}<h2>{$cat_h2_c}</h2>{else}<h2>{$smarty.const.TPL_CATEGORY_MAPS_FOR_CITY}</h2>{/if}
+		</div>
+		
+		<div class="clear"></div>
+		<div class="action">
+			<ul>
+				{section name=catparent loop=$catrescur}
+					{if $smarty.const.CONF_MOD_REWRITE eq 1}
+						{assign var="tlink" value="href='`$catrescur[catparent].UID`/'"}
+					{else}
+						{assign var="tlink" value="href='/index.php?categoryID=`$catrescur[catparent].UID`'"}
+					{/if}
+					
+						<li>
+							<div class="wrap">
+								<div  class="valign-center">
+									<a {$tlink}>{$smarty.const.TPL_CATEGORY_MAPS} {$catrescur[catparent].name}</a>
+									<div class="just-for-IE"></div>
+								</div>
+							</div>
+						</li>
+				{/section}
+			</ul>					
+		</div>
+		<div class="clear"></div>
+		<br>
+	{/if}
+
+	
+	{if $catrescur2 and $products_to_show}
+		<div class="name">
+			{if $cat_h2_r!=""}<h2>{$cat_h2_r}</h2>{else}<h2>{$smarty.const.TPL_CATEGORY_MAPS_FOR_REGION}</h2>{/if}
+		</div>
+		
+		<div class="clear"></div>
+		<div class="action">
+			<ul>
+				{section name=catparent loop=$catrescur2}
+					{if $smarty.const.CONF_MOD_REWRITE eq 1}
+						{assign var="tlink" value="href='`$catrescur2[catparent].UID`/'"}
+					{else}
+						{assign var="tlink" value="href='/index.php?categoryID=`$catrescur2[catparent].UID`'"}
+					{/if}
+					
+						<li>
+							<div class="wrap">
+								<div  class="valign-center">
+									<a {$tlink}>{$smarty.const.TPL_CATEGORY_MAPS} {$catrescur2[catparent].name}</a>
+									<div class="just-for-IE"></div>
+								</div>
+							</div>
+						</li>
+				{/section}
+			</ul>					
+		</div>
+		<div class="clear"></div>
+		<br>
+	{/if}	
+
+	{* Страница Все страны *}
+	{if $catrescur and !$products_to_show}
+		{* include all_countries.tpl *}
+		<div class="countries">	
+			<img src="{$smarty.const.TPL_PATH}/images/count-t.gif" width="557" height="9" alt="" class="count-t" />
+			<img src="{$smarty.const.TPL_PATH}/images/count-b.gif" width="557" height="9" alt="" class="count-b" />
+			{section name=i155 loop=$catrescur}
+				{if $smarty.const.CONF_MOD_REWRITE eq 1}
+					{assign var="tlink" value="<a href='`$catrescur[i155].UID`/'>`$catrescur[i155].name`</a>"}
+				{else}
+					{assign var="tlink" value="<a href='/index.php?categoryID=`$catrescur[i155].UID`'>`$catrescur[i155].name`</a>"}
+				{/if}
+
+				<div class="countr">{$tlink}</div>
+			{/section}
+		</div>
+	{/if}				
+
+	{* Описание категории *}	
+    {if $desc and  $catalog_navigator==0}
+		<div class="opis">
+			<div class="name">
+				{if $cat_h2_o!=""}<h2>{$cat_h2_o}</h2>{else}<h2>{$smarty.const.TPL_CATEGORY_DESCRIPTION}</h2>{/if}
+			</div>
+			
+			<div class="txt">{$desc}</div>
+		</div>
+    {/if}
+</div>

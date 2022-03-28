@@ -1,0 +1,145 @@
+	{*Шаблон категории*}
+	<div id="tabs_block">
+	<div id="tabs_doc_cat">
+		
+		{if $cat_info}
+			{*Категория*}
+			<div id="tabs_cat">
+				<div id="tabs_cat_galery">
+					{if $cat_info.prods}
+						<ul>
+							{section name=p loop=$cat_info.prods}
+								<li>
+									<a href="{$cat_info.prods[p].UID}">
+										<img src="data/pictures_tpl/{$cat_info.prods[p].folder_pictures}/240/{$cat_info.prods[p].pictures}"><br>
+										<p class="tabs_other_prod_list">{$cat_info.prods[p].name}</p><br>
+									</a>
+									<p class="tabs_other_prod_price">{$cat_info.prods[p].price} руб</p>
+								</li>
+							{/section}
+						</ul>
+					{/if}
+					{if $cat_info.child}
+						{if $catrescur2}
+							{if $cat_info.prods}<hr style="clear:both">{/if}
+							<div class="cat_puncts">Карты районов</div>
+							<div class="cat_slider" style="padding-top: 20px; margin-bottom: 20px;">
+								{section name=x loop=$cat_slider_arr_rajon}
+									<img id="img_slider_rajon_{$smarty.section.x.index}" src="/data/slider_rajon/{$cat_slider_arr_rajon[x]}" style="display:none;">
+								{/section}
+							</div>
+							{literal}
+								<script type="text/javascript">
+									$(document).ready(function() {
+										CatSliderInterval([{/literal}{$cat_str_slider_rajon}{literal}], 0, "_rajon");
+									});
+								</script>
+							{/literal}
+							<ul>
+								{section name=x loop=$catrescur2}
+									{*if $smarty.section.x.first || $catrescur2[x.index_prev].name|substr:6:1 < $catrescur2[x].name|substr:6:1}<li style="border-bottom: 1px solid #AAA9A9; padding-bottom: 0;"><div>{$catrescur2[x].name|substr:6:1}</div></li>{/if*}
+									<li><a href="{$catrescur2[x].UID}" style="color:#007CC0">{$catrescur2[x].name}</a></li>
+								{/section}
+							</ul>
+						{/if}
+						{if $catrescur}
+							{if $cat_info.prods || $catrescur2}<hr style="clear:both">{/if}
+							{if $cat_info.categoryID != 135 && $cat_info.parent != 135}<div class="cat_puncts">Карты населенных пунктов</div>{/if}
+							{if $cat_info.parent == 135}<div class="cat_puncts">Карты регионов</div>{/if}
+							<div class="cat_slider" style="padding-top: 20px; margin-bottom: 20px;">
+								{section name=x loop=$cat_slider_arr_punkt}
+									<img id="img_slider_punkt_{$smarty.section.x.index}" src="/data/slider_punkt/{$cat_slider_arr_punkt[x]}" style="display:none;">
+								{/section}
+							</div>
+							{literal}
+								<script type="text/javascript">
+									$(document).ready(function() {
+										CatSliderInterval([{/literal}{$cat_str_slider_punkt}{literal}], 0, "_punkt");
+									});
+								</script>
+							{/literal}
+							<ul>
+								{section name=x loop=$catrescur}
+									<li><a href="{$catrescur[x].UID}" style="color:#007CC0">{$catrescur[x].name}</a></li>
+								{/section}
+							</ul>
+						{/if}
+						{if $cat_info.name|strpos:"район"}
+							{if $cat_info.prods}<hr style="clear:both">{/if}
+							<div class="cat_puncts">Карты районов</div>
+							<div class="cat_slider" style="padding-top: 20px; margin-bottom: 20px;">
+								{section name=x loop=$cat_slider_arr_rajon}
+									<img id="img_slider_rajon_{$smarty.section.x.index}" src="/data/slider_rajon/{$cat_slider_arr_rajon[x]}" style="display:none;">
+								{/section}
+							</div>
+							{literal}
+								<script type="text/javascript">
+									$(document).ready(function() {
+										CatSliderInterval([{/literal}{$cat_str_slider_rajon}{literal}], 0, "_rajon");
+									});
+								</script>
+							{/literal}
+							<ul>
+								{section name=c loop=$cat_tree}
+									{if $smarty.section.c.last}
+										{section name=s loop=$cat_tree[c.index_prev].child[0]}
+											{if ($cat_tree[c.index_prev].child[0][s].name|strpos:"район") || ($cat_tree[c.index_prev].child[0][s].name|strpos:"улус") || ($cat_tree[c.index_prev].child[0][s].name|strpos:"кожуун")}
+												<li><a href="{$cat_tree[c.index_prev].child[0][s].UID}" style="color:#007CC0">{$cat_tree[c.index_prev].child[0][s].name}</a></li>
+											{/if}
+										{/section}
+									{/if}
+								{/section}
+							</ul>
+						{/if}
+					{/if}
+					{if $desc}
+						<div class="tab_block cat_desc"><div class="cat_puncts">Описание</div>{$desc}</div>
+					{/if}
+				</div>					
+			</div>
+		{else}
+			{*Категория*}
+			<div class="cat_slider" style="padding-top: 20px; margin-bottom: 20px;">
+				{section name=x loop=$cat_slider_arr}
+					<img id="img_slider_{$smarty.section.x.index}" src="/data/slider/{$cat_slider_arr[x]}" style="display:none;">
+				{/section}
+			</div>
+			{literal}
+				<script type="text/javascript">
+					$(document).ready(function() {
+						CatSliderInterval([{/literal}{$cat_str_slider}{literal}], 0);
+					});
+				</script>
+			{/literal}
+			<ul class="cat_menu" style="padding: 20px 0 0 0;">
+				{section name=i loop=$cat_tree}
+					{if $smarty.section.i.last}
+						{section name=j loop=$cat_tree[i].child[0]}
+							{if $cat_tree[i].child[0][j].name|substr:6:1|strcmp:"Л" < 0}
+								{if $smarty.section.j.first}<li><ul class="cat_submenu">{/if}	
+								{if $cat_tree[i].child[0][j.index_prev].name|substr:6:1 < $cat_tree[i].child[0][j].name|substr:6:1}<li style="border-bottom: 1px solid #AAA9A9; padding-bottom: 0;"><div>{$cat_tree[i].child[0][j].name|substr:6:1}</div></li>{/if}
+								<li><a href="{$cat_tree[i].child[0][j].UID}">{$cat_tree[i].child[0][j].name}</a></li>
+							{elseif $cat_tree[i].child[0][j].name|substr:6:1|strcmp:"Л" >= 0 && $cat_tree[i].child[0][j].name|substr:6:1|strcmp:"Т" < 0}
+								{if $cat_tree[i].child[0][j.index_prev].name|substr:6:1|strcmp:"Л" < 0}</ul></li><li><ul class="cat_submenu">{/if}	
+								{if $cat_tree[i].child[0][j.index_prev].name|substr:6:1 < $cat_tree[i].child[0][j].name|substr:6:1}<li style="border-bottom: 1px solid #AAA9A9; padding-bottom: 0;"><div>{$cat_tree[i].child[0][j].name|substr:6:1}</div></li>{/if}
+								<li><a href="{$cat_tree[i].child[0][j].UID}">{$cat_tree[i].child[0][j].name}</a></li>
+							{else}
+								{if $cat_tree[i].child[0][j.index_prev].name|substr:6:1|strcmp:"Т" < 0}</ul></li><li><ul class="cat_submenu">{/if}	
+								{if $cat_tree[i].child[0][j.index_prev].name|substr:6:1 < $cat_tree[i].child[0][j].name|substr:6:1}<li style="border-bottom: 1px solid #AAA9A9; padding-bottom: 0;"><div>{$cat_tree[i].child[0][j].name|substr:6:1}</div></li>{/if}
+								<li><a href="{$cat_tree[i].child[0][j].UID}">{$cat_tree[i].child[0][j].name}</a></li>
+							{/if}
+						{/section}
+						</ul></li>
+					{/if}
+				{/section}
+			</ul>
+			<div style="clear:both;height:20px;"></div>
+		{/if}
+	</div>
+	</div>
+	<div id="tabs_block">
+	<div id="tabs_doc_cat">
+	
+	</div>
+	</div>
+	

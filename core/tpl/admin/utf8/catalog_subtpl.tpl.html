@@ -1,0 +1,529 @@
+{if $edit || $add_new}{if $edit}
+{*babenkoma*}
+<form action='admin.php?dpt=catalog&amp;sub=subtpl&amp;edit={$edit}' method=post name="MainForm" id="MainForm">
+{else}
+<form action='admin.php?dpt=catalog&amp;sub=subtpl&amp;add_new=yes' method=post name="MainForm" id="MainForm">
+{*babenkoma\*}
+{/if}
+{literal}
+<script type="text/javascript">
+<!--
+function confstatus(where, togo)
+{
+        if (where.value !== "" && where.value !== null)
+        {
+        document.getElementById(togo).disabled = "";
+        }else{
+        document.getElementById(togo).disabled = "disabled";
+        }
+}
+
+function upd()
+{
+document.getElementById('save_product').value = 1;
+}
+//-->
+</script>
+{/literal}
+
+<table class="adn">
+<tr class="lineb">
+<td align="left">Основные параметры товара</td></tr>
+<tr class="lins"><td align="left">Название шаблона: <input type="text" name="tpl_name" value="{$product.tpl_name|replace:'"':'&quot;'}" style="width: 590px;" class="textp"></td></tr>
+<tr class="lins"><td align="left">Наименование: <input type="text" name="name" value="{$product.name|replace:'"':'&quot;'}" style="width: 590px;" class="textp"></td></tr>
+<tr class="lins"><td align="left">Заголовок (title): <input type="text" name="title" value="{$product.title|replace:'"':'&quot;'}" style="width: 590px;" class="textp"></td></tr>
+{*babenkoma*}
+<tr class="lins"><td align="left">Суффикс к ЧПУ товара: <input type="text" name="sub_title" value="{$product.sub_title|replace:'"':'&quot;'}" style="width: 590px;" class="textp"></td></tr>
+{*<tr class="lins"><td align="left">Родительский шаблон: <select name="parent_tpl">{foreach from=$parent_tpl item=row}<option value='{$row.tplID}' {if $row.tplID eq $product.parentTplID}selected{/if}>{$row.tpl_name}</option>{/foreach}</select></td></tr>*}
+{*babenkoma\*}
+</table>
+
+<table class="adn">
+<tr class="lineb">
+<td align="left" width="25%">Цена</td>
+<td align="left" width="25%">Старая цена</td>
+<td align="left" width="25%">Код (артикул)</td>
+<td align="left" width="25%">Доставка</td>
+</tr>
+<tr class="lins"><td align="left"><input type="text" name="price" value="{$product.Price}" style="width: 100px;" class="textp"></td>
+<td align="left"><input type="text" name="list_price" value="{$product.list_price}" style="width: 100px;" class="textp"></td>
+<td align="left"><input type="text" name="product_code" value="{$product.product_code|replace:'"':'&quot;'}" style="width: 100px;" class="textp"></td>
+<td align="left"><input type="text" name="shipping_freight" value="{$product.shipping_freight}" style="width: 100px;" class="textp"></td>
+</tr>
+</table>
+<table class="adn">
+<tr class="lineb">
+<td align="left" width="25%">Мин. заказ(шт)</td>
+<td align="left" width="25%">Сортировка</td>
+<td align="left" width="25%">Вес товара(кг)</td>
+{if $smarty.const.CONF_CHECKSTOCK eq "1"}
+<td align="left" width="25%">Склад</td>
+{else}
+<td align="left" width="25%">&nbsp;</td>
+{/if}
+</tr>
+<tr class="lins"><td align="left"><input type="text" name="min_order_amount" value="{$product.min_order_amount}" style="width: 100px;" class="textp"></td>
+<td align="left"><input type="text" name="sort_order" value="{$product.sort_order}" style="width: 100px;" class="textp"></td>
+<td align="left"><input type="text" name="weight" value="{$product.weight}" style="width: 100px;" class="textp"></td>
+{if $smarty.const.CONF_CHECKSTOCK eq "1"}
+<td align="left"><input type="text" name='in_stock' value="{$product.in_stock}" style="width: 100px;" class="textp"></td>
+{else}
+<td align="left"><input type="hidden" name='in_stock' value="{$product.in_stock}"></td>
+{/if}
+</tr></table>
+<table class="adn"><tr><td class="separ"><img src="design/admin/images/pixel.gif" alt="" class="sep"></td></tr><tr><td class="se5"></td></tr></table>
+<a href="#" onclick="upd(),document.getElementById('MainForm').submit(); return false" class="inl">Сохранить</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+{*babenkoma*}
+<a href="admin.php?dpt=catalog&amp;sub=subtpl" class="inl">Назад</a>
+{*babenkoma\*}
+<table class="adn"><tr><td class="se6"></td></tr></table>
+<input type=hidden name='tax_class' value='null'>
+<input type=hidden name='ProductIsProgram' value='0'>
+<input type=hidden name='save_spwc' value='0' id='save_spwc'>
+<input type=hidden name='free_shipping' value='1'>
+<input type=hidden name='save_product' value='0' id="save_product">
+<input type=hidden name='save_pictures' value='0' id="save_pictures">
+<input type=hidden name='add_category' value='0' id="add_category">
+<input type=hidden name='save_product_without_closing' value='0' id='spwc'>
+<input type=hidden name='AddProductAndOpenConfigurator' value='0' id='AddProductAndOpenConfigurator'>
+<input type=hidden name='optionID' value='0' id='optionID'>
+<table class="adn" style="display:none">
+<tr class="linsz">
+<td align="left"><span class="titlecol2">Краткое описание</span></td>
+</tr>
+<tr>
+<td>
+<textarea name="brief_description" class="admin" id="myarea1">{$product.brief_description}</textarea></td></tr>
+</table>
+<table class="adn"><tr><td class="se6"></td></tr></table>
+<table class="adn">
+<tr class="linsz">
+<td align="left"><span class="titlecol2">Подробное описание</span></td>
+</tr>
+<tr>
+<td><textarea name="description" id="myarea2" class="admin">{$product.description}</textarea></td>
+</tr></table>
+<table class="adn"><tr><td class="se6"></td></tr></table>
+<table class="adw">
+<tr><td width="50%">
+<table class="adn">
+<tr class="linsz">
+<td align="left"><span class="titlecol2">META Description</span></td>
+</tr>
+<tr><td align="left"><textarea name='meta_description' id="meta_description" class="adminall" style="margin-right: 38px;">{$product.meta_description}</textarea></td>
+</tr>
+</table>
+</td>
+<td width="50%">
+<table class="adn">
+<tr class="linsz">
+<td align="left"><span class="titlecol2">META Keywords</span></td>
+</tr>
+<tr><td align="left"><textarea name='meta_keywords' id="meta_keywords" class="adminall">{$product.meta_keywords}</textarea></td></tr>
+</table>
+</td></tr></table>
+<table class="adn"><tr><td class="se6"></td></tr></table>
+
+{if $edit}
+<table class="adn">
+<tr class="linsz">
+<td align="left"><input type="checkbox" name="update_check" value="1" />&nbsp;&nbsp;Обновить товары, созданные по этому шаблону.</td>
+</tr>
+<tr class="linsz">
+<td align="left"><input type="checkbox" name="update_pictures" value="1" />&nbsp;&nbsp;Обновить картинки в товарах.</td>
+</tr>
+<tr class="linsz">
+<td align="left"><input type="checkbox" name="seo_gen" value="1" {if $product.seo_gen eq 1}checked=""{/if} />&nbsp;&nbsp;Шаблон SEO генератора.</td>
+</tr>
+</table>
+<table class="adn"><tr><td class="se6"></td></tr></table>
+{/if}
+
+<table class="adn"><tr class="lineb"><td align="left" colspan="5">Фотографии</td></tr>
+<tr class="lineb">
+<td align="left" width="50%" nowrap>Папка для фотографий шаблона</td>
+<td align="left" nowrap>Количество фотографий в товаре</td>
+</tr>
+<tr class="lins">
+<td align="left" valign="middle">pictures_tpl/&nbsp;<input type="text" name="folder_pictures" value="{$product.folder_pictures}">/{if $edit} ({$count_f} фото){/if}
+<br/><i>В эту папку нужно загрузить фотографии для товаров, которые будут создаваться на основе этого шаблона.</i></td>
+<td align="left" valign="middle"><input type="text" name="kolvo_pictures" class="ini" size="5" value="{$product.kolvo_pictures}"></td>
+</tr>
+</table>
+
+{*
+<table class="adn"><tr class="lineb"><td align="left" colspan="5"><?php echo ADMIN_PHOTOS;?>
+<script type="text/javascript" src="design/user/default/images/highslide.packed.js"></script>
+<script type="text/javascript">
+<!--
+    hs.graphicsDir = 'design/admin/images/';
+    hs.outlineType = 'rounded';
+
+    hs.restoreTitle = '<?php echo STRING_HS_RESTORETITLE;?>';
+    hs.loadingText = '<?php echo STRING_HS_LOADINGTEXT;?>';
+    hs.loadingTitle = '<?php echo STRING_HS_LOADINGTITLE;?>';
+    hs.focusTitle = '<?php echo STRING_HS_FOCUSTITLE;?>';
+    hs.fullExpandTitle = '<?php echo STRING_HS_FULLEXPANDTITLE;?>';
+
+//-->
+</script>
+</td></tr>
+<?php
+if (count($picturies) >= 1){
+?>
+<tr class="lineb">
+<td align="center"><?php echo ADMIN_ON2;?></td>
+<td align="center" width="32%"><?php echo ADMIN_PRODUCT_BIGPICTURE;?></td>
+<td align="center">В нижний блок</td>
+<td align="center">Не резать</td>
+<td align="center"><?php echo ADMIN_ON3;?></td>
+</tr>
+<?php
+foreach( $picturies as $picture )
+{
+echo("<tr class=\"linsz\">");
+if ( $picture["default_picture"] == 1 )
+{
+$default_picture_exists = true;
+echo "<td align=\"center\" valign=\"middle\"><input type=radio name=default_picture value='".$picture["photoID"]."' checked></td>\n";
+}
+else
+echo "<td align=\"center\" valign=\"middle\"><input type=radio name=default_picture value='".$picture["photoID"]."'></td>\n";
+echo "<td align=\"center\" valign=\"middle\">\n";
+echo "<input type=text name=enlarged_".$picture["photoID"]." value='".$picture["enlarged"]."' size=25 class=\"textp\"><br>\n";
+if ( file_exists("pictures/".$picture["enlarged"]) && trim($picture["enlarged"]) != "" )
+{
+echo "<a href=\"pictures/".$picture["enlarged"]."\" onclick=\"return hs.expand(this)\" style=\"text-decoration:none;\">".ADMIN_PHOTO_PREVIEW."</a>";
+echo " / <a href=\"#\" onClick=\"confirmDeletep('".QUESTION_DELETE_PICTURE."', 'admin.php?delete_one_picture=1&amp;enlarged=".$picture["photoID"]."&amp;productID=".$_GET["productID"]."&amp;eaction=prod'); return false\" style=\"text-decoration:none;\">".DELETE_BUTTON."</a>\n";
+}
+else
+echo ADMIN_PICTURE_NOT_UPLOADED;
+echo "</td>\n";
+if ( $picture["typ"] == 1 )
+{
+echo "<td align=\"center\" valign=\"middle\"><input type=\"checkbox\" name=\"in_bottom_".$picture["photoID"]."\" value=\"1\" checked></td>\n";
+}
+else
+echo "<td align=\"center\" valign=\"middle\"><input type=\"checkbox\" name=\"in_bottom_".$picture["photoID"]."\" value=\"1\" ></td>\n";
+echo "<td align=\"center\" valign=\"middle\"><input type=\"checkbox\" name=\"resize_only[".$picture["photoID"]."]\" value=\"1\" ></td>\n";
+echo "<td valign=middle align=center>\n";
+?>
+<img src="design/admin/images/mines.gif" style="cursor: pointer" alt="" onClick="confirmDeletep('<?php echo QUESTION_DELETE_PICTURE?>','admin.php?productID=<?php echo $_GET["productID"]?>&amp;photoID=<?php echo $picture["photoID"];?>&amp;delete_pictures=1&amp;eaction=prod')"></td>
+
+<?php
+
+echo "</tr><tr class=\"linsz\"><td></td><td><input type=\"file\" name=\"uenlargedu_".$picture["photoID"]."\" class=\"file\" size=\"13\"></td> <td></td><td></td><td></td></tr><tr><td class=\"separ\" colspan=\"5\"><img src=\"design/admin/images/pixel.gif\" alt=\"\" class=\"sep\"></td></tr>\n";
+}
+echo "<tr><td class=\"se5\" colspan=\"4\"></td></tr><tr><td colspan=\"4\" align=\"left\"><a href=\"#\" onclick=\"upd2(),document.getElementById('MainForm').submit(); return false\" class=\"inl\">".SAVE_BUTTON."</a></td></tr>\n";
+
+}else{
+echo "<tr><td height=\"20\" valign=\"middle\" align=\"center\">".ADMIN_NO_PHOTO_NEW."</td></tr><tr><td class=\"separ\" colspan=\"4\"><img src=\"design/admin/images/pixel.gif\" alt=\"\" class=\"sep\"></td></tr>\n";
+}
+?>
+</table>
+<table class="adn"><tr><td class="se6"></td></tr></table>
+<table class="adn"><tr class="lineb"><td align="left" colspan="5"><?php echo ADD_BUTTON26;?></td></tr>
+<tr class="lineb">
+<td align="center"><?php echo ADMIN_ON2;?></td>
+<td align="center" width="32%"><?php echo ADMIN_PRODUCT_BIGPICTURE;?></td>
+<td align="center">В нижний блок</td>
+<td align="center">Не резать</td>
+<td align="center">Add</td>
+</tr>
+<tr class="lins">
+<td align="center" valign="middle"><input type="radio" name="default_picture"
+                                        <?php
+                                                if ( !isset($default_picture_exists) )
+                                                {
+                                        ?>
+                                                checked
+                                        <?php
+                                                }
+                                        ?>
+                                                value=-1 >
+
+                                </td>
+                                <td align="center" valign="middle"><input  id="pic3" type="file" name="new_enlarged0" class="file" size="13"></td>
+								<td align="center"><input type="checkbox" name="in_bottomtab0" value="1" ></td>
+								<td align="center"><input type="checkbox" name="resize_only0" value="1" ></td>
+                                <td></td>
+								
+                        </tr>
+						<tr class="lins">
+								<td align="center" valign="middle"><input type="radio" name="default_picture" value="1" > </td>
+                                <td align="center" valign="middle"><input  id="pic4" type="file" name="new_enlarged1" class="file" size="13"></td>
+								<td align="center"><input type="checkbox" name="in_bottomtab1" value="1" ></td>
+								<td align="center"><input type="checkbox" name="resize_only1" value="1" ></td><td></td>
+                        </tr>
+						<tr class="lins">
+								<td align="center" valign="middle"><input type="radio" name="default_picture" value="2" > </td>
+                                <td align="center" valign="middle"><input  id="pic5" type="file" name="new_enlarged2" class="file" size="13"></td>
+								<td align="center"><input type="checkbox" name="in_bottomtab2" value="1" ></td>
+								<td align="center"><input type="checkbox" name="resize_only2" value="1" ></td><td></td>
+                        </tr>
+						<tr class="lins">
+								<td align="center" valign="middle"><input type="radio" name="default_picture" value="3" > </td>
+                                <td align="center" valign="middle"><input  id="pic6" type="file" name="new_enlarged3" class="file" size="13"></td>
+								<td align="center"><input type="checkbox" name="in_bottomtab3" value="1" ></td>
+								<td align="center"><input type="checkbox" name="resize_only3" value="1" ></td><td></td>
+                        </tr>
+						<tr class="lins">
+								<td align="center" valign="middle"><input type="radio" name="default_picture" value="4" > </td>
+                                <td align="center" valign="middle"><input  id="pic7" type="file" name="new_enlarged4" class="file" size="13"></td>
+								<td align="center"><input type="checkbox" name="in_bottomtab4" value="1" ></td>
+								<td align="center"><input type="checkbox" name="resize_only4" value="1" ></td><td></td>
+                        </tr>
+						<tr class="lins"><td></td><td></td><td></td><td></td>
+						<td align="center" valign="middle"><img src="design/admin/images/plus.gif" alt="" style="cursor: pointer" onclick="upd2(),document.getElementById('MainForm').submit()"></td>
+						</table>
+<table class="adn"><tr><td class="separ"><img src="design/admin/images/pixel.gif" alt="" class="sep"></td></tr><tr><td class="se6"></td></tr></table>
+<?php if (isset($_GET["productID"])) { ?>
+<table class="adn">
+<tr class="lineb">
+<td align="left"><?php echo ADMIN_PRODUCT_DESC4;?></td>
+</tr>
+<?php
+        $q = db_query("SELECT count(*) FROM ".RELATED_PRODUCTS_TABLE." WHERE Owner='".$_GET["productID"]."'");
+        $cnt = db_fetch_row($q);
+        if ($cnt[0] == 0) echo "<tr class=\"lins\"><td align=\"center\" height=\"20\">".STRING_EMPTY_CATEGORY3."</td></tr>";
+        else {
+                $q = db_query("SELECT productID FROM ".RELATED_PRODUCTS_TABLE." WHERE Owner='".$_GET["productID"]."' order by sort_order");
+
+                while ($r = db_fetch_row($q))
+                {
+                        $p = db_query("SELECT productID, name FROM ".PRODUCTS_TABLE." WHERE productID=".$r[0]);
+                        if ($r1 = db_fetch_row($p))
+                        {
+                        echo "<tr class=\"liney\"><td align=\"left\">";
+                          echo "$r1[1]";
+                          echo "</td></tr>";
+                        }
+                }
+
+        }
+?></table>
+<table class="adn"><tr><td class="separ"><img src="design/admin/images/pixel.gif" alt="" class="sep"></td></tr><tr><td class="se5"></td></tr></table>
+<a href="#" onClick="open_window('wishlist.php?owner=<?php echo $_GET["productID"]; ?>',500,500); return false" class="inl"><?php echo EDIT_BUTTON;?></a>
+<table class="adn"><tr><td class="se6"></td></tr></table>
+<?php } ?>
+<table class="adn"><tr><td class="separ"><img src="design/admin/images/pixel.gif" alt="" class="sep"></td></tr><tr><td class="se6"></td></tr></table>
+<?php if (isset($_GET["productID"])) { ?>
+<table class="adn">
+<tr class="lineb">
+<td align="left">Перелинковочный блок</td>
+</tr>
+<?php
+        $q = db_query("SELECT count(productID) FROM ".RELATED_PRODUCTS_TABLE."_v2 WHERE Owner='".$_GET["productID"]."'");
+        $cnt = db_fetch_row($q);
+        if ($cnt[0] == 0) echo "<tr class=\"lins\"><td align=\"center\" height=\"20\">".STRING_EMPTY_CATEGORY3."</td></tr>";
+        else {
+                $q = db_query("SELECT rp.productID, name FROM ".RELATED_PRODUCTS_TABLE."_v2 as rp,".PRODUCTS_TABLE." as p WHERE Owner='".$_GET["productID"]."' and p.productID=rp.productID order by rp.sort_order");
+
+                while ($r = db_fetch_row($q))
+                {
+                        
+                        echo "<tr class=\"liney\"><td align=\"left\">";
+                          echo $r[1];
+                          echo "</td></tr>";
+                        
+                }
+
+        }
+?></table>
+<table class="adn"><tr><td class="separ"><img src="design/admin/images/pixel.gif" alt="" class="sep"></td></tr><tr><td class="se5"></td></tr></table>
+<a href="#" onClick="open_window('wishlist_v2.php?owner=<?php echo $_GET["productID"]; ?>',500,500); return false" class="inl"><?php echo EDIT_BUTTON;?></a>
+<table class="adn"><tr><td class="se6"></td></tr></table>
+<?php } ?>
+<script type="text/javascript">
+                        function SetOptionValueTypeRadioButton( id, radioButtonState )
+                        {
+                                if ( radioButtonState == "UN_DEFINED" )
+                                        document.getElementById('option_radio_type_'+id+'_1').click();
+                                else if ( radioButtonState == "ANY_VALUE" )
+                                        document.getElementById('option_radio_type_'+id+'_2').click();
+                                else if ( radioButtonState == "N_VALUES" )
+                                       document.getElementById('option_radio_type_'+id+'_3').click();
+                        }
+
+                        function SetEnabledStateTextValueField( id, radioButtonState )
+                        {
+                                if ( radioButtonState == "UN_DEFINED" ||
+                                        radioButtonState == "N_VALUES" )
+                                {
+                                          document.getElementById('option_value_'+id).disabled=true;
+                                        document.getElementById('option_value_'+id).value="";
+                                }
+                                else {
+                                       document.getElementById('option_value_'+id).disabled=false;
+                        }
+                        }
+</script>
+<table class="adn">
+<tr class="lineb">
+<td align="left"colspan="3"><?php echo ADMIN_EDITCHAR;?></td></tr>
+<?php
+if (count($options) >= 1){
+foreach($options as $option)
+{
+                        $option_row = $option["option_row"];
+                        $value_row  = $option["option_value"];
+                        $ValueCount = $option["value_count"];
+?>
+<tr class="lineb"><td align="left" colspan="3"><?php echo $option_row["name"]?></td></tr>
+<tr class="liney">
+<td align="center" valign="middle"><input name='option_radio_type_<?php echo $option_row["optionID"]?>' id='option_radio_type_<?php echo $option_row["optionID"]?>_1' type='radio' value="UN_DEFINED" onclick="SetEnabledStateTextValueField(<?php echo $option_row['optionID']?>, 'UN_DEFINED' )"></td>
+<td align="center" valign="middle">----------</td>
+<td align="left" valign="middle" width="100%"><?php echo ADMIN_NOT_DEFINED;?></td>
+</tr>
+<tr class="liney">
+<td align="center" valign="middle"><input name='option_radio_type_<?php echo $option_row["optionID"]?>' id='option_radio_type_<?php echo $option_row["optionID"]?>_2' type='radio' value="ANY_VALUE" onclick="SetEnabledStateTextValueField(<?php echo $option_row['optionID']?>, 'ANY_VALUE' )"></td>
+<td align="center" valign="middle"><input type="text" name='option_value_<?php echo $option_row["optionID"]?>' id='option_value_<?php echo $option_row["optionID"]?>' value='<?php echo str_replace("\"","&quot;",$value_row["option_value"])?>' class="textp" style="width: 150px"></td>
+<td align="left" valign="middle"><?php echo ADMIN_ANY_VALUE;?></td>
+</tr>
+<tr class="liney">
+<td align="center" valign="middle"><input name='option_radio_type_<?php echo $option_row["optionID"]?>' id='option_radio_type_<?php echo $option_row["optionID"]?>_3' type='radio' value="N_VALUES" onclick="SetEnabledStateTextValueField(<?php echo $option_row['optionID']?>, 'N_VALUES' )"></td>
+<td align="center" valign="middle"><a href="#" class="inl" name="configurator_<?php echo $option_row['optionID']?>" style="cursor: pointer"
+<?php
+if ( $_GET["productID"] != 0 )
+{
+?>
+ onclick="open_window('configurator.php?optionID=<?php echo $option_row["optionID"]?>&amp;productID=<?php echo $_GET["productID"]?>',450,400); return false"
+<?php
+} else
+{
+?>
+ onclick="AddProductAndOpen_configurator(<?php echo $option_row["optionID"]?>); return false"
+<?php
+}
+?>
+><?php echo ADMIN_SELECT_SETTING;?></a></td>
+<td align="left" valign="middle"><?php echo ADMIN_SELECTING_FROM_VALUES;?> (<?php echo $ValueCount?> <?php echo ADMIN_VARIANTS;?>)
+<SCRIPT type="text/javascript">
+<?php
+                                        if ( (is_null($value_row["option_value"]) || $value_row["option_value"] == '')
+                                                                && $value_row["option_type"]==0  )
+                                                echo( "SetOptionValueTypeRadioButton( ".
+                                                        $option_row["optionID"].", 'UN_DEFINED' );" );
+                                        else if ( $value_row["option_type"]==0 )
+                                                echo( "SetOptionValueTypeRadioButton( ".
+                                                        $option_row["optionID"].", 'ANY_VALUE' );" );
+                                        else if ( $value_row["option_type"]==1 )
+                                                echo( "SetOptionValueTypeRadioButton( ".
+                                                        $option_row["optionID"].", 'N_VALUES' );" );
+?>
+</script>
+</td>
+</tr>
+<?php
+}
+}else{
+echo "<tr><td height=\"20\" align=\"center\" valign=\"middle\">".ADMIN_NO_CHAR_NEW."</td></tr>";
+}
+?></table>
+<table class="adn"><tr><td class="separ"><img src="design/admin/images/pixel.gif" alt="" class="sep"></td></tr><tr><td class="se6"></td></tr></table>
+<table class="adn">
+<tr class="lineb">
+<td align="left" colspan="2"><?php echo ADMIN_CATSPLIT;?></td></tr><tr><td height="4" colspan="2"></td></tr>
+<?php
+if (count($appended_categories) >= 1){
+foreach( $appended_categories as $app_cat )
+{
+?>
+<tr>
+<td colspan="2">
+<table class="adn">
+<tr class="liney">
+<td align="left"><?php echo $app_cat["category_way"];?></td>
+<td align="right"><img src="design/admin/images/mines.gif" alt="" style="cursor: pointer;" onclick="confirmDeletep('<?php echo QUESTION_DELETE_CONFIRMATION;?>','admin.php?productID=<?php echo $_GET["productID"]?>&amp;remove_from_app_cat=<?php echo $app_cat["categoryID"]?>&amp;eaction=prod')"></td>
+</tr>
+</table>
+</td>
+</tr>
+<?php
+}
+}else{
+echo "<tr><td height=\"18\" align=\"center\" valign=\"middle\" colspan=\"2\">".ADMIN_NO_CAT_NEW."</td></tr>";
+}
+if (isset($_GET['categoryID'])) {
+	$cat_id = $_GET['categoryID'];
+} else if (isset($_POST['categoryID'])) {
+	$cat_id = $_POST['categoryID'];
+} else {
+	$cat_id = 1;
+}
+$cats = catGetCategoryCList($cat_id);
+if (count($cats) >= 1){
+?>
+<tr class="liney"><td width="100%" align=right><b><?php echo ADD_BUTTON;?>:</b> <select name='new_appended_category'>
+<?php
+for ($i=0; $i<count($cats); $i++)
+{
+echo "<option value=\"".$cats[$i]["categoryID"]."\">";
+for ($j=0;$j<$cats[$i]["level"];$j++) echo "&nbsp;&nbsp;";
+echo $cats[$i]["name"];
+echo "</option>";
+}
+?></select>&nbsp;</td><td><img src="design/admin/images/ret.gif" alt="" style="cursor: pointer;" onclick="upd3(),document.getElementById('MainForm').submit()"></td></tr>
+<?php
+}
+?>
+</table>
+*}
+<table class="adn"><tr><td height="4"></td></tr><tr><td class="separ"><img src="design/admin/images/pixel.gif" alt="" class="sep"></td></tr><tr><td class="se5"></td></tr></table>
+<a href="#" onclick="upd(),document.getElementById('MainForm').submit(); return false" class="inl">Сохранить</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+{*babenkoma*}
+<a href="admin.php?dpt=catalog&amp;sub=subtpl" class="inl">Назад</a>
+{*babenkoma\*}
+</form>
+
+{if $smarty.const.CONF_EDITOR}
+{literal}
+<script type="text/javascript" src="fckeditor/fckeditor.js"></script>
+<script type="text/javascript" src="fckeditor/ckfinder/ckfinder.js"></script>
+<script type="text/javascript">
+window.onload = function()
+{
+var oFCKeditor = new FCKeditor( 'myarea1',720,346) ;
+oFCKeditor.BasePath = "/fckeditor/" ;
+oFCKeditor.ReplaceTextarea() ;
+var oFCKeditor2 = new FCKeditor( 'myarea2',720,346) ;
+oFCKeditor2.BasePath = "/fckeditor/" ;
+oFCKeditor2.ReplaceTextarea() ;
+}
+</script>
+{/literal}
+{/if}
+{else}
+<table class="adn">
+<tr class="lineb">
+<td align="left" width="100%" class="toph3">Название шаблона</td>
+<!--<td align="left" nowrap>Обновлено товаров</td>-->
+<td align="left">&nbsp;</td>
+</tr>
+{assign var="admhl" value=0}
+{section name=i loop=$tpls}
+{if $admhl eq 1}
+<tr><td colspan="3" class="separ"><img src="design/admin/images/pixel.gif" alt="" class="sep"></td></tr>
+{else}{assign var="admhl" value=1}{/if}
+<tr class="lineybig hover">
+{*babenkoma*}
+<td align="left"><a href="admin.php?dpt=catalog&amp;sub=subtpl&amp;edit={$tpls[i].tplID}">{$tpls[i].tpl_name}</a></td>
+<!--<td align="left" nowrap>{$tpls[i].count_ptpl_noupd} из {$tpls[i].count_ptpl} <a href="admin.php?dpt=catalog&amp;sub=subtpl&amp;upd_prod={$tpls[i].tplID}">Обновить</a></td>-->
+<td align="right"><a href="admin.php?dpt=catalog&amp;sub=subtpl&amp;edit={$tpls[i].tplID}">Редактировать</a>&nbsp;&nbsp;|&nbsp;&nbsp;<a href="#" onclick="confirmDelete({$tpls[i].tplID},'{$smarty.const.QUESTION_DELETE_CONFIRMATION}','admin.php?dpt=catalog&amp;sub=subtpl&amp;delete=');">X</a></td>
+{*babenkoma\*}
+</tr>
+{sectionelse}
+<tr><td colspan="3" align="center" height="20">{$smarty.const.ADMIN_NO_VALUES}</td></tr>
+{/section}
+</table>
+<table class="adn"><tr><td class="separ"><img src="design/admin/images/pixel.gif" alt="" class="sep"></td></tr><tr><td class="se5"></td></tr></table>
+{*babenkoma*}
+<a href="admin.php?dpt=catalog&amp;sub=subtpl&amp;add_new=yes" class="inl">Добавить шаблон</a>
+{*babenkoma\*}
+{/if}
+<table class="adn"><tr><td class="se6"></td></tr></table>
+{*babenkoma*}
+<table class="adn"><tr><td class="help"><span class="titlecol2">{$smarty.const.USEFUL_FOR_YOU}</span><div class="helptext">Для того, чтобы в подтоваре подставился регион или город категории товаров, необходимо использовать заменитель <b>{literal}{city}{/literal}</b>. Так же вы можете использовать переменные {literal}{val_1}, {val_2}, {val_3}, {val_4}, {val_5}{/literal}<br/><br/>Заполнте все поля, которые необходимо проставить при создании нового товара и намите "Сохранить"</div></td>
+{*babenkoma\*}
+    </tr>
+      </table>

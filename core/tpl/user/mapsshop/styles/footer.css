@@ -1,0 +1,12 @@
+/*------------------------------------------- footer ------------------------------------------------*/
+#footer { position: relative; width: 1000px; height: 137px; clear: both; margin: 0px auto; background: url("../images/foot.jpg") no-repeat; } 
+
+#footer .copy { left: 19px; top: 23px; position: absolute; }
+
+#footer .count1 { left: 19px; top: 61px; position: absolute; }
+#footer .count { left: 115px; top: 61px; position: absolute; }
+
+#footer .call { left: 762px; top: 23px; position: absolute; text-transform: uppercase; color: #c72424; font-weight: bold; }
+#footer .call .zv { color: #5e5d5d; font-size: 10pt; }
+#footer .call .numb { font-size: 23pt; font-weight: normal; line-height: 33px; margin: 4px 0 -1px 0; }
+#footer .call .zv1 { font-size: 9pt; }

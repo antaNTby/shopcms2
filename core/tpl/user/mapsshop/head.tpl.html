@@ -1,0 +1,48 @@
+{* Шаблон заголовков сайта *}
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset={$smarty.const.DEFAULT_CHARSET}" />
+	{if $smarty.get.custom_order=="yes"}
+	<title>Ручное оформление заказа</title>
+	{else}
+	<title>{$page_title}</title>
+	{/if}
+	
+	{* мета теги *}
+	<meta name="description" content="{$page_meta_tags.meta_description}" />
+	<meta name="keywords" content="{$page_meta_tags.meta_keywords}" />
+
+	<link rel="alternate" href="/rss.php" title="rss" type="application/rss+xml" />
+	
+	<script defer language="javascript" type="text/javascript" src="{$smarty.const.TPL_PATH}/js/niceforms.js?1"></script>
+	<link rel="stylesheet" href="{$smarty.const.TPL_PATH}/styles/styleprint.css" type="text/css" media="print" />
+	<link rel="icon" href="{$smarty.const.TPL_PATH}/images/favicon.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="{$smarty.const.TPL_PATH}/images/favicon.ico" type="image/x-icon" />
+	{if $main_content_template eq "product_detailed.tpl.html"}
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js?1"></script>
+	{else}
+	<script async src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.8.3/jquery.min.js?1"></script>
+	{/if}
+	<script defer type="text/javascript" src="{$smarty.const.TPL_PATH}/ui/jquery-ui-1.10.2.custom.min.js?1"></script>
+	{literal}
+	<style>
+		@keyframes opacity {
+		    from {
+		      opacity: 0;
+		    }
+		    to {
+		      opacity: 1;
+		    }
+		}
+
+		body {
+			animation: opacity 1s 0.5s;
+			opacity: 0;
+			animation-fill-mode:forwards;
+		}
+	</style>
+	{/literal}
+	<script defer type="text/javascript" src="{$smarty.const.TPL_PATH}/js/user_src2.js?1"></script> 
+	<script defer language="javascript" type="text/javascript" src="{$smarty.const.TPL_PATH}/js/js.cookie.js?1"></script>
+</head>
+
+	

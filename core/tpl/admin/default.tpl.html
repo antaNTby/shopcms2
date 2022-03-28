@@ -1,0 +1,282 @@
+<table class="adn">
+  <tr>
+    <td class="zeb2 nbc">
+      <table class="adn ggg">
+         <tr>
+           <td>
+            <table class="adn">
+              <tr>
+               <td class="nbc2"><span class="titlecol">{$smarty.const.ADMIN_WELCOME}</span></td>
+              </tr>
+              <tr>
+               <td class="nbcl"></td>
+              </tr>
+            </table>
+           </td>
+         </tr>
+      </table>
+    </td>
+  </tr>
+  <tr>
+    <td valign="top" align="left" class="zeb">
+
+
+
+
+
+       <table class="adn">
+        <tr>
+         <td align="center">
+
+           <table class="adn">
+              <tr>
+               <td class="nbc2"><span class="titlecol2">{$smarty.const.ADMIN_MENU_FIRST}</span></td>
+              </tr>
+              <tr>
+               <td class="nbcl"></td>
+              </tr>
+            </table><br><br>
+
+<table width="94%" class="adw" align=center>
+<tr>
+<td width="33%" valign="top" align=left>
+<table class="adw">
+ <tr>
+  <td valign="top" align=right><img src="data/admin/catalog.gif" alt="" style="margin-right: 6px;"></td>
+  <td valign="top" align=left><u><b>{$smarty.const.ADMIN_CATALOG}</b></u><br><br>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=catalog&amp;sub=products_categories">{$smarty.const.ADMIN_CATEGORIES_PRODUCTS}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=catalog&amp;sub=dbsync">{$smarty.const.ADMIN_SYNCHRONIZE_TOOLS}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=catalog&amp;sub=extra">{$smarty.const.ADMIN_PRODUCT_OPTIONS}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=catalog&amp;sub=special">{$smarty.const.ADMIN_SPECIAL_OFFERS}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=catalog&amp;sub=excel_import">{$smarty.const.ADMIN_IMPORT_FROM_EXCEL}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=catalog&amp;sub=excel_export">{$smarty.const.ADMIN_EXPORT_TO_EXCEL}</a></div>
+        </td>
+</tr>
+</table>
+
+</td>
+<td width="33%" valign="top" align=left>
+<table class="adw">
+
+ <tr>
+  <td valign="top" align=right><img src="data/admin/stories.gif" alt="" style="margin-right: 6px;"></td>
+        <td valign="top" align=left><u><b>{$smarty.const.ADMIN_CUSTOMERS_AND_ORDERS}</b></u><br><br><div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=custord&amp;sub=new_orders">{$smarty.const.ADMIN_NEW_ORDERS}</a> <a href="{$smarty.const.ADMIN_FILE}?order_search_type=SearchByStatusID&amp;checkbox_order_status_2=1&amp;dpt=custord&amp;sub=new_orders&amp;search=">({$new_orders_count})</a></div>
+               <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=custord&amp;sub=subscribers">{$smarty.const.ADMIN_NEWS_SUBSCRIBERS}</a></div>
+               <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=custord&amp;sub=order_statuses">{$smarty.const.ADMIN_ORDER_STATUES}</a></div>
+               <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=custord&amp;sub=reg_fields">{$smarty.const.ADMIN_CUSTOMER_REG_FIELDS}</a></div>
+               <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=custord&amp;sub=discounts">{$smarty.const.ADMIN_DISCOUNTS}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=custord&amp;sub=aux_pages">{$smarty.const.ADMIN_TX7}</a></div>
+        </td>
+ </tr>
+
+</table>
+
+</td>
+
+<td width="33%" valign="top" align=left>
+<table class="adw">
+
+ <tr>
+  <td valign="top" align=right><img src="data/admin/optimize.gif" alt="" style="margin-right: 6px;"></td>
+        <td valign="top" align=left><u><b>{$smarty.const.ADMIN_SETTINGS}</b></u><br><br><div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=conf&amp;sub=setting&amp;settings_groupID=2">{$smarty.const.ADMIN_SETTINGS_GENERAL}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=conf&amp;sub=currencies">{$smarty.const.ADMIN_CURRENCY_TYPES}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=conf&amp;sub=shipping">{$smarty.const.STRING_SHIPPING_TYPE}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=conf&amp;sub=payment">{$smarty.const.STRING_PAYMENT_TYPE}</a></div>
+        <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=conf&amp;sub=blocks_edit">{$smarty.const.ADMIN_TX20}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=conf&amp;sub=admin_edit">{$smarty.const.ADMIN_CONF_ADMINS}</a></div>
+        </td>
+ </tr>
+
+</table>
+
+</td>
+
+
+</tr>
+ <tr><td colspan="3" height="40"></td></tr>
+<tr>
+
+<td width="33%" valign="top" align=left>
+<table class="adw">
+
+ <tr>
+  <td valign="top" align=right><img src="data/admin/modules.gif" alt="" style="margin-right: 6px;"></td>
+        <td valign="top" align=left><u><b>{$smarty.const.ADMIN_MODULES}</b></u><br><br><div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=modules&amp;sub=news">{$smarty.const.ADMIN_NEWS}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=modules&amp;sub=survey">{$smarty.const.ADMIN_VOTING}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=modules&amp;sub=shipping">{$smarty.const.STRING_SHIPPING_MODULES}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=modules&amp;sub=payment">{$smarty.const.STRING_PAYMENT_MODULES}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=modules&amp;sub=linkexchange">{$smarty.const.STRING_MODULES_LINKEXCHANGE}</a></div>
+                 <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=modules&amp;sub=yandex">{$smarty.const.ADMIN_STRING_YANDEX}</a></div>
+        </td>
+ </tr>
+
+</table>
+
+</td>
+
+<td width="33%" valign="top" align=left>
+<table class="adw">
+
+ <tr>
+  <td valign="top" align=right><img src="data/admin/report.gif" alt="" style="margin-right: 6px;"></td>
+        <td valign="top" align=left><u><b>{$smarty.const.ADMIN_REPORTS}</b></u><br><br><div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=reports&amp;sub=category_viewed_times">{$smarty.const.ADMIN_CATEGORY_VIEWED_TIMES}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=reports&amp;sub=customer_log">{$smarty.const.ADMIN_CUSTOMER_LOG}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=reports&amp;sub=information">{$smarty.const.ADMIN_INFORMATION2}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=reports&amp;sub=coming">{$smarty.const.ADMIN_COMING}</a></div>
+                 <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=reports&amp;sub=security">{$smarty.const.ADMIN_SECURITY}</a></div>
+                 <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=reports&amp;sub=search_stat">{$smarty.const.ADMIN_SEARCH_STAT}</a></div>
+        </td>
+ </tr>
+
+</table>
+</td>
+
+<td width="33%" valign="top" align=left>
+<table class="adw">
+
+ <tr>
+  <td valign="top" align=right><img src="data/admin/faq.gif" alt="" style="margin-right: 6px;"></td>
+        <td valign="top" align=left><u><b>Списки</b></u><br><br><div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=custord&amp;sub=custlist">{$smarty.const.ADMIN_CUSTOMERS}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=custord&amp;sub=custgroup">{$smarty.const.ADMIN_CUSTGROUP}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=conf&amp;sub=countries">{$smarty.const.ADMIN_MENU_TOWNS}</a></div>
+                <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=conf&amp;sub=zones">{$smarty.const.ADMIN_MENU_TAXEZ}</a></div>
+                      <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=catalog&amp;sub=discuss">{$smarty.const.ADMIN_DISCUSSIONS}</a></div>
+        </td>
+ </tr>
+
+</table>
+</td>
+</tr>
+</table>
+
+
+
+
+
+
+
+
+
+
+{if $totals}
+<br><br><br><table class="adn">
+              <tr>
+               <td class="nbc2"><span class="titlecol2">{$smarty.const.ADMIN_MENU_SECOND}</span></td>
+              </tr>
+              <tr>
+               <td class="nbcl"></td>
+              </tr>
+            </table><br><br>
+<table width="94%" class="adw" align=center>
+<tr>
+<td width="33%" valign="top" align=left>
+<table class="adw">
+
+ <tr>
+  <td valign="top" align=right><img src="data/admin/hd.gif" alt="" style="margin-right: 6px;"></td>
+        <td valign="top" align=left><u><b>{$smarty.const.ADMIN_MENU_PRODS}</b></u><br><br><div class="marg">{$smarty.const.ADMIN_MENU_PRODS_ALL}: {$totals.products}</div>
+                        <div class="marg">{$smarty.const.ADMIN_MENU_PRODS_BUY}: {$totals.products_enabled}</div>
+                        <div class="marg">{$smarty.const.ADMIN_MENU_PRODS_CATS}: {$totals.categories}</div>
+                        <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=catalog&amp;sub=discuss&amp;productID=0">{$smarty.const.ADMIN_MENU_PRODS_DIS}</a>: {$totals.discussion_posts}</div>
+        </td>
+ </tr>
+
+</table>
+
+
+</td>
+<td width="33%" valign="top" align=left>
+<table class="adw">
+
+ <tr>
+  <td valign="top" align=right><img src="data/admin/book.gif" alt="" style="margin-right: 6px;"></td>
+        <td valign="top" align=left><u><b>{$smarty.const.ADMIN_CUSTOMERS_AND_ORDERS}</b></u><br><br><div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=conf&amp;sub=payment">{$smarty.const.ADMIN_MENU_VAR_PAY}</a>: {$totals.payment_types}</div>
+                        <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=conf&amp;sub=shipping">{$smarty.const.ADMIN_MENU_VAR_SHIP}</a>: {$totals.shipping_types}</div>
+                         <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=conf&amp;sub=currencies">{$smarty.const.ADMIN_MENU_TYPES_CUR}</a>: {$totals.currency_types}</div>
+                         <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=custord&amp;sub=aux_pages">{$smarty.const.ADMIN_MENU_AUX_PAGES}</a>: {$totals.aux_pages}</div>
+        </td>
+ </tr>
+
+</table>
+
+</td>
+
+<td width="33%" valign="top" align=left>
+<table class="adw">
+
+ <tr>
+  <td valign="top" align=right><img src="data/admin/uses.gif" alt="" style="margin-right: 6px;"></td>
+        <td valign="top" align=left><u><b>{$smarty.const.ADMIN_CUSTOMERS}</b></u><br><br><div class="marg"><a href="{$smarty.const.ADMIN_FILE}?login=&amp;first_name=&amp;last_name=&amp;email=&amp;groupID=0&amp;fActState=-1&amp;dpt=custord&amp;sub=custlist&amp;search=Find">{$smarty.const.ADMIN_MENU_REG_USERS}</a>: {$totals.customers}</div>
+                        <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=custord&amp;sub=custgroup">{$smarty.const.ADMIN_MENU_GROUPS}</a>: {$totals.customer_groups}</div>
+                        <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=custord&amp;sub=subscribers">{$smarty.const.ADMIN_MENU_SUBSC}</a>: {$totals.newsletter_subscribers}</div>
+        </td>
+ </tr>
+
+</table>
+
+</td>
+
+
+</tr>
+ <tr><td colspan="3" height="40"></td></tr>
+<tr>
+
+<td width="33%" valign="top" align=left>
+<table class="adw">
+ <tr>
+  <td valign="top" align=right><img src="data/admin/cart.gif" alt="" style="margin-right: 6px;"></td>
+  <td valign="top" align=left><u><b>{$smarty.const.ADMIN_MENU_ORDERS}</b></u><br><br>
+                <div class="marg"><b>{$smarty.const.ADMIN_MENU_ORD_TOD}:</b><br>{$totals.orders_today} {$smarty.const.ADMIN_MENU_ORD_NAME} ({$totals.revenue_today})</div>
+                <div class="marg"><b>{$smarty.const.ADMIN_MENU_ORD_YEST}:</b><br>{$totals.orders_yesterday} {$smarty.const.ADMIN_MENU_ORD_NAME} ({$totals.revenue_yesterday})</div>
+                <div class="marg"><b>{$smarty.const.ADMIN_MENU_ORD_MON}:</b><br>{$totals.orders_thismonth} {$smarty.const.ADMIN_MENU_ORD_NAME} ({$totals.revenue_thismonth})</div>
+                <div class="marg"><b>{$smarty.const.ADMIN_MENU_ORD_ALLTIME}:</b><br>{$totals.orders} {$smarty.const.ADMIN_MENU_ORD_NAME} ({$totals.revenue})</div>
+        </td>
+</tr>
+</table>
+
+</td>
+
+<td width="33%" valign="top" align=left>
+<table class="adw">
+
+ <tr>
+  <td valign="top" align=right><img src="data/admin/statics-2.gif" alt="" style="margin-right: 6px;"></td>
+        <td valign="top" align=left><u><b>{$smarty.const.ADMIN_MENU_STATS}</b></u><br><br><div class="marg">{$smarty.const.ADMIN_MENU_STAT1}: {$totals.count_stat3}</div>
+                <div class="marg">{$smarty.const.ADMIN_MENU_STAT2}: {$totals.count_stat4}</div>
+                <div class="marg">{$smarty.const.ADMIN_STAT_ALL_TODAY}: {$totals.count_stat1}</div>
+                <div class="marg">{$smarty.const.ADMIN_STAT_TODAY}: {$totals.count_stat2}</div><br>
+                 <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=reports&amp;sub=customer_log">{$smarty.const.ADMIN_CUSTOMER_LOG}</a></div>
+                       <div class="marg"><a href="{$smarty.const.ADMIN_FILE}?dpt=reports&amp;sub=category_viewed_times">{$smarty.const.ADMIN_CATEGORY_VIEWED_TIMES}</a></div>
+        </td>
+ </tr>
+
+</table>
+</td>
+
+<td width="33%" valign="top" align=left>
+<table class="adw">
+
+ <tr>
+  <td valign="top" align=right><img src="data/admin/help.gif" alt="" style="margin-right: 6px;"></td>
+        <td valign="top" align=left><u><b>{$smarty.const.ADMIN_MENU_HELP}</b></u><br><br><div class="marg"><a href="http://shopcms.ru">{$smarty.const.ADMIN_MENU_LINK_1}</a></div>
+                <div class="marg"><a href="http://shopcms.ru/contacts.html">{$smarty.const.ADMIN_MENU_LINK_2}</a></div><br>
+                <div class="marg"><a href="http://shopcms.ru/sysinfo.html">{$smarty.const.ADMIN_MENU_LINK_3}</a></div>
+                <div class="marg"><a href="http://shopcms.ru/news.html">{$smarty.const.ADMIN_MENU_LINK_4}</a></div>
+                      <div class="marg"><a href="http://shopcms.ru/files.html">{$smarty.const.ADMIN_MENU_LINK_5}</a></div>
+                       <div class="marg"><a href="http://shopcms.ru/license.html">{$smarty.const.ADMIN_MENU_LINK_6}</a></div>
+        </td>
+ </tr>
+
+</table>
+</td>
+</tr>
+</table>
+
+{/if}
+<br><br>
+</td>
+        </tr>
+       </table>
+    </td>
+  </tr>
+</table>

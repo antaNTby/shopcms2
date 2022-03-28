@@ -1,0 +1,177 @@
+	{*Шаблон товара*}
+	<div id="tabs_block">
+	<div id="tabs">
+		{*Заголовки табов*}
+		<ul>
+			<li class="tabs_active">
+				<a href="javascript:void(0)" class="tabs_name">ОБЗОР</a>
+			</li>
+		</ul>
+		
+		{*Описания табов*}
+		<ul id="tabs_doc">
+			<li class="elem_block_imp">
+				<div class="tabs_doc">
+								
+					{*Описание картинки*}
+					<div id="tabs_picture_desc">{$imgTextWarning}</div><br>
+					
+					{*Цена*}
+					<div id="tabs_price">{$product_info.Price} руб</div><br>
+					
+					{*Кнопка Купить*}
+					<div id="tabs_buy_button"><a href="javascript:document.getElementById('robo').submit();">Купить сейчас</a>{$product_info.BuyButton}</div><br>
+					
+					{*Другие способы оплаты*}
+					<div id="tabs_other_buy"><a href="/index.php?buy=1&productID={$product_info.productID}">Другие способы оплаты</a></div>
+					
+					{*Картинка*}
+					<div id="tabs_zoom_moving"></div>
+					
+					{*Галерея мини-картинок*}
+					<div style="clear:both"></div>
+					<ul id="tabs_galery">
+						
+						{section name=i loop=$product_info.pictures}
+							<li>
+								<a href="javascript:void(0)" onclick="ZoomMoving(this)"><img src="data/pictures_tpl/{$product_info.folder_pictures}/80/{$product_info.pictures[i]}"></a>
+							</li>
+						{/section}
+						
+					</ul>
+					
+					<div class="prod_description"></div>
+					
+					{*Похожие карты*}
+					<div style="clear:both"></div>
+					<div id="tabs_other_prod">
+						<div id="tabs_other_prod_name">Похожие карты</div>
+						<div id="tabs_other_prod_galery">
+							<ul>
+								{section name=j loop=$recomeds1}
+									{if $smarty.section.j.index<5}
+										<li style="margin-bottom: 25px !important;">
+											<a href="{$recomeds1[j].UID}.html">
+												<img src="{$recomeds1[j].img}"><br>
+												<p class="tabs_other_prod_list">{$recomeds1[j].name}</p><br>
+											</a>
+											<p class="tabs_other_prod_price">{$recomeds1[j].Price}</p>
+										</li>
+									{/if}
+								{/section}
+								
+								{section name=k loop=$recomeds2}
+									{if $smarty.section.k.index<5}
+										<li style="margin-bottom: 25px !important;">
+											<a href="{$recomeds2[k].UID}.html">
+												<img src="{$recomeds2[k].img}"><br>
+												<p class="tabs_other_prod_list">{$recomeds2[k].name}</p><br>
+											</a>
+											<p class="tabs_other_prod_price">{$recomeds2[k].Price}</p>
+										</li>
+									{/if}
+								{/section}
+							</ul>
+						</div>
+					</div>
+					{if $cat_tree_count == 3}
+						{*Если товар области*}
+						<div id="tabs_cat_galery">
+							{if $catrescur2}
+								<hr style="clear:both">
+								<div class="prod_puncts">Карты районов {$product_info.tpl_city}</div>
+								<ul>
+									{section name=x loop=$catrescur2}
+										<li><a href="{$catrescur2[x].UID}" style="color:#007CC0">{$catrescur2[x].name}</a></li>
+									{/section}
+								</ul>
+							{/if}
+							{if $catrescur}
+								<hr style="clear:both">
+								<div class="prod_puncts">Карты населенных пунктов {$product_info.tpl_city}</div>
+								<ul>
+									{section name=x loop=$catrescur}
+										<li><a href="{$catrescur[x].UID}" style="color:#007CC0">{$catrescur[x].name}</a></li>
+									{/section}
+								</ul>
+							{/if}
+						</div>
+					{elseif $cat_tree_count == 4}
+						{*Если товар района*}
+						<div id="tabs_cat_galery">
+							{if $cat_tree[2].child[0]}
+								<hr style="clear:both">
+								<div class="prod_puncts">Карты районов и городов {$cat_tree[2].name|substr:6}</div>
+								<ul>
+									{section name=x loop=$cat_tree[2].child[0]}
+										<li><a href="{$cat_tree[2].child[0][x].UID}" style="color:#007CC0">{$cat_tree[2].child[0][x].name}</a></li>
+									{/section}
+								</ul>
+							{/if}
+							{if $catrescur}
+								<hr style="clear:both">
+								<div class="prod_puncts">Карты населенных пунктов {$product_info.tpl_city}</div>
+								<ul>
+									{section name=x loop=$catrescur}
+										<li><a href="{$catrescur[x].UID}" style="color:#007CC0">{$catrescur[x].name}</a></li>
+									{/section}
+								</ul>
+							{/if}
+						</div>
+					{elseif $cat_tree_count == 5}
+						{*Если товар населенного пункта*}
+						<div id="tabs_cat_galery">
+							{if $cat_tree[3].child[0]}
+								<hr style="clear:both">
+								<div class="prod_puncts">Карты населенных пунктов {$product_info.tpl_city}</div>
+								<ul>
+									{section name=x loop=$cat_tree[3].child[0]}
+										<li><a href="{$cat_tree[2].child[0][x].UID}" style="color:#007CC0">{$cat_tree[3].child[0][x].name}</a></li>
+									{/section}
+								</ul>
+							{/if}
+						</div>
+					{/if}
+					{*<div id="tabs_cat">
+					<div id="tabs_cat_galery">
+						<hr style="clear:both">
+						<div class="cat_puncts">Карты районов</div>
+						<ul>
+							{section name=c loop=$cat_tree}
+								{if $smarty.section.c.last}
+									{section name=s loop=$cat_tree[c.index_prev].child[0]}
+										<li><a href="{$cat_tree[c.index_prev].child[0][s].UID}" style="color:#007CC0">{$cat_tree[c.index_prev].child[0][s].name}</a></li>
+									{/section}
+								{/if}
+							{/section}
+						</ul>
+					</div>
+					</div>*}
+				</div>
+			</li>
+		</ul>
+	</div>
+	</div>
+	<div style="display: none" id="prod_desc">{$product_info.description}</div>
+	{literal}
+	<script type="text/javascript">
+	$(document).ready(function(){
+		//Добавление просмотрщика изображений ZoomMoving
+		var mol = MovingObjectsLibrary();
+		var zm = mol.ZoomMoving({
+			main_obj: document.getElementById("tabs_zoom_moving"),
+			big_left: -580,
+			big_top: 0,
+			big_width: 550,
+			big_height: 475,
+			big_real_width: 900,
+			big_real_height: 900,
+			little_width: 380,
+			little_height: 380,
+			little_href: "{/literal}{$product_info.big_picture}{literal}", 
+			big_href: "{/literal}{$product_info.full_picture}{literal}"
+		});
+	});
+	</script>
+	{/literal}
+	

@@ -1,0 +1,38 @@
+{* Шаблон формы обратной связи *}
+
+			<form name="formfeedback" id="formfeedback" method="post" action="index.php" class="niceform">
+			{if $sent eq NULL}
+			<p>{$smarty.const.TPL_FEEDBACK_MESSAGE}</p>
+			<p>{if $error ne NULL}<div class="ob"><span>{if $error eq 2}{$smarty.const.ERR_WRONG_CCODE}{elseif $error eq 3}{$smarty.const.ERR_WRONG_POST}{else}{$smarty.const.FEEDBACK_ERROR_FILL_IN_FORM}{/if}</span></div>{/if}</p>
+			<section class="product clearfix">
+				<div class="fr-title">
+						<h2>{$header}</h2>	
+				</div>
+				<div class="form-block">
+							<p>{$smarty.const.CUSTOMER_EMAIL}</p>
+							<input type="text" name="customer_email" value="{$customer_email|replace:"\"":"&quot;"}" />
+							<p>{$smarty.const.TPL_FEEDBACK_PHONE}</p>
+							<input type="text" name="phone" value="{$phone|replace:"\"":"&quot;"}" />
+							<div class="subscribe">
+								<p>{$smarty.const.FEEDBACK_CUSTOMER_MESSAGE_TEXT}:</p>
+								<input name="message_text" value="{$smarty.get.map|replace:"<":"&lt;"}{$message_text|replace:"<":"&lt;"}">
+							</div>
+				</div>
+			</section>
+			<input type="hidden" name="send" value="yes" /><input type="hidden" name="feedback" value="yes" />
+			<input type="submit" value="{$smarty.const.OK_BUTTON3}" class="btn btn-cart">
+			<p>{$smarty.const.TPL_CALLBACK_WRITE_US_EMAIL} <a href="mailto:{$smarty.const.CONF_GENERAL_EMAIL}">{$smarty.const.CONF_GENERAL_EMAIL}</a></p>
+			{else}
+			<section class="product clearfix">
+				<div class="product-block">
+					<div class="pr-title">
+						<p>{$header}</p>
+					</div>
+				</div>
+				<div class="description second-des">
+					{$smarty.const.FEEDBACK_SENT_SUCCESSFULLY}<br/>
+				</div>
+			</section>
+			<p><input type="button" onclick="window.location.href='index.php'; return false;" value="Продолжить" class="btn btn-cart"></p>
+			{/if}
+			</form>

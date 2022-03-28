@@ -1,0 +1,2228 @@
+* {
+	margin: 0 auto;
+	padding: 0;
+}
+
+html {
+	font: 400 18px Roboto;
+	background-color: #ccc;
+}
+
+body {
+	width: 100%;
+	height: 100%;
+}
+
+h1, h2, h3, h4 p {
+	color: #424242;
+}
+
+ul {
+	padding-left: 0;
+}
+li {
+	list-style: none;
+}
+a {
+	text-decoration: none;
+}
+
+.fa {
+	font-size: 18px;
+}
+
+.container {
+	width: 100%;
+	height: 100%;
+	position: relative;
+	z-index: 100;
+}
+/* Стили шапки сайта */
+.header {
+	padding: 15px 20px 17px 20px;
+	background-color: #fff;
+	box-shadow: 1px 1px 10px rgba(122,122,122,0.5);
+	position: relative;
+	z-index: 101;
+}
+.table-overflow {
+	overflow: auto;
+	padding: 25px 0;
+}
+.header .icon {
+	width: 17px;
+	height: 17px;
+	display: block;
+	background-repeat: no-repeat;
+	-webkit-background-size: 17px;
+	background-size: 17px;
+	position: relative;
+	top: 3px;
+}
+
+.user {
+	background-image: url(../img/user.png);
+}
+
+.cart1 {
+	background-image: url(../img/cart2.png);
+} 
+
+.icons {
+	float: right;
+	position: relative;
+	top: 3px;
+}
+.icons a {
+	float: left;
+	margin-left: 5px;
+	color: #464646;
+}
+
+.items-num {
+	display: block;
+	background-color: #fff;
+	width: 14px;
+	height: 14px;
+	font: 500 14px Roboto;
+	text-align: center;
+	line-height: 1.1;
+	border: 2px solid #0084ce;
+	border-radius: 50%;
+	color: #0084ce;
+	position: absolute;
+	top: -5px;
+	left: 77px;
+	z-index: 103;
+}
+
+.header .uk-button {
+	float: left;
+	padding: 0;
+	background-color: transparent;
+	position: relative;
+	top: -3px;
+}
+
+.uk-button a {
+	color: #2c2c2c;
+}
+
+.uk-offcanvas-bar {
+	/* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#2d3f51+0,48627b+100 */
+background: #2d3f51; /* Old browsers */
+background: -moz-linear-gradient(left,  #2d3f51 0%, #48627b 100%); /* FF3.6-15 */
+background: -webkit-linear-gradient(left,  #2d3f51 0%,#48627b 100%); /* Chrome10-25,Safari5.1-6 */
+background: linear-gradient(to right,  #2d3f51 0%,#48627b 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#2d3f51', endColorstr='#48627b',GradientType=1 ); /* IE6-9 */
+}
+
+.uk-offcanvas-bar ul {
+	display: block;
+}
+
+.uk-offcanvas-bar li a {
+	display: block;
+	padding: 18px 10px;
+	color: #fff;
+	font: 300 18px Roboto;
+}
+
+.uk-offcanvas-bar li a > span {
+	display: inline-block;
+}
+
+.ico {
+	padding: 0;
+	width: 20px;
+	height: 20px;
+	background-image: url(../img/icons-sm.png);
+	background-repeat: no-repeat;
+	background-size: 213px 20px;
+	margin-right: 5px;
+	position: relative;
+	top: 4px;
+}
+
+.icoopl {
+	background-image: url(../img/icoopl.png);
+	padding: 0;
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-size: 213px 20px;
+	margin-right: 5px;
+	position: relative;
+	top: 4px;
+}
+
+.icopol {
+	background-image: url(../img/icopol.png);
+	padding: 0;
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-size: 213px 20px;
+	margin-right: 5px;
+	position: relative;
+	top: 4px;
+}
+
+.iconas {
+	background-image: url(../img/iconas.png);
+	padding: 0;
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-size: 213px 20px;
+	margin-right: 5px;
+	position: relative;
+	top: 4px;
+}
+
+.cart {
+	background-position: -24px 0;
+}
+.reg {
+	background-position: -48px 0;
+}
+.cont {
+	background-position: -71px 0;
+}
+.gar {
+	background-position: -99px 0;
+}
+.dos {
+	background-position: -123px 0;
+}
+.pho {
+	background-position: -148px 0;
+}
+.mail {
+	background-position: -171px 0;
+}
+.full {
+	background-position: -195px 0;
+}
+
+.logo a {
+	display: block;
+	width: 161px;
+	height: 32px;
+	margin-left: 10px;
+	float: left;
+	background-image: url(../img/logo-2.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	position: relative;
+	top: -3px;
+}
+
+/* Конец стили шапки сайта */
+
+/* ======================== */
+
+/* Стили основной контент */
+
+.main-content {
+	padding: 20px 20px;
+	background-color: #f0f0f0;
+}
+
+.input-search {
+	height: 37px;
+	margin-bottom: 10px;
+}
+
+.input-search .search {
+	width: 100%;
+	height: 37px;
+	border: none;
+	padding-left: 34px;
+	box-shadow: 0 2px 8px rgba(122,122,122,0.5);
+	font-size: 16px;
+	border-radius: 2px;
+}
+
+.input-search a {
+	display: block;
+	width: 15px;
+	height: 15px;
+	background-repeat: no-repeat;
+	-webkit-background-size: 15px;
+	background-size: 15px;
+	position: relative;
+	bottom: 26px;
+}
+
+.input-search .loop {
+	background-image: url(../img/loop.png);
+	left: 10px;
+}
+
+.input-search .close {
+	background-image: url(../img/close.png);
+	right: 10px;
+}
+
+.back-link {
+	font: 400 18px Roboto;
+	position: relative;
+	right: 15px;
+	width: 100%;
+	color: #424242;
+}
+
+.back-link .arrow-left {
+	margin-right: 5px;
+	padding: 7px 8px;
+	display: inline-block;
+	background-image: url(../img/arrow-left.png);
+	background-repeat: no-repeat;
+	-webkit-background-size: contain;
+	background-size: contain;
+}
+
+.main-nav {
+	margin-top: 15px;
+}
+
+.main-nav li {
+	border-bottom: 1px solid #ccc;
+	list-style: disc;
+	list-style-position: inside;
+	color: #838383;
+}
+.main-nav a {
+	display: block;
+	padding: 15px 0;
+	color: #124875;
+}
+.main-nav a > .fa {
+	float: right;
+	color: #838383;
+}
+
+.main-nav strong {
+	color: #464646;
+}
+
+.nav-bottom {
+	width: 100%;
+}
+
+.nav-bottom li {
+	width: 50%;
+	float: left;
+	text-align: center;
+	display: block;
+	font-size: 11px;
+	padding: 0 0 15px 0;
+	color: #124875;
+}
+
+.ico-b {
+	display: block;
+	width: 26px;
+	height: 26px;
+	background-image: url(../img/sp-small.png);
+	background-repeat: no-repeat;
+	background-size: 341px 25px;
+}
+
+.icon-1 { background-position: 0 0; }
+.icon-2 { background-position: -143px 0; }
+.icon-3 { background-position: -29px 0; }
+.icon-4 { background-position: -171px 0; }
+.icon-5 { background-position: -57px 0; }
+.icon-6 { background-position: -199px 0; }
+.icon-7 { background-position: -313px 0; }
+.icon-8 { background-position: -228px 0; }
+.icon-9 { background-position: -85px 0; }
+.icon-10 { background-position: -256px 0; }
+.icon-11 { background-position: -114px 0; }
+.icon-12 { background-position: -284px 0; }
+
+.toggle-bt {
+	width: 100%;
+	height: 40px;
+	border: none;
+	background-color: transparent;
+	color: #124875;
+}
+
+.bt-hide {
+	display: none;
+}
+
+.hide-list {
+	display: none;
+}
+
+.hide-list li {
+	float: left;
+	text-align: center;
+	width: 24%;
+}
+
+.hide-list li a {
+	display: block;
+	color: #124875;
+	padding: 6px 0;
+	margin: 4px;
+	background-color: #eaf2f5;
+	font: 400 12px Roboto;
+	box-shadow: 0 1px 2px rgba(55, 55, 55, 0.5)
+}
+
+.breadcrumbs {
+	margin: 20px 0 15px 0;
+}
+
+.breadcrumbs a {
+	font: 400 14px Roboto;
+	display: block;
+	float: left;
+	background-color: #124875;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	padding: 6px 5px;
+	color: #fff;
+	border-radius: 2px;
+}
+
+.breadcrumbs a:last-child {
+	background-color: #757575;
+}
+
+.product-block {
+	background-color: #fff;
+	padding: 10px;
+	margin-bottom: 15px;
+	box-shadow: 0 2px 8px rgba(122,122,122,0.5);
+}
+
+.pr-title h2 {
+	font: 500 14px Roboto;
+	margin-bottom: 5px;
+}
+
+.pr-title h2 a {
+	color: #124875;
+}
+
+.pr-title p {
+	font: 400 16px Roboto;
+	margin-bottom: 5px;
+}
+
+.list-address li {
+	display: inline-block;
+}
+
+.list-address li a {
+	display: block;
+	background-color: #e9f1f4;
+	color: #124875;
+	padding: 8px 4px;
+	margin: 5px;
+	box-shadow: 0 1px 2px rgba(55, 55, 55, 0.5);
+	font-size: 13px;
+}
+
+.img {
+	width: 220px;
+	height: 140px;
+	margin: 0 auto;
+	background-color: #fff;
+	overflow: hidden;
+	position: relative;
+	border-radius: 2px;
+}
+
+.pr-img {
+	display: block;
+	width: 100%;
+	margin: 0;
+	font: 400 13px Roboto;
+}
+
+.pr-img img {
+	width: 100%;
+	position: absolute;
+	top: -10px;
+	left: 0;
+}
+
+.pr-img h4 {
+	font: 400 14px Roboto;
+}
+
+.container-img {
+	position: relative;
+	overflow: hidden;
+	text-align: center;
+}
+
+.product-block .variable-width div img {
+	width: 210px;
+	height: 135px;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	margin: 0 10px 0 0;
+}
+
+.product-block > a {
+	display: inline-block;
+	background-color: #fff;
+	border: 1px solid #eb212e;
+	color: #eb212e;
+	padding: 2px 5px;
+	margin: 0 2px 6px 0;
+	font: 400 16px Roboto;
+	border-radius: 2px;
+}
+
+.pr-cost > p {
+	color: #124875;
+	font: 300 22px Roboto;
+	text-align: center;
+	margin-top: 15px;
+}
+
+.small {
+	font: 400 14px Roboto;
+}
+
+.big {
+	font: 400 18px Roboto;
+}
+
+.plus-minus {
+	text-align: center;
+}
+
+.plus-minus > p {
+	margin: 5px 20px;
+}
+
+.pr-cost .plus-minus >* {
+	display: inline-block;
+}
+
+.plus-minus button {
+	color: #999999;
+	border: none;
+	background-color: transparent;
+	padding: 2px 4px;
+}
+
+.total-cost {
+	width: 100%;
+	text-align: center;
+	margin-bottom: 5px;
+}
+
+.total-cost p {
+	font: 300 18px Roboto;
+	display: inline;
+}
+
+.total-cost p:last-child {
+	color: #eb212e;
+	font: 300 22px Roboto;
+}
+
+.description h3 {
+	font: 400 18px Roboto;
+	margin: 15px 0 0 0;
+}
+
+.description p {
+	font: 300 14px Roboto;
+}
+
+/* Формы заказа */
+
+.fr-title h2 {
+	font: 500 20px Roboto;
+	margin: 10px 0 5px 0;
+	color: #124875;
+}
+
+.form-block {
+	background-color: #fff;
+	margin: 15px 0;
+	border-radius: 3px;
+}
+
+.form-block p {
+	font: 400 16px Roboto
+}
+
+.form-block input {
+	border: none;
+	border-bottom: 1px solid #ccc;
+	width: 95%;
+	padding: 4px 4px;
+	font: 400 20px Roboto;
+	margin-bottom: 10px;
+}
+
+.form-block input:focus {
+	outline: none;
+}
+
+.form-block input[type="checkbox"] {
+	display: none;
+}
+
+.form-block input[type="radio"] {
+	display: none;
+}
+
+.form-block label {
+	display: inline-block;
+	cursor: pointer;
+	position: relative;
+	width: 114px;
+	height: auto;
+	background-color: #f2f2f2;
+	box-shadow: 2px 2px 3px #ccc;
+	margin-right: 10px;
+	margin-bottom: 5px;
+	text-align: center;
+	font: 400 16px Roboto;
+	color: #858585;
+	border-radius: 2px;
+	padding: 6px 0;
+}
+
+.form-block label:before {
+	content: '\2713';
+	position: absolute;
+	top: -15px;
+	right: -10px;
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	background-color: #fff;
+	box-shadow: 1px 1px 2px #ccc;
+	border-radius: 50%;
+}
+
+.form-block input[type="checkbox"]:checked + label {
+	color: #124875;
+	box-shadow: inset 1px 1px 2px 1px #ccc;
+	font: 500 16px Roboto;
+}
+
+.form-block input[type="radio"]:checked + label {
+	color: #124875;
+	box-shadow: inset 1px 1px 2px 1px #ccc;
+	font: 500 16px Roboto;
+}
+
+input[type="checkbox"]:checked + label:before {
+	content: "\2713";
+	color: #4eb801;
+	font-size: 16px;
+	text-align: center;
+}
+
+input[type="radio"]:checked + label:before {
+	content: "\2713";
+	color: #4eb801;
+	font-size: 16px;
+	text-align: center;
+}
+
+.payment label {
+	width: 115px;
+	height: auto;
+	font: 400 11px Roboto;
+	margin-bottom: 15px;
+	padding: 8px 0;
+}
+
+.payment input[type="checkbox"]:checked + label {
+	font: 500 11px Roboto;
+}
+
+.payment input[type="radio"]:checked + label {
+	font: 500 11px Roboto;
+}
+
+.subscribe label {
+	box-shadow: none;
+	background-color: #fff;
+	display: block;
+	width: 85%;
+	height: auto;
+	text-align: left;
+	padding: 10px 0 10px 35px;
+	border-bottom: 1px solid #ccc;
+}
+
+.subscribe label:before {
+	content: "";
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	color: #124875;
+	top: 10px;
+	left: 0;
+	box-shadow: none;
+	background-color: transparent;
+}
+
+.subscribe input[type="radio"]:checked + label {
+	box-shadow: none;
+	color: #464646;
+}
+
+.subscribe input[type="radio"]:checked + label:before {
+	content: "\2713";
+	text-align: center;
+	color: #124875;
+}
+
+/* Конец формы заказа */
+
+.btn {
+	border: none;
+	width: 100%;
+	height: 40px;
+	color: #fff;
+	background-color: #124875;
+	border-radius: 3px;
+	cursor: pointer;
+}
+.product-block .btn-ovg {
+	margin-bottom: 15px;
+	display: inline-block;
+	width: 100%;
+	height: 40px;
+	background-color: #fff;
+	border: 1px solid #124875;
+	color: #124875;
+	border-radius: 3px;
+	cursor: pointer;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+}
+.btn a {
+	display: block;
+	color: #fff;
+	height: 100%;
+	line-height: 2.4;
+}
+.product-block .btn-ovg a {
+	color:#07D;
+}
+.btn .fa {
+	margin-right: 10px;
+}
+
+.bt {
+	width: 100%;
+	height: 40px;
+	background-color: #fff;
+	border: 1px solid #124875;
+	color: #124875;
+	border-radius: 3px;
+	cursor: pointer;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+}
+
+.pagination {
+	width: 300px;
+	margin: 0 auto;
+}
+
+.pagination .active-bt-pag a,  .pagination .active-page span{
+	background-color: #124875 !important;
+	box-shadow: 0 1px 4px rgba(122,122,122,0.5);
+	border-radius: 2px;
+	color: #fff !important;
+}
+
+.pagination li a, .pagination li.active-page span {
+	display: block;
+	float: left;
+	background-color: #fff;
+	box-shadow: 0 1px 4px rgba(122,122,122,0.5);
+	border-radius: 2px;
+	margin: 15px 5px 0 5px;
+	padding: 4px 10px;
+	color: #424242;
+	text-decoration: none;
+	text-align: center;
+	font: 700 14px Roboto;
+}
+
+.pagination li:last-child a {
+	background-color: transparent;
+	box-shadow: none;
+	margin: 15px 0;
+}
+.pagination li:first-child a {
+	background-color: transparent;
+	box-shadow: none;
+	margin: 15px 0;
+}
+
+.arrow-right {
+	display: inline-block;
+	background-image: url(../img/arrow-right.png);
+	background-repeat: no-repeat;
+	-webkit-background-size: contain;
+	background-size: contain;
+	padding: 10px 9px;
+}
+.arrow-left {
+	display: inline-block;
+	background-image: url(../img/arrow-left.png);
+	background-repeat: no-repeat;
+	-webkit-background-size: contain;
+	background-size: contain;
+	padding: 10px 9px;
+}
+
+/*Конец стили основной контент */
+
+.footer {
+	padding: 15px 20px 17px 20px;
+	background-color: #fff;
+	position: relative;
+	z-index: 101;
+}
+
+.footer .icon {
+	width: 17px;
+	height: 17px;
+	display: block;
+	background-repeat: no-repeat;
+	-webkit-background-size: 17px;
+	background-size: 17px;
+	position: relative;
+	top: 3px;
+}
+
+.footer .uk-button {
+	float: left;
+	padding: 0;
+	background-color: transparent;
+	position: relative;
+	top: -3px;
+}
+
+/* ======================== */
+
+/* Дополнительные стили */
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.left {
+	float: left !important;
+}
+.right {
+	float: right !important;
+}
+
+.hidden {
+	display: none;
+}
+
+.visible {
+	display: block;
+}
+
+.main-nav .mn-active {
+	list-style: none;
+}
+
+.block-li > li {
+	display: inline-block;
+}
+
+.main-nav .mn-disabled a{
+	margin-left: 15px;
+	color: #424242;
+	cursor: default;
+	pointer-events: none;
+}
+
+.border-b {
+	border-bottom: 1px solid #ccc;
+}
+
+.bt-active {
+	background-color: #ccc !important;
+}
+
+@media all and (-webkit-min-device-pixel-ratio: 1.5) {
+
+.ico {
+	background-image: url(../img/icons-retina.png);
+	background-size: 213px 20px;
+}  
+
+.icoopl {
+	background-image: url(../img/icoopl.png);
+	background-size: 213px 20px;
+}
+
+.icopol {
+	background-image: url(../img/icopol.png);
+	background-size: 213px 20px;
+}
+
+.iconas {
+	background-image: url(../img/iconas.png);
+	background-size: 213px 20px;
+}
+
+.ico-b {
+	background-image: url(../img/sp-retina.png);
+	background-repeat: no-repeat;
+	background-size: 341px 25px;
+}
+
+/*Конец дополнительные стили */
+
+/* ========================= */
+
+/* Минимальная ширина экрана 480 пикселей */
+
+@media screen and (min-width: 480px) {
+
+html {
+	font: 400 22px Roboto;
+}
+
+.fa {
+	font-size: 22px;
+}
+
+.header {
+	padding: 18px 25px 21px 25px;
+}
+
+.uk-button {
+	top: 1px !important;
+}
+
+.logo a{
+	width: 161px;
+	height: 37px;
+	margin-left: 15px;
+}
+
+.header .icon {
+	width: 22px;
+	height: 22px;
+	-webkit-background-size: 22px;
+	background-size: 22px;
+	top: 3px;
+}
+
+.items-num {
+	width: 17px;
+	height: 17px;
+	font: 500 16px Roboto;
+	line-height: 1.1;
+	top: -5px;
+	left: 110px;
+}
+
+.icons a {
+	margin-left: 10px;
+}
+
+.uk-offcanvas-bar li a {
+	padding: 21px 12px;
+	font: 300 22px Roboto;
+}
+
+.main-content {
+	padding: 25px 25px;
+}
+
+.input-search {
+	margin-bottom: 15px;
+}
+
+.input-search .search {
+	padding-left: 44px;
+	font-size: 18px;
+}
+
+.back-link {
+	font: 400 20px Roboto;
+	right: 0;
+}
+
+.back-link i {
+	margin-right: 15px;
+}
+
+.breadcrumbs {
+	margin: 20px 0 15px 0;
+}
+
+.breadcrumbs a {
+	font: 400 16px Roboto;
+	margin-right: 5px;
+	padding: 8px 6px;
+	border-radius: 2px;
+}
+
+.main-nav a {
+	padding: 20px 0;
+}
+
+.main-nav a > .fa {
+	font-size: 22px;
+}
+
+.nav-bottom li a {
+	font-size: 14px;
+	padding: 0 0 20px 0;
+}
+
+.product-block {
+	padding: 20px;
+	margin-bottom: 20px;
+	box-shadow: 0 2px 8px rgba(122,122,122,0.5);
+}
+
+.pr-title h2 {
+	font: 500 20px Roboto;
+	margin-bottom: 10px;
+}
+
+.pr-title p {
+	font: 400 22px Roboto;
+	margin-bottom: 5px;
+}
+
+.list-address li a {
+	padding: 8px 4px;
+	margin: 5px;
+	box-shadow: 0 1px 2px rgba(55, 55, 55, 0.5);
+	font-size: 18px;
+}
+
+.img {
+	width: 300px;
+	height: 190px;
+	margin: 0 auto;
+	border-radius: 2px;
+}
+
+.pr-img {
+	font: 400 18px Roboto;
+}
+
+.pr-img h4 {
+	font: 400 20px Roboto;
+}
+
+.pr-img img {
+	top: -10px;
+	left: 0;
+}
+
+.slick-dots li {
+	margin: 1px;
+}
+
+.slick-dots li button:before {
+	font-size: 30px;
+}
+
+.product-block .variable-width div img {
+	width: 270px;
+	height: 175px;
+	border: 1px solid #ccc;
+	border-radius: 2px;
+	margin: 0 10px 0 0;
+}
+
+.pr-cost > p {
+	font: 300 30px Roboto;
+}
+
+.pr-cost > span {
+	margin: 5px 0 5px 0;
+}
+
+.small {
+	font: 400 20px Roboto;
+}
+
+.big {
+	font: 400 26px Roboto;
+}
+
+.plus-minus {
+	text-align: center;
+}
+
+.plus-minus > p {
+	margin: 5px 30px;
+}
+
+.pr-cost .plus-minus >* {
+	font-size: 26px;
+}
+
+.plus-minus button {
+	padding: 2px 4px;
+}
+
+.total-cost p {
+	font: 400 20px Roboto;
+	line-height: 2.0;
+}
+
+.total-cost p:last-child {
+	font: 300 30px Roboto;
+}
+
+.description h3, .product-block h3 {
+	font: 400 24px Roboto;
+	margin: 15px 0 0 0;
+}
+
+.product-block h3 {
+	margin-bottom: 15px;
+}
+
+.product-block > a {
+	border: 1px solid #eb212e;
+	padding: 3px 9px;
+	margin: 0 2px 6px 0;
+	font: 400 22px Roboto;
+	border-radius: 2px;
+}
+
+.description p {
+	font: 300 18px Roboto;
+}
+
+/* Формы заказа */
+
+.fr-title h2 {
+	font: 500 24px Roboto;
+	margin: 20px 0 10px 0;
+}
+
+.form-block {
+	margin-bottom: 15px;
+	border-radius: 3px;
+}
+
+.form-block p {
+	font: 400 20px Roboto
+}
+
+.form-block input {
+	width: 100%;
+	padding: 6px 6px;
+	font: 400 20px Roboto;
+}
+
+.form-block label {
+	width: 180px;
+	background-color: #f2f2f2;
+	box-shadow: 2px 2px 3px #ccc;
+	margin-right: 10px;
+	font: 400 16px Roboto;
+	border-radius: 2px;
+	padding: 6px 0;
+}
+
+.form-block label:before {
+	content: '\2713';
+	top: -15px;
+	right: -10px;
+	width: 25px;
+	height: 25px;
+	box-shadow: 1px 1px 2px #ccc;
+}
+
+.form-block input[type="checkbox"]:checked + label {
+	box-shadow: inset 1px 1px 2px 1px #ccc;
+	font: 500 16px Roboto;
+}
+
+.form-block input[type="radio"]:checked + label {
+	box-shadow: inset 1px 1px 2px 1px #ccc;
+	font: 500 16px Roboto;
+}
+
+input[type="checkbox"]:checked + label:before {
+	content: "\2713";
+	font-size: 16px;
+}
+
+input[type="radio"]:checked + label:before {
+	content: "\2713";
+	font-size: 16px;
+}
+
+.payment label {
+	width: 145px;
+	height: auto;
+	font: 400 14px Roboto;
+	margin-bottom: 15px;
+	padding: 8px 0;
+}
+
+.payment input[type="checkbox"]:checked + label {
+	font: 500 14px Roboto;
+}
+
+.payment input[type="radio"]:checked + label {
+	font: 500 14px Roboto;
+}
+
+.subscribe label {
+	width: 85%;
+	padding: 12px 0 12px 35px;
+	border-bottom: 1px solid #ccc;
+	box-shadow: none;
+	background-color: #fff;
+}
+
+.subscribe label:before {
+	content: "";
+	color: #eb212e;
+	top: 10px;
+	left: 0;
+	box-shadow: none;
+	background-color: transparent;
+}
+
+.subscribe input[type="radio"]:checked + label {
+	border-bottom: 1px solid #ccc;
+	box-shadow: none;
+	color: #464646;
+}
+
+/* Конец формы заказа */
+
+.btn {
+	height: 50px;
+}
+
+.btn .fa {
+	margin-right: 10px;
+}
+
+.bt {
+	height: 50px;
+	border: 1px solid #124875;
+	color: #124875;
+	border-radius: 3px;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+}
+
+.pagination {
+	width: 395px;
+	margin: 0 auto;
+}
+
+.pagination .active-bt-pag a {
+	box-shadow: 0 1px 4px rgba(122,122,122,0.5);
+	border-radius: 2px;
+	color: #fff;
+}
+
+.pagination li a {
+	box-shadow: 0 1px 4px rgba(122,122,122,0.5);
+	border-radius: 2px;
+	margin: 15px 10px 0 10px;
+	padding: 6px 12px;
+	font: 700 16px Roboto;
+}
+
+.footer {
+	padding: 18px 25px 21px 25px;
+}
+
+.footer .icon {
+	width: 22px;
+	height: 22px;
+	-webkit-background-size: 22px;
+	background-size: 22px;
+	top: 3px;
+}
+
+}
+
+/* Минимальная ширина экрана 768 пикселей */
+
+@media screen and (min-width: 768px) {
+
+html {
+	font: 400 26px Roboto;
+}
+
+.header {
+	padding: 22px 35px 25px 35px;
+}
+
+.icons .fa {
+	margin-left: 10px;
+}
+
+.fa {
+	font-size: 30px;
+}
+
+.logo a{
+	width: 170px;
+	height: 37px;
+	margin-left: 20px;
+}
+
+.header .icon {
+	width: 26px;
+	height: 26px;
+	-webkit-background-size: 26px;
+	background-size: 26px;
+	top: 3px;
+}
+
+.items-num {
+	width: 17px;
+	height: 17px;
+	font: 500 16px Roboto;
+	line-height: 1.1;
+	top: -5px;
+	left: 192px;
+}
+
+.icons a {
+	margin-left: 20px;
+}
+
+.uk-offcanvas-bar {
+	width: 350px;
+}
+
+.uk-offcanvas-bar li a {
+	font: 300 26px Roboto;
+}
+
+.ico {
+	padding: 0;
+	width: 30px;
+	height: 30px;
+	background-image: url(../img/icons-sm-30.png);
+	background-repeat: no-repeat;
+	background-size: 319px 30px;
+	margin-right: 5px;
+	position: relative;
+	top: 8px;
+}
+
+.cart {
+	background-position: -36px 0;
+}
+.reg {
+	background-position: -71px 0;
+}
+.cont {
+	background-position: -108px 0;
+}
+.gar {
+	background-position: -148px 0;
+}
+.dos {
+	background-position: -183px 0;
+}
+.pho {
+	background-position: -223px 0;
+}
+.mail {
+	background-position: -257px 0;
+}
+.full {
+	background-position: -293px 0;
+}
+
+.main-content {
+	padding: 25px 25px;
+}
+
+.input-search {
+	margin-bottom: 35px;
+}
+
+.input-search .search {
+	height: 57px;
+	padding-left: 58px;
+	font-size: 26px;
+	border-radius: 4px;
+}
+
+.input-search a {
+	width: 25px;
+	height: 25px;
+	-webkit-background-size: 25px;
+	background-size: 25px;
+	bottom: 40px;
+}
+
+.back-link {
+	font: 400 28px Roboto;
+	right: 20px;
+}
+
+.back-link .arrow-left {
+	margin-right: 15px;
+	padding: 12px 15px;
+}
+
+.breadcrumbs {
+	margin: 50px 0 15px 0;
+}
+
+.breadcrumbs a {
+	font: 400 18px Roboto;
+	margin-right: 5px;
+	padding: 8px 8px;
+	border-radius: 3px;
+}
+
+.main-nav a {
+	padding: 30px 0;
+}
+
+.main-nav a > .fa {
+	font-size: 26px;
+}
+
+.nav-bottom li a {
+	font-size: 24px;
+	padding: 0 0 25px 0;
+}
+
+.ico-b {
+	width: 37px;
+	height: 37px;
+	background-image: url(../img/sp-sm-36.png);
+	background-size: 478px 35px;
+	margin-bottom: 10px;
+}
+
+.icon-1 { background-position: 0 0; }
+.icon-2 { background-position: -200px 0; }
+.icon-3 { background-position: -40px 0; }
+.icon-4 { background-position: -240px 0; }
+.icon-5 { background-position: -80px 0; }
+.icon-6 { background-position: -280px 0; }
+.icon-7 { background-position: -440px 0; }
+.icon-8 { background-position: -320px 0; }
+.icon-9 { background-position: -120px 0; }
+.icon-10 { background-position: -360px 0; }
+.icon-11 { background-position: -160px 0; }
+.icon-12 { background-position: -399px 0; }
+
+.product-block {
+	padding: 25px;
+	margin-bottom: 20px;
+	box-shadow: 0 2px 8px rgba(122,122,122,0.5);
+}
+
+.hide-list li a {
+	padding: 14px 6px;
+	margin: 10px;
+	font: 400 24px Roboto;
+	box-shadow: 0 1px 2px rgba(55, 55, 55, 0.5);
+}
+
+.list-address li a {
+	padding: 12px 8px;
+	margin: 10px;
+	box-shadow: 0 1px 2px rgba(55, 55, 55, 0.5);
+	font-size: 30px;
+}
+
+.pr-title h2 {
+	font: 500 32px Roboto;
+	margin-bottom: 10px;
+}
+
+.pr-title p {
+	font: 400 30px Roboto;
+	margin-bottom: 5px;
+}
+
+.img {
+	width: 560px;
+	height: 340px;
+	margin: 0 auto;
+	border-radius: 2px;
+}
+
+.pr-img {
+	font: 400 28px Roboto;
+}
+
+.pr-img h4 {
+	font: 400 32px Roboto;
+}
+
+.pr-img img {
+	top: -40px;
+	left: 0;
+}
+
+.slick-dots li {
+	margin: 2px;
+}
+
+.slick-dots li button:before {
+	font-size: 32px;
+}
+
+.product-block .variable-width div img {
+	width: 470px;
+	height: 275px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin: 0 10px 0 0;
+}
+
+.product-block > a {
+	border: 2px solid #eb212e;
+	padding: 5px 14px;
+	margin: 0 10px 14px 0;
+	font: 400 30px Roboto;
+	border-radius: 3px;
+}
+
+.pr-cost > p {
+	font: 300 48px Roboto;
+	margin: 13px 0;
+}
+
+.pr-cost > span {
+	margin: 15px 0 5px 0;
+}
+
+.small {
+	font: 400 28px Roboto;
+}
+
+.big {
+	font: 400 40px Roboto;
+}
+
+.plus-minus {
+	text-align: center;
+}
+
+.plus-minus > p {
+	margin: 20px 60px;
+}
+
+.pr-cost .plus-minus >* {
+	font-size: 40px;
+}
+
+.plus-minus button {
+	padding: 2px 10px;
+}
+
+.total-cost p {
+	font: 400 32px Roboto;
+	line-height: 2.0;
+}
+
+.total-cost p:last-child {
+	font: 300 48px Roboto;
+}
+
+.description h3, .product-block h3 {
+	font: 400 32px Roboto;
+	margin: 15px 0 0 0;
+}
+
+.product-block h3 {
+	margin-bottom: 15px;
+}
+
+.description p {
+	font: 300 24px Roboto;
+}
+
+.btn {
+	height: 60px;
+}
+
+.btn .fa {
+	margin-right: 10px;
+}
+
+.bt {
+	height: 70px;
+	border: 2px solid #124875;
+	color: #124875;
+	border-radius: 3px;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+	font: 400 36px Roboto;
+}
+
+/* Формы заказа */
+
+.fr-title h2 {
+	font: 500 30px Roboto;
+	margin: 25px 0 15px 0;
+}
+
+.form-block {
+	margin-bottom: 25px;
+	border-radius: 3px;
+}
+
+.form-block p {
+	font: 400 24px Roboto;
+	margin: 20px 0 20px 0;
+}
+
+.form-block input {
+	width: 100%;
+	padding: 10px 10px;
+	font: 400 26px Roboto;
+}
+
+.form-block label {
+	width: 300px;
+	background-color: #f2f2f2;
+	box-shadow: 2px 2px 3px #ccc;
+	margin-right: 20px;
+	font: 400 24px Roboto;
+	border-radius: 2px;
+	padding: 10px 0;
+}
+
+.form-block label:before {
+	content: '\2713';
+	top: -15px;
+	right: -10px;
+	width: 30px;
+	height: 30px;
+	box-shadow: 1px 1px 2px #ccc;
+}
+
+.form-block input[type="checkbox"]:checked + label {
+	box-shadow: inset 1px 1px 2px 1px #ccc;
+	font: 500 24px Roboto;
+}
+
+.form-block input[type="radio"]:checked + label {
+	box-shadow: inset 1px 1px 2px 1px #ccc;
+	font: 500 24px Roboto;
+}
+
+input[type="checkbox"]:checked + label:before {
+	content: "\2713";
+	font-size: 20px;
+}
+
+input[type="radio"]:checked + label:before {
+	content: "\2713";
+	font-size: 20px;
+}
+
+.payment label {
+	width: 245px;
+	height: auto;
+	font: 400 20px Roboto;
+	margin-bottom: 25px;
+	padding: 10px 0;
+}
+
+.payment input[type="checkbox"]:checked + label {
+	font: 500 20px Roboto;
+}
+
+.payment input[type="radio"]:checked + label {
+	font: 500 20px Roboto;
+}
+
+.subscribe label {
+	width: 90%;
+	padding: 20px 0 20px 40px;
+	border-bottom: 1px solid #ccc;
+	box-shadow: none;
+	background-color: #fff;
+	margin: 0;
+}
+
+.subscribe label:before {
+	content: "";
+	top: 20px;
+	left: 0;
+	box-shadow: none;
+	background-color: transparent;
+	font-size: 30px;
+}
+
+.subscribe input[type="radio"]:checked + label {
+	border-bottom: 1px solid #ccc;
+	box-shadow: none;
+	color: #464646;
+}
+
+.subscribe input[type="radio"]:checked + label:before {
+	content: "\2713";
+	font-size: 30px;
+	line-height: 1.1;
+}
+
+/* Конец формы заказа */
+
+.pagination {
+	width: 560px;
+	margin: 0 auto;
+}
+
+.pagination .active-bt-pag a {
+	box-shadow: 0 1px 4px rgba(122,122,122,0.5);
+	border-radius: 2px;
+	color: #fff;
+}
+
+.pagination li a {
+	box-shadow: 0 1px 4px rgba(122,122,122,0.5);
+	border-radius: 2px;
+	margin: 20px 15px 0 15px;
+	padding: 10px 18px;
+	font: 700 22px Roboto;
+}
+
+.arrow-right {
+	padding: 20px 20px;
+}
+.arrow-left {
+	padding: 20px 20px;
+}
+
+.footer {
+	padding: 22px 35px 25px 35px;
+}
+
+.footer .icon {
+	width: 26px;
+	height: 26px;
+	-webkit-background-size: 26px;
+	background-size: 26px;
+	top: 3px;
+}
+
+}
+
+/* Минимальная ширина экрана 1024 пикселей */
+
+@media screen and (min-width: 1024px) {
+
+html {
+	font: 400 50px Roboto;
+}
+
+.header {
+	padding: 30px 40px 30px 40px;
+}
+
+.uk-button {
+	top: 20px !important;
+}
+
+.icons {
+	top: 20px;
+}
+
+.icons .fa {
+	margin-left: 10px;
+}
+
+.fa {
+	font-size: 50px;
+}
+
+.logo a{
+	width: 340px;
+	height: 110px;
+	margin-left: 50px;
+}
+
+.header .icon {
+	width: 50px;
+	height: 50px;
+	-webkit-background-size: 50px;
+	background-size: 50px;
+	top: 6px;
+}
+
+.items-num {
+	width: 30px;
+	height: 30px;
+	font: 500 26px Roboto;
+	line-height: 1.2;
+	top: -8px;
+	left: 345px;
+}
+
+.icons a {
+	margin-left: 40px;
+}
+
+.uk-offcanvas-bar {
+	width: 874px;
+}
+
+.uk-offcanvas-bar li a {
+	padding: 50px 35px;
+	color: #fff;
+	font: 300 60px Roboto;
+}
+
+.ico {
+	padding: 0;
+	width: 65px;
+	height: 65px;
+	background-image: url(../img/icons.png);
+	background-repeat: no-repeat;
+	background-size: 702px 66px;
+	margin-right: 55px;
+	position: relative;
+	top: 18px;
+}
+
+.cart {
+	background-position: -79px 0;
+}
+.reg {
+	background-position: -158px 0;
+}
+.cont {
+	background-position: -239px 0;
+}
+.gar {
+	background-position: -327px 0;
+}
+.dos {
+	background-position: -403px 0;
+}
+.pho {
+	background-position: -490px 0;
+}
+.mail {
+	background-position: -566px 0;
+}
+.full {
+	background-position: -645px 0;
+}
+
+.main-content {
+	padding: 40px 40px;
+}
+
+.input-search {
+	margin-bottom: 120px;
+}
+
+.input-search .search {
+	height: 127px;
+	padding-left: 114px;
+	font-size: 50px;
+	border-radius: 6px;
+}
+
+.input-search a {
+	width: 50px;
+	height: 50px;
+	-webkit-background-size: 40px;
+	background-size: 40px;
+	bottom: 85px;
+}
+
+.input-search .loop {
+	left: 40px;
+}
+
+.input-search .close {
+	right: 40px;
+}
+
+.back-link {
+	font: 400 54px Roboto;
+	right: 20px;
+}
+
+.back-link .arrow-left {
+	margin-right: 15px;
+	padding: 25px 35px;
+	position: relative;
+	top: 5px;
+}
+
+.breadcrumbs {
+	margin: 140px 0 80px 0;
+}
+
+.breadcrumbs a {
+	font: 400 42px Roboto;
+	margin-right: 20px;
+	padding: 22px 24px;
+	border-radius: 5px;
+}
+
+.main-nav a {
+	padding: 50px 0;
+}
+
+.main-nav a > .fa {
+	font-size: 50px;
+}
+
+.nav-bottom li a {
+	font-size: 36px;
+	padding: 0 0 25px 0;
+}
+
+.ico-b {
+	width: 64px;
+	height: 64px;
+	background-image: url(../img/sp.png);
+	background-size: 860px 63px;
+	margin-bottom: 15px;
+}
+
+.icon-1 { background-position: 0 0; }
+.icon-2 { background-position: -360px 0; }
+.icon-3 { background-position: -71px 0; }
+.icon-4 { background-position: -431px 0; }
+.icon-5 { background-position: -145px 0; }
+.icon-6 { background-position: -504px 0; }
+.icon-7 { background-position: -792px 0; }
+.icon-8 { background-position: -577px 0; }
+.icon-9 { background-position: -217px 0; }
+.icon-10 { background-position: -648px 0; }
+.icon-11 { background-position: -288px 0; }
+.icon-12 { background-position: -719px 0; }
+
+
+.product-block {
+	padding: 34px;
+	margin-bottom: 20px;
+	box-shadow: 0 2px 8px rgba(122,122,122,0.5);
+}
+
+.hide-list li a {
+	padding: 14px 6px;
+	margin: 12px;
+	font: 400 39px Roboto;
+	box-shadow: 0 1px 2px rgba(55, 55, 55, 0.5);
+}
+
+.list-address li a {
+	padding: 18px 15px;
+	margin: 10px;
+	box-shadow: 0 1px 2px rgba(55, 55, 55, 0.5);
+	font-size: 39px;
+}
+
+.pr-title h2 {
+	font: 500 48px Roboto;
+	margin: 40px 0 20px 0;
+}
+
+.pr-title p {
+	font: 400 45px Roboto;
+	margin-bottom: 5px;
+}
+
+.img {
+	width: 663px;
+	height: 408px;
+	margin: 0 auto;
+	border-radius: 6px;
+}
+
+.pr-img {
+	font: 400 39px Roboto;
+}
+
+.pr-img h4 {
+	font: 400 45px Roboto;
+}
+
+.pr-img img {
+	top: -40px;
+	left: 0;
+}
+
+.slick-dots li {
+	margin: 2px;
+}
+
+.slick-dots li button:before {
+	font-size: 36px;
+}
+.product-block .variable-width div img {
+	width: 662px;
+	height: 406px;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+	margin: 0 10px 0 0;
+}
+
+.product-block > a {
+	border: 3px solid #eb212e;
+	padding: 8px 40px;
+	margin: 0 10px 14px 0;
+	font: 400 42px Roboto;
+	border-radius: 4px;
+}
+
+.pr-cost > p {
+	font: 300 72px Roboto;
+	margin: 13px 0;
+}
+
+.pr-cost > span {
+	margin: 15px 0 5px 0;
+}
+
+.small {
+	font: 400 45px Roboto;
+}
+
+.big {
+	font: 300 72px Roboto;
+}
+
+.plus-minus {
+	text-align: center;
+}
+
+.plus-minus > p {
+	margin: 30px 120px;
+}
+
+.pr-cost .plus-minus >* {
+	font-size: 54px;
+}
+
+.plus-minus button {
+	padding: 8px 18px;
+}
+
+.total-cost p {
+	font: 400 45px Roboto;
+	line-height: 2.0;
+}
+
+.total-cost p:last-child {
+	font: 300 72px Roboto;
+}
+
+.description h3, .product-block h3 {
+	font: 400 45px Roboto;
+	margin: 40px 0 0 0;
+}
+
+.product-block h3 {
+	margin-bottom: 15px;
+}
+
+.description p {
+	font: 300 40px Roboto;
+}
+
+.btn {
+	height: 121px;
+}
+
+.btn .fa {
+	margin-right: 20px;
+}
+
+.bt {
+	height: 121px;
+	border: 3px solid #124875;
+	color: #124875;
+	border-radius: 6px;
+	box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+	font: 400 60px Roboto;
+}
+
+/* Формы заказа */
+
+.fr-title h2 {
+	font: 500 54px Roboto;
+	margin: 80px 0 20px 0;
+}
+
+.form-block {
+	margin-bottom: 25px;
+	border-radius: 3px;
+}
+
+.form-block p {
+	font: 400 45px Roboto;
+	margin: 20px 0 20px 0;
+}
+
+.form-block input {
+	width: 100%;
+	padding: 20px 10px;
+	font: 400 60px Roboto;
+}
+
+.form-block label {
+	width: 360px;
+	background-color: #f2f2f2;
+	box-shadow: 2px 2px 3px #ccc;
+	margin-right: 60px;
+	font: 400 45px Roboto;
+	border-radius: 2px;
+	padding: 20px 0;
+}
+
+.form-block label:before {
+	content: '\2713';
+	top: -15px;
+	right: -10px;
+	width: 60px;
+	height: 60px;
+	box-shadow: 1px 1px 2px #ccc;
+}
+
+.form-block input[type="checkbox"]:checked + label {
+	box-shadow: inset 1px 1px 2px 1px #ccc;
+	font: 500 45px Roboto;
+}
+
+.form-block input[type="radio"]:checked + label {
+	box-shadow: inset 1px 1px 2px 1px #ccc;
+	font: 500 45px Roboto;
+}
+
+input[type="checkbox"]:checked + label:before {
+	content: "\2713";
+	font-size: 45px;
+}
+
+input[type="radio"]:checked + label:before {
+	content: "\2713";
+	font-size: 45px;
+}
+
+.payment label {
+	width: 400px;
+	height: auto;
+	font: 400 38px Roboto;
+	margin-bottom: 25px;
+	padding: 20px 0;
+}
+
+.payment input[type="checkbox"]:checked + label {
+	font: 500 38px Roboto;
+}
+
+.payment input[type="radio"]:checked + label {
+	font: 500 38px Roboto;
+}
+
+.payment label:before {
+	right: -30px;
+	top: -30px;
+}
+
+.subscribe label {
+	width: 90%;
+	padding: 40px 0 40px 80px;
+	border-bottom: 1px solid #ccc;
+	box-shadow: none;
+	background-color: #fff;
+	margin: 0;
+}
+
+.subscribe label:before {
+	content: "";
+	color: #eb212e;
+	top: 40px;
+	left: 0;
+	box-shadow: none;
+	background-color: transparent;
+	font-size: 45px;
+}
+
+.subscribe input[type="radio"]:checked + label {
+	border-bottom: 1px solid #ccc;
+	box-shadow: none;
+	color: #464646;
+}
+
+.subscribe input[type="radio"]:checked + label:before {
+	content: "\2713";
+	text-align: center;
+	font-size: 50px;
+}
+
+/* Конец формы заказа */
+
+.pagination {
+	width: 780px;
+	margin: 0 auto;
+}
+
+.pagination .active-bt-pag a {
+	box-shadow: 0 1px 4px rgba(122,122,122,0.5);
+	border-radius: 2px;
+	color: #fff;
+}
+
+.pagination li a {
+	box-shadow: 0 1px 4px rgba(122,122,122,0.5);
+	border-radius: 2px;
+	margin: 35px 30px 0 30px;
+	padding: 10px 18px;
+	font: 700 45px Roboto;
+}
+
+.arrow-right {
+	margin-top: 17px;
+	padding: 30px 30px;
+}
+.arrow-left {
+	margin-top: 17px;
+	padding: 30px 30px;
+}
+
+.footer {
+	padding: 30px 40px 30px 40px;
+}
+
+.footer .icon {
+	width: 50px;
+	height: 50px;
+	-webkit-background-size: 50px;
+	background-size: 50px;
+	top: 6px;
+}
+
+}
+
+

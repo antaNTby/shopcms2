@@ -1,0 +1,62 @@
+{* Шаблон вывода результатов простого поиска товаров *}
+
+<div class="block">
+	<div class="clear"></div>
+	<div class="name">
+  		<h1 class="center">Поиск карт</h1>
+	</div>
+    <div class="inn">
+		{* Вывод найденных категорий *}
+		{if $searchincategory_count > 0 }
+			<div class="resultat">
+          		<p>Найдено категорий: <strong>{$searchincategory_count}</strong></p> 
+			</div>	
+
+			<div id="results">		
+			    {section name=i1 loop=$searchincategory }
+					{if  $smarty.section.i1.iteration%2!=1}
+						{assign var="class" value="white"}
+					{else}
+						{assign var="class" value="gray"}
+					{/if}
+  					<div class="{$class}">
+  						{*
+						<div class="image">
+							{if $product_info[i1].brief_picture}
+								<a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $product_info[i1].UID}{$product_info[i1].UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/product_{$product_info[i1].productID}.html{/if}{else}index.php?productID={$product_info[i1].productId}{/if}" title="{$product_info[i1].name}"><img src="{$product_info[i1].pic_path}{if $product_info[i1].folder_pictures}{$product_info[i1].brif_picture}{else}{$product_info[i1].brief_picture}{/if}"  alt="{$product_info[i1].name}"  width="80"/></a>
+							{else}
+								{if $smarty.const.CONF_DISPLAY_NOPHOTO eq 1}
+									<a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $product_info[i1].UID}{$product_info[i1].UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/product_{$product_info[i1].productID}.html{/if}{else}index.php?productID={$product_info[i1].productId}{/if}" title="{$product_info[i1].name}"><img src="design/user/{$smarty.const.TEMPLATE_GO}/images/no-photo.gif" width="80" height="80" alt="{$product_info[i1].name}" /></a>
+								{/if}
+							{/if}
+						</div>
+		                *}
+						
+						<p><a href="{if $smarty.const.CONF_MOD_REWRITE eq 1}{if $smarty.const.CONF_USE_EASY_URLS && $searchincategory[i1].UID}{$searchincategory[i1].UID}{$smarty.const.CONF_USE_EASY_URL_PREFIX}{else}/category_{$searchincategory[i1].categoryID}.html{/if}{else}index.php?categoryID={$searchincategory[i1].categoryID}{/if}">{$searchincategory[i1].name}</a></p>
+					</div>
+				{/section}
+			</div>
+
+	    {else}
+        	<br><p class="empty">{$smarty.const.TPL_SEARCH_NOT_FOUND}</p>
+		{/if}
+
+		{* Вывод найденных товаров *}  
+		{*       
+		{if $products_to_show_count > 0}
+			<div class="resultat">
+          		<p>Найдено товаров: <strong>{$products_found}</strong></p> 
+			</div>	
+			
+			<div id="results">		
+          		{include file="product_brief_search.tpl.html" product_info=$products_to_show}
+			</div>
+        {else}
+        	{if $searchincategory_count== 0}
+        		<br><p class="empty">{$smarty.const.TPL_SEARCH_NOT_FOUND}</p>
+        	{/if}
+        {/if}
+		*}
+		<div class="clear"></div>
+    </div>
+</div>
